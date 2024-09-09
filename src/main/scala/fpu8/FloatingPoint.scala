@@ -41,11 +41,12 @@ class FloatingPoint(format: Int) extends Bundle {
 
   def isInfty: Bool = isExpMax && isMantissa0
 
-  def alignForAddition(other: FloatingPoint): (UInt, UInt, UInt, UInt) = {
+  def alignForAddition(other: FloatingPoint)(subtract: UInt): (UInt, UInt, UInt, UInt, UInt) = {
     val compare = this.isGreater(other)
     val greaterOperand = Mux(compare, this, other)
     val smallerOperand = Mux(compare, other, this)
-    val sign = Mux(compare, this.sign, other.sign)
+    val sign = Mux(compare, this.sign, other.sign ^ subtract)
+    val subtraction = subtract ^ greaterOperand.sign ^ smallerOperand.sign
     val greaterExp = greaterOperand.exponent
     val greaterOperandFraction = Cat(!greaterOperand.isExp0, greaterOperand.mantissa)
     val smallerOperandFraction = Cat(!smallerOperand.isExp0, smallerOperand.mantissa)
@@ -66,7 +67,7 @@ class FloatingPoint(format: Int) extends Bundle {
     }
     val paddedGreaterOperandFraction = Cat(0.U, greaterOperandFraction, Fill(3, 0.U))
     val paddedSmallerOperandFraction = Cat(0.U, shiftedFraction)
-    (sign, paddedGreaterOperandFraction, paddedSmallerOperandFraction, greaterExp)
+    (sign, paddedGreaterOperandFraction, paddedSmallerOperandFraction, greaterExp, subtraction)
   }
 
   def normalize(sign: UInt, exponent: UInt, calculatedValue: UInt, roundingMode: UInt): (Bool, UInt, UInt, Int) = {
@@ -197,14 +198,14 @@ class FloatingPoint(format: Int) extends Bundle {
   }
 
 
-  def +(other: FloatingPoint)(roundingMode: UInt, saturationMode: UInt): UInt = {
-    val isResultNaN = WireDefault(this.isNaN | other.isNaN)
+  def +(other: FloatingPoint)(roundingMode: UInt, saturationMode: UInt, subtract: UInt): UInt = {
+    val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = this.alignForAddition(other)(subtract)
+
+    val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.isInfty && other.isInfty && subtraction.asBool))
     val isResultInfty = WireDefault((this.isInfty || other.isInfty) & !isResultNaN)
-    val isResult0 = WireDefault((this.isEqualTo(other)) && (this.sign =/= other.sign) && !isResultNaN && !isResultInfty)
+    val isResult0 = WireDefault(this.isEqualTo(other) && subtraction.asBool && !isResultNaN && !isResultInfty)
 
-    val (sign, greaterOperandFraction, smallerOperandFraction, exponent) = this.alignForAddition(other)
-
-    val calculatedValue = Mux(this.sign =/= other.sign,
+    val calculatedValue = Mux(subtraction === 1.U,
       greaterOperandFraction -& smallerOperandFraction,
       greaterOperandFraction +& smallerOperandFraction)
 

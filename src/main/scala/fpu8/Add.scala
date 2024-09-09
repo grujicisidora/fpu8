@@ -8,9 +8,10 @@ class Add (val format: Int) extends Module {
   val b = IO(Input(new FloatingPoint(format)))
   val roundingMode = IO(Input(UInt(2.W)))
   val saturationMode = IO(Input(UInt(1.W)))
+  val subtract = IO(Input(UInt(1.W)))
   val z = IO(Output(UInt(8.W)))
 
-  val result = a.+(b)(roundingMode, saturationMode)
+  val result = a.+(b)(roundingMode, saturationMode, subtract)
 
   when(enable === 1.U) {
     z := result
