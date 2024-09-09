@@ -1,0 +1,7 @@
+[error] chisel3.package$ExpectedHardwareException: data to be connected 'UInt<5>' must be hardware, not a bare Chisel type. Perhaps you forgot to wrap it in Wire(_) or IO(_)?
+[error] 	at ... ()
+[error] 	at fpu8.Add.<init>(Add.scala:223)
+[error] 	at Main$.$anonfun$new$1(Main.scala:7)
+[error] 	at ... ()
+[error] 	at ... (Stack trace trimmed to user code only. Rerun with --full-stacktrace to see the full stack trace)
+[error] (Compile / run) chisel3.package$ExpectedHardwareException: data to be connected 'UInt<5>' must be hardware, not a bare Chisel type. Perhaps you forgot to wrap it in Wire(_) or IO(_)?
