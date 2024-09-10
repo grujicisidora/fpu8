@@ -41,6 +41,55 @@ class FloatingPoint(format: Int) extends Bundle {
 
   def isInfty: Bool = isExpMax && isMantissa0
 
+  def is0: Bool = isExp0 && isMantissa0
+
+  // ova funkcija moze da se sredi i iskoristi u okviru funkcije normalize
+  def shiftToMSB1(value: UInt): (UInt, UInt) = {
+    val shift4places = {
+      if (mantissaLength + 1 <= 3) false.B
+      else !value(mantissaLength, mantissaLength - 3).orR
+    }
+
+    val firstShift = {
+      if (shift4places == true.B) {
+        if (mantissaLength == 3) Fill(4, 0.U)
+        else if (mantissaLength == 4) Cat(value(0), Fill(4, 0.U))
+        else Cat(value(mantissaLength - 3, 0), Fill(4, 0.U))
+      }
+      else value
+    }
+
+    val shift2places = !firstShift(mantissaLength, mantissaLength - 1).orR
+
+    val secondShift = {
+      if (shift2places == true.B) {
+        if (mantissaLength == 2) Cat(firstShift(0), Fill(2, 0.U))
+        else Cat(firstShift(mantissaLength - 2, 0), Fill(2, 0.U))
+      }
+      else firstShift
+    }
+
+    val shift1place = !secondShift(mantissaLength)
+
+    val shiftedValue = {
+      if (shift1place == true.B) Cat(secondShift(mantissaLength - 1, 0), 0.U)
+      else secondShift
+    }
+
+    val shiftPlaces = 0.U + {
+      if (shift4places == true.B) 4.U
+      else 0.U
+    } + {
+      if (shift2places == true.B) 2.U
+      else 0.U
+    } + {
+      if (shift1place == true.B) 1.U
+      else 0.U
+    }
+
+    (shiftedValue, shiftPlaces)
+  }
+
   def alignForAddition(other: FloatingPoint)(subtract: UInt): (UInt, UInt, UInt, UInt, UInt) = {
     val compare = this.isGreater(other)
     val greaterOperand = Mux(compare, this, other)
@@ -68,6 +117,27 @@ class FloatingPoint(format: Int) extends Bundle {
     val paddedGreaterOperandFraction = Cat(0.U, greaterOperandFraction, Fill(3, 0.U))
     val paddedSmallerOperandFraction = Cat(0.U, shiftedFraction)
     (sign, paddedGreaterOperandFraction, paddedSmallerOperandFraction, greaterExp, subtraction)
+  }
+
+  def alignForDivision(other: FloatingPoint): (UInt, UInt, UInt, UInt) = {
+    val sign = this.sign ^ other.sign
+    val tempDividendFraction = Mux(this.isExp0,
+      Cat(this.mantissa, 0.U),
+      Cat(1.U, this.mantissa))
+    val tempDivisorFraction = Mux(other.isExp0,
+      Cat(other.mantissa, 0.U),
+      Cat(1.U, other.mantissa))
+
+    val (dividendFraction, dividendShift) = shiftToMSB1(tempDividendFraction)
+    val (divisorFraction, divisorShift) = shiftToMSB1(tempDivisorFraction)
+
+    val tempExponent = Cat(Fill(2, 0.U), this.exponent) -&
+      Cat(Fill(2, 0.U), other.exponent) +&
+      Fill(mantissaLength, 1.U) // dodaje se bias na stvarni eksponent
+
+    val exponent = tempExponent -& dividendShift +& divisorShift
+
+    (sign, dividendFraction, divisorFraction, exponent)
   }
 
   def normalize(sign: UInt, exponent: UInt, calculatedValue: UInt, roundingMode: UInt): (Bool, UInt, UInt, Int) = {
@@ -212,5 +282,11 @@ class FloatingPoint(format: Int) extends Bundle {
     val (overflow, finalExponent, finalFraction, roundedFractionMSBIndex) = normalize(sign, exponent, calculatedValue, roundingMode)
 
     additionFinalResult(overflow, sign, finalExponent, finalFraction, roundedFractionMSBIndex)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+  }
+
+  def /(other: FloatingPoint)(roundingMode: UInt, saturationMode: UInt) = {
+    val isResultNan = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
+    val isResultInfty = WireDefault((other.is0 && !this.is0 && !this.isInfty && !isNaN) || (this.isInfty && !other.isNaN))
+    val isResult0 = WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
   }
 }
