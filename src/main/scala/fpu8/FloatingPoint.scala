@@ -133,7 +133,7 @@ class FloatingPoint(format: Int) extends Bundle {
 
     val tempExponent = Cat(Fill(2, 0.U), this.exponent) -&
       Cat(Fill(2, 0.U), other.exponent) +&
-      Fill(mantissaLength, 1.U) // dodaje se bias na stvarni eksponent
+      Fill(exponentLength - 1, 1.U) // dodaje se bias na stvarni eksponent
 
     val exponent = tempExponent -& dividendShift +& divisorShift
 
