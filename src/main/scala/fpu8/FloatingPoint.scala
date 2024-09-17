@@ -90,6 +90,53 @@ class FloatingPoint(format: Int) extends Bundle {
     (shiftedValue, shiftPlaces)
   }
 
+  def generateROMforDiv: Vec[UInt] = {
+    /*val vecSize = pow(2, mantissaLength).toInt
+
+    val romDiv = Vec(vecSize, UInt((mantissaLength + 1).W))
+
+    for (i <- 0 until vecSize) {
+      romDiv(i) := (14 - i * 2 + format).U
+    }
+
+    romDiv*/
+
+    val vecSize = pow(2, mantissaLength).toInt
+
+    // Initialize a Vec with VecInit and a sequence of values
+    val romDiv = VecInit(Seq.fill(vecSize)(0.U((mantissaLength + 1).W)))
+
+    for (i <- 0 until vecSize) {
+      romDiv(i) := (14 - i * 2 + format).U
+    }
+
+    romDiv
+  }
+
+  def multiply(lengthA: Int, lengthB: Int, a: UInt, b: UInt): UInt = {
+    val partialProducts = Seq.tabulate(lengthB)(i => {
+      val compare = Mux(b(i), ((1 << lengthA) - 1).U(lengthA.W), 0.U(lengthA.W))
+      ((a & compare) << i).asUInt
+    })
+
+    def reducePartialProducts(pp: Seq[UInt]): UInt = {
+      if (pp.size == 1) {
+        pp.head
+      } else if (pp.size == 2) {
+        pp(0) +& pp(1)
+      } else {
+        val partialSums = pp.grouped(3).toSeq.map {
+          case Seq(a, b, c) => a +& b +& c
+          case Seq(a, b) => a +& b
+          case Seq(a) => a
+        }
+        reducePartialProducts(partialSums)
+      }
+    }
+
+    reducePartialProducts(partialProducts)
+  }
+
   def alignForAddition(other: FloatingPoint)(subtract: UInt): (UInt, UInt, UInt, UInt, UInt) = {
     val compare = this.isGreater(other)
     val greaterOperand = Mux(compare, this, other)
@@ -138,6 +185,49 @@ class FloatingPoint(format: Int) extends Bundle {
     val exponent = tempExponent -& dividendShift +& divisorShift
 
     (sign, dividendFraction, divisorFraction, exponent)
+  }
+
+  def newtonDiv(dividendFraction: UInt, divisorFraction: UInt) = {
+    val rom = generateROMforDiv
+
+    val initGuess = Cat(1.U(2.W), rom(divisorFraction(mantissaLength - 1, 0)))
+
+    // ovo moze da se parametrizuje bolje i iskoristi jos negde sigurno
+    def round(value: UInt): UInt = {
+      val valueLength = value.getWidth
+      val msbIndex = valueLength - 2
+      val lsbIndex = valueLength - 7 + format
+      val roundedValue = {
+        if (valueLength >= 7)
+          Cat(0.U, value(msbIndex, lsbIndex)) +& (value(lsbIndex - 1) & value(lsbIndex - 2, lsbIndex - 3).orR.asUInt)
+        else
+          Cat(0.U, value(msbIndex, lsbIndex))
+      }
+
+      roundedValue
+    }
+
+    def iteration(xi: UInt, divisorFrac: UInt): UInt = {
+      // x_i * divisorFrac
+      val firstStep = multiply(mantissaLength + 3, mantissaLength + 1, xi, divisorFrac)
+
+      val firstStepRnd = round(firstStep)
+      val firstStepRndLength = firstStepRnd.getWidth
+
+      // 2 - x_i * divisorFrac
+      val secondStep = (~firstStepRnd(firstStepRndLength - 1, 0)).asUInt +& 1.U
+
+      // x_i * (2 - x_i * divisorFrac)
+      val finalStep = multiply(mantissaLength + 3, mantissaLength + 3, xi, secondStep)
+
+      round(finalStep)
+    }
+
+    val secondGuess = iteration(initGuess, divisorFraction)
+
+    val finalGuess = iteration(secondGuess(mantissaLength + 2, 0), divisorFraction)
+
+    multiply(mantissaLength + 3, mantissaLength + 1, finalGuess(mantissaLength + 2, 0), dividendFraction)
   }
 
   def normalize(sign: UInt, exponent: UInt, calculatedValue: UInt, roundingMode: UInt): (Bool, UInt, UInt, Int) = {
@@ -233,6 +323,120 @@ class FloatingPoint(format: Int) extends Bundle {
     (overflow, finalExponent, finalFraction, roundedFractionMSBIndex)
   }
 
+  def normalizeForDivision(sign: UInt, exponent: UInt, calculatedValue: UInt, roundingMode: UInt): (Bool, UInt, UInt) = {
+    val calculatedValueLength = calculatedValue.getWidth
+
+    val moveDecPoint8 = {
+      if (calculatedValueLength < 9) false.B
+      else !calculatedValue(calculatedValueLength - 2, calculatedValueLength - 9).orR
+    }
+
+    val firstShift = {
+      if (moveDecPoint8 == true.B) Cat(calculatedValue(0), Fill(8, 0.U))
+      else calculatedValue(calculatedValueLength - 2, 0)
+    }
+
+    val moveDecPoint4 = !firstShift(calculatedValueLength - 2, calculatedValueLength - 5).orR
+
+    val secondShift = {
+      if (moveDecPoint4 == true.B) Cat(calculatedValue(calculatedValueLength - 6, 0), Fill(4, 0.U))
+      else firstShift
+    }
+
+    val moveDecPoint2 = !secondShift(calculatedValueLength - 2, calculatedValueLength - 3).orR
+
+    val thirdShift = {
+      if (moveDecPoint2 == true.B) Cat(secondShift(calculatedValueLength - 4, 0), Fill(2, 0.U))
+      else secondShift
+    }
+
+    val moveDecPoint1 = !thirdShift(calculatedValueLength - 2)
+
+    val shiftedCalcValue = {
+      if (moveDecPoint1 == true.B) Cat(thirdShift(calculatedValueLength - 3, 0), 0.U)
+      else thirdShift
+    }
+
+    val moveDecPoint = 0.U + {
+      if (moveDecPoint8 == true.B) 8.U
+      else 0.U
+    } + {
+      if (moveDecPoint4 == true.B) 4.U
+      else 0.U
+    } + {
+      if (moveDecPoint2 == true.B) 2.U
+      else 0.U
+    } + {
+      if (moveDecPoint1 == true.B) 1.U
+      else 0.U
+    }
+
+    val exponentShiftRight = 0.U((exponentLength + 2).W) -& exponent
+    val exponentShiftLeft = exponent -& 1.U((exponentLength + 2).W)
+
+    val tempExponent = Wire(UInt((exponentLength + 1).W))
+    val tempFraction = Wire(UInt((calculatedValueLength - 2 + format).W))
+
+    when(!exponent(exponentLength + 1) && (exponent(exponentLength, 0) >= maxExponent.U((exponentLength + 1).W))
+      && calculatedValue(calculatedValueLength - 1)) { // exponent overflow
+      tempExponent := maxExponent.U((exponentLength + 1).W)
+      tempFraction := ((1 << (8 - format)) - 1).U((8 - format).W)
+    }.elsewhen(!exponent(exponentLength + 1) && (exponent(exponentLength, 0) < maxExponent.U((exponentLength + 1).W))
+      && calculatedValue(calculatedValueLength - 1)) { // fraction overflow
+      tempExponent := exponent(exponentLength, 0) +& 1.U
+      tempFraction := {
+        if (calculatedValueLength >= 10)
+          calculatedValue(calculatedValueLength - 2, calculatedValueLength - 8 + format) +&
+            calculatedValue(calculatedValueLength - 9, 0).andR.asUInt
+        else
+          calculatedValue(calculatedValueLength - 2, calculatedValueLength - 8 + format)
+      }
+    }.elsewhen(!exponent(exponentLength + 1) && (exponent(exponentLength, 0) >= moveDecPoint)
+      && shiftedCalcValue(calculatedValueLength - 2)) { // normalizovani broj koji je pomeren tako da pocinje sa 1
+      tempExponent := exponent(exponentLength, 0) -& moveDecPoint
+      tempFraction := {
+        if (calculatedValueLength >= 10)
+          shiftedCalcValue(calculatedValueLength - 2, calculatedValueLength - 8 + format) +&
+            shiftedCalcValue(calculatedValueLength - 9, 0).andR.asUInt
+        else
+          shiftedCalcValue(calculatedValueLength - 2, calculatedValueLength - 8 + format)
+      }
+    }.otherwise {
+      tempExponent := 0.U // denormalizovani broj ili 0
+      when(!exponent(exponentLength + 1) && (exponent(exponentLength, 0) >= 0.U)) {
+        tempFraction := {
+          if (calculatedValueLength >= 10)
+            (calculatedValue(calculatedValueLength - 2, calculatedValueLength - 8 + format) +&
+              calculatedValue(calculatedValueLength - 9, 0).andR.asUInt) << exponentShiftLeft
+          else
+            calculatedValue(calculatedValueLength - 2, calculatedValueLength - 8 + format) << exponentShiftLeft
+        }
+      }.otherwise {
+        tempFraction := (calculatedValue(calculatedValueLength - 1, calculatedValueLength - 7 + format) +&
+          calculatedValue(calculatedValueLength - 8 + format, calculatedValueLength - 9 + format).andR.asUInt) >> exponentShiftRight// nema koliko vise da se pomeri
+      }
+    }
+    // morala je da se napravi nova promenljiva zbog faze zaokruzivanja broja
+
+    val addOne = (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && (tempFraction(1) || tempFraction(0))) || // zaokruzivanje do najblizeg
+      (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && !tempFraction(1) && !tempFraction(0) && tempFraction(3)) || // zaokruzivanje do najblizeg
+      (!roundingMode(1) && roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && sign.asBool) || // prema -infty
+      (roundingMode(1) && !roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && !sign.asBool) // prema +infty
+
+    val roundedFraction = Cat(0.U, tempFraction(6 - format, 3)) +& addOne.asUInt
+
+    val finalFraction = Mux(roundedFraction(mantissaLength + 1) === 1.U,
+      roundedFraction(mantissaLength + 1, 1), roundedFraction(mantissaLength, 0))
+
+    val finalExponent = Mux(roundedFraction(mantissaLength + 1) === 1.U || (roundedFraction(mantissaLength) && tempExponent =/= 0.U),
+      tempExponent +& 1.U((exponentLength + 1).W), tempExponent)
+
+    val overflow = (finalExponent >= (maxExponent.U +& 1.U)) || (tempExponent === maxExponent.U) ||
+      (finalFraction === ((1 << mantissaLength) - 1).U(mantissaLength.W))
+
+    (overflow, finalExponent(exponentLength - 1, 0), finalFraction(mantissaLength - 1, 0))
+  }
+
   def additionFinalResult(overflow: Bool, sign: UInt, finalExponent: UInt, finalFraction: UInt, roundedFractionMSBIndex: Int)(roundingMode: UInt, saturationMode: UInt, isInfty: Bool, is0: Bool, isNaN: Bool) : UInt = {
     val z = Wire(UInt(8.W))
     when(overflow && roundingMode === 0.U && saturationMode === 0.U && !isInfty && !is0 && !isNaN) { // infinity
@@ -285,8 +489,21 @@ class FloatingPoint(format: Int) extends Bundle {
   }
 
   def /(other: FloatingPoint)(roundingMode: UInt, saturationMode: UInt) = {
-    val isResultNan = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
+    val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
     val isResultInfty = WireDefault((other.is0 && !this.is0 && !this.isInfty && !isNaN) || (this.isInfty && !other.isNaN))
     val isResult0 = WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
+
+    val (sign, dividendFraction, divisorFraction, exponent) = this.alignForDivision(other)
+
+    val quotient = newtonDiv(dividendFraction, divisorFraction)
+
+    printf(cf"PRINTF: quotient $quotient\n") // ovo mi ne racuna kako treba
+
+    val (overflow, finalExponent, finalFraction) = normalizeForDivision(sign, exponent, quotient, roundingMode)
+
+    //printf(cf"PRINTF: finalExponent $finalExponent; finalFraction $finalFraction\n")
+
+    additionFinalResult(overflow, sign, finalExponent, finalFraction, mantissaLength + 1)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
   }
+
 }
