@@ -1,0 +1,60 @@
+$date
+2024-09-17T14:26+0000
+$end
+$version
+0.2
+$end
+$comment
+
+$end
+$timescale 1ns  $end
+$scope module TreeMultiplier $end
+ $var wire 7 ! product_partialSums_0 $end
+ $var wire 4 " a $end
+ $var wire 7 # product $end
+ $var wire 3 $ b $end
+ $var wire 4 % partialProducts_compare_1 $end
+ $var wire 4 & partialProducts_compare_2 $end
+ $var wire 1 ' clock $end
+ $var wire 4 ( partialProducts_compare $end
+ $var wire 4 ) partialProducts_0 $end
+ $var wire 5 * partialProducts_1 $end
+ $var wire 1 + reset $end
+ $var wire 6 , partialProducts_2 $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+b0000 %
+b0000 "
+b000 $
+b0000000 #
+b0000 (
+b0000 )
+b0000 &
+b0000000 !
+0'
+b000000 ,
+b00000 *
+0+
+$end
+#0
+1+
+#1
+1'
+#6
+b1000001 !
+b1101 "
+b1000001 #
+b101 $
+b1111 &
+0'
+b1111 (
+b1101 )
+0+
+b110100 ,
+#11
+1'
+#16
+b0000 "
+b000 $
+0'

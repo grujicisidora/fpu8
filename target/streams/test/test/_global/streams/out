@@ -1,12 +1,18 @@
-[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@4f9aaf78, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestTreeMultiplier, org.scalatest.tools.Framework$$anon$1@6c289ad9, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@6c289ad9, false, [SuiteSelector])
+[info] TestTreeMultiplier:
+[info] Multiplier
+[info] - should calculate the result of a * b
+[info] - should also calculate the same expression
 [info] TestAdd:
 [info] Add
 [info] - should calculate the value of expression a + b
 [info] - should also calculate the value of expression a - b
-[info] Run completed in 2 seconds, 947 milliseconds.
-[info] Total number of tests run: 2
-[info] Suites: completed 1, aborted 0
-[info] Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0
+[info] Run completed in 3 seconds, 70 milliseconds.
+[info] Total number of tests run: 4
+[info] Suites: completed 2, aborted 0
+[info] Tests: succeeded 4, failed 0, canceled 0, ignored 0, pending 0
 [info] All tests passed.
 [debug] Passed tests:
 [debug] 	fpu8.TestAdd
+[debug] 	fpu8.TestTreeMultiplier
