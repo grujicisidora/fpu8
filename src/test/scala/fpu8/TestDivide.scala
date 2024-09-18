@@ -25,6 +25,16 @@ class TestDivide extends AnyFlatSpec with ChiselScalatestTester {
       dut.saturationMode.poke(0.U)
       dut.clock.step()
       dut.z.expect(89.U) // 0_1011_001
+
+      dut.clock.step()
+
+      dut.enable.poke(1.U)
+      dut.a.data.poke(42.U) // 0_0101_010
+      dut.b.data.poke(75.U) // 0_1001_011
+      dut.roundingMode.poke(0.U) // to nearest
+      dut.saturationMode.poke(0.U)
+      dut.clock.step()
+      dut.z.expect(23.U)
     }
   }
 }

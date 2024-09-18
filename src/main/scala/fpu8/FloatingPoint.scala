@@ -121,6 +121,7 @@ class FloatingPoint(format: Int) extends Bundle {
 
     def reducePartialProducts(pp: Seq[UInt]): UInt = {
       if (pp.size == 1) {
+        //val res = UInt((lengthA + lengthB).W)
         pp.head
       } else if (pp.size == 2) {
         pp(0) +& pp(1)
@@ -176,13 +177,18 @@ class FloatingPoint(format: Int) extends Bundle {
       Cat(1.U, other.mantissa))
 
     val (dividendFraction, dividendShift) = shiftToMSB1(tempDividendFraction)
-    val (divisorFraction, divisorShift) = shiftToMSB1(tempDivisorFraction)
+    printf(cf"PRINTF: dividendFraction $dividendFraction\n")
 
-    val tempExponent = Cat(Fill(2, 0.U), this.exponent) -&
-      Cat(Fill(2, 0.U), other.exponent) +&
+    val (divisorFraction, divisorShift) = shiftToMSB1(tempDivisorFraction)
+    printf(cf"PRINTF: divisorFraction $divisorFraction\n")
+
+    // zamenila sam -& i +& operatore sa - i +
+    val tempExponent = Cat(Fill(2, 0.U), this.exponent) -
+      Cat(Fill(2, 0.U), other.exponent) +
       Fill(exponentLength - 1, 1.U) // dodaje se bias na stvarni eksponent
 
     val exponent = tempExponent -& dividendShift +& divisorShift
+    printf(cf"PRINTF: exponent $exponent\n")
 
     (sign, dividendFraction, divisorFraction, exponent)
   }
@@ -191,6 +197,7 @@ class FloatingPoint(format: Int) extends Bundle {
     val rom = generateROMforDiv
 
     val initGuess = Cat(1.U(2.W), rom(divisorFraction(mantissaLength - 1, 0)))
+    printf(cf"PRINTF: initGuess $initGuess\n")
 
     // ovo moze da se parametrizuje bolje i iskoristi jos negde sigurno
     def round(value: UInt): UInt = {
@@ -198,9 +205,10 @@ class FloatingPoint(format: Int) extends Bundle {
       val msbIndex = valueLength - 2
       val lsbIndex = valueLength - 7 + format
       val roundedValue = {
-        if (valueLength >= 7)
-          Cat(0.U, value(msbIndex, lsbIndex)) +& (value(lsbIndex - 1) & value(lsbIndex - 2, lsbIndex - 3).orR.asUInt)
-        else
+        if (valueLength >= 7) {
+          // stavila sam + umesto +& operatora
+          Cat(0.U, value(msbIndex, lsbIndex)) + (value(lsbIndex - 1) & value(lsbIndex - 2, lsbIndex - 3).orR.asUInt)
+        } else
           Cat(0.U, value(msbIndex, lsbIndex))
       }
 
@@ -210,22 +218,42 @@ class FloatingPoint(format: Int) extends Bundle {
     def iteration(xi: UInt, divisorFrac: UInt): UInt = {
       // x_i * divisorFrac
       val firstStep = multiply(mantissaLength + 3, mantissaLength + 1, xi, divisorFrac)
+      printf(cf"PRINTF: firstStep $firstStep\n")
+
 
       val firstStepRnd = round(firstStep)
+      printf(cf"PRINTF: firstStepRnd $firstStepRnd\n")
+
       val firstStepRndLength = firstStepRnd.getWidth
+      //val firstStepRndLength = 2*mantissaLength + 1
+      printf(cf"PRINTF: firstStepRndLength $firstStepRndLength\n")
 
       // 2 - x_i * divisorFrac
-      val secondStep = (~firstStepRnd(firstStepRndLength - 1, 0)).asUInt +& 1.U
+      // stavila + umesto +& da isprobam
+      val secondStep = (~firstStepRnd(firstStepRndLength - 2, 0)).asUInt + 1.U
+      printf(cf"PRINTF: secondStep $secondStep\n")
 
       // x_i * (2 - x_i * divisorFrac)
-      val finalStep = multiply(mantissaLength + 3, mantissaLength + 3, xi, secondStep)
+      //val finalStep = multiply(mantissaLength + 3, mantissaLength + 3, xi, secondStep)
+      val finalStep = Wire(UInt((2*mantissaLength + 6).W))
+      finalStep := multiply(mantissaLength + 3, mantissaLength + 3, xi, secondStep)
+      printf(cf"PRINTF: finalStep $finalStep\n")
 
-      round(finalStep)
+      val res = round(finalStep)
+      printf(cf"PRINTF: res $res\n")
+
+      val resLength = res.getWidth
+      printf(cf"PRINTF: resLength $resLength\n")
+
+      // ovo gore posle moze i da se izbaci
+      res
     }
 
     val secondGuess = iteration(initGuess, divisorFraction)
+    printf(cf"PRINTF: secondGuess $secondGuess\n")
 
     val finalGuess = iteration(secondGuess(mantissaLength + 2, 0), divisorFraction)
+    printf(cf"PRINTF: finalGuess $finalGuess\n")
 
     multiply(mantissaLength + 3, mantissaLength + 1, finalGuess(mantissaLength + 2, 0), dividendFraction)
   }
@@ -418,17 +446,19 @@ class FloatingPoint(format: Int) extends Bundle {
     }
     // morala je da se napravi nova promenljiva zbog faze zaokruzivanja broja
 
+    printf(cf"PRINTF: tempExponent $tempExponent\n")
+
     val addOne = (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && (tempFraction(1) || tempFraction(0))) || // zaokruzivanje do najblizeg
       (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && !tempFraction(1) && !tempFraction(0) && tempFraction(3)) || // zaokruzivanje do najblizeg
       (!roundingMode(1) && roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && sign.asBool) || // prema -infty
       (roundingMode(1) && !roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && !sign.asBool) // prema +infty
 
-    val roundedFraction = Cat(0.U, tempFraction(6 - format, 3)) +& addOne.asUInt
+    val roundedFraction = Cat(0.U, tempFraction(6 - format, 3)) + addOne.asUInt
 
     val finalFraction = Mux(roundedFraction(mantissaLength + 1) === 1.U,
       roundedFraction(mantissaLength + 1, 1), roundedFraction(mantissaLength, 0))
 
-    val finalExponent = Mux(roundedFraction(mantissaLength + 1) === 1.U || (roundedFraction(mantissaLength) && tempExponent =/= 0.U),
+    val finalExponent = Mux(roundedFraction(mantissaLength + 1) === 1.U || (roundedFraction(mantissaLength) && tempExponent === 0.U),
       tempExponent +& 1.U((exponentLength + 1).W), tempExponent)
 
     val overflow = (finalExponent >= (maxExponent.U +& 1.U)) || (tempExponent === maxExponent.U) ||
@@ -495,13 +525,19 @@ class FloatingPoint(format: Int) extends Bundle {
 
     val (sign, dividendFraction, divisorFraction, exponent) = this.alignForDivision(other)
 
+    //printf(cf"PRINTF: exponent $exponent\n")
+
     val quotient = newtonDiv(dividendFraction, divisorFraction)
 
     printf(cf"PRINTF: quotient $quotient\n") // ovo mi ne racuna kako treba
 
+    val quotientLength = quotient.getWidth
+
+    printf(cf"PRINTF: quotientLength $quotientLength\n")
+
     val (overflow, finalExponent, finalFraction) = normalizeForDivision(sign, exponent, quotient, roundingMode)
 
-    //printf(cf"PRINTF: finalExponent $finalExponent; finalFraction $finalFraction\n")
+    printf(cf"PRINTF: finalExponent $finalExponent; finalFraction $finalFraction\n")
 
     additionFinalResult(overflow, sign, finalExponent, finalFraction, mantissaLength + 1)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
   }
