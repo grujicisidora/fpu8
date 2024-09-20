@@ -1,10 +1,14 @@
-[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@190de9a9, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@190de9a9, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestTreeMultiplier, org.scalatest.tools.Framework$$anon$1@190de9a9, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@1792c638, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestTreeMultiplier, org.scalatest.tools.Framework$$anon$1@1792c638, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@1792c638, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestFunctionTester, org.scalatest.tools.Framework$$anon$1@1792c638, false, [SuiteSelector])
 [info] TestDivide:
 [info] Divide
 [info] - should calculate the value of expression a / b *** FAILED ***
 [info]   z=12 (0xc) did not equal expected=23 (0x17) (lines in TestDivide.scala: 37, 10) (TestDivide.scala:37)
+[info] TestFunctionTester:
+[info] Function tester
+[info] - should shift the input value so the MSB becomes 1
 [info] TestTreeMultiplier:
 [info] Multiplier
 [info] - should calculate the result of a * b
@@ -13,14 +17,15 @@
 [info] Add
 [info] - should calculate the value of expression a + b
 [info] - should also calculate the value of expression a - b
-[info] Run completed in 3 seconds, 703 milliseconds.
-[info] Total number of tests run: 5
-[info] Suites: completed 3, aborted 0
-[info] Tests: succeeded 4, failed 1, canceled 0, ignored 0, pending 0
+[info] Run completed in 4 seconds, 276 milliseconds.
+[info] Total number of tests run: 6
+[info] Suites: completed 4, aborted 0
+[info] Tests: succeeded 5, failed 1, canceled 0, ignored 0, pending 0
 [info] *** 1 TEST FAILED ***
 [debug] Passed tests:
 [debug] 	fpu8.TestAdd
 [debug] 	fpu8.TestTreeMultiplier
+[debug] 	fpu8.TestFunctionTester
 [error] Failed tests:
 [error] 	fpu8.TestDivide
 [error] (Test / test) sbt.TestsFailedException: Tests unsuccessful
