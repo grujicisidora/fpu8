@@ -1,0 +1,80 @@
+$date
+2024-09-22T16:53+0000
+$end
+$version
+0.2
+$end
+$comment
+
+$end
+$timescale 1ns  $end
+$scope module FunctionTester $end
+ $var wire 4 ! a $end
+ $var wire 4 " b $end
+ $var wire 1 # c $end
+ $var wire 1 $ d $end
+ $var wire 1 % clock $end
+ $var wire 6 & tempExponent $end
+ $var wire 1 ' reset $end
+ $var wire 6 ( z $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+b000000 &
+b0000 "
+0#
+b000000 (
+0$
+b0000 !
+0%
+0'
+$end
+#0
+b000111 &
+1'
+b000111 (
+#1
+1%
+#6
+b0100 !
+b0011 "
+0%
+b001000 &
+0'
+b001000 (
+#11
+1%
+#16
+0%
+#21
+1%
+#26
+b0000 "
+1$
+0%
+b001011 &
+b001100 (
+#31
+1%
+#36
+0%
+#41
+1%
+#46
+b0000 !
+b0100 "
+1#
+0$
+0%
+b000011 &
+b000010 (
+#51
+1%
+#56
+0%
+#61
+1%
+#66
+b0000 "
+0#
+0%

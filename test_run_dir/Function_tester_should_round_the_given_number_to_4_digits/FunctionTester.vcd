@@ -1,0 +1,66 @@
+$date
+2024-09-22T22:00+0000
+$end
+$version
+0.2
+$end
+$comment
+
+$end
+$timescale 1ns  $end
+$scope module FunctionTester $end
+ $var wire 8 ! a $end
+ $var wire 1 " clock $end
+ $var wire 5 # roundedValue $end
+ $var wire 1 $ reset $end
+ $var wire 4 % z $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+b00000 #
+b0000 %
+0"
+0$
+b00000000 !
+$end
+#0
+1$
+#1
+1"
+#6
+b10011001 !
+0"
+b01001 #
+0$
+b1001 %
+#11
+1"
+#16
+0"
+#21
+1"
+#26
+b10011011 !
+0"
+b01010 #
+b1010 %
+#31
+1"
+#36
+0"
+#41
+1"
+#46
+b00011011 !
+0"
+b00010 #
+b0010 %
+#51
+1"
+#56
+0"
+#61
+1"
+#66
+b00000000 !
+0"

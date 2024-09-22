@@ -6,19 +6,41 @@ import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
 
 class TestFunctionTester extends AnyFlatSpec with ChiselScalatestTester {
-  "Function tester" should "shift the input value so the MSB becomes 1" in {
-    test(new FunctionTester(8)).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
-      dut.a.poke(15.U)
+  "Function tester" should "round the given number to 4 digits" in {
+    test(new FunctionTester(8, 4)).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
+      dut.a.poke(153.U)
       dut.clock.step()
-      dut.z.expect(240.U)
-      dut.y.expect(4.U)
+      dut.z.expect(9.U)
 
       dut.clock.step()
 
-      dut.a.poke(44.U)
+      dut.a.poke(155.U)
       dut.clock.step()
-      dut.z.expect(176.U)
-      dut.y.expect(2.U)
+      dut.z.expect(10.U)
+
+      dut.clock.step()
+
+      dut.a.poke(27.U)
+      dut.clock.step()
+      dut.z.expect(2.U)
+
+      dut.clock.step()
+    }
+  }
+
+  it should "also do the same thing as explained above" in {
+    test(new FunctionTester(8, 6)).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
+      dut.a.poke(153.U)
+      dut.clock.step()
+      dut.z.expect(38.U)
+
+      dut.clock.step()
+
+      dut.a.poke(26.U)
+      dut.clock.step()
+      dut.z.expect(6.U)
+
+      dut.clock.step()
     }
   }
 
