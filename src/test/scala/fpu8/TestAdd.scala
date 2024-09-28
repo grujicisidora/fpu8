@@ -7,7 +7,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 
 class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
   "Add" should "calculate the value of expression a + b" in {
-    test(new Add(0)).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
+    test(new Add(false)).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
       dut.enable.poke(0.U)
       dut.a.data.poke(42.U) // 0_0101_010
       dut.b.data.poke(75.U) // 0_1001_011
@@ -77,7 +77,7 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
   }
 
   it should "also calculate the value of expression a - b" in {
-    test(new Add(0)) { dut =>
+    test(new Add(false)) { dut =>
       dut.enable.poke(1.U)
       dut.a.data.poke(75.U) // 0_1001_011
       dut.b.data.poke(42.U) // 0_0101_010

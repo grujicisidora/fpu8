@@ -4,12 +4,16 @@
 [debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8
 [debug] 	fpu8\Add.class
 [debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8\Add.class
+[debug] 	fpu8\Compare.class
+[debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8\Compare.class
 [debug] 	fpu8\Divide.class
 [debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8\Divide.class
 [debug] 	fpu8\FloatingPoint.class
 [debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8\FloatingPoint.class
 [debug] 	fpu8\FunctionTester.class
 [debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8\FunctionTester.class
+[debug] 	fpu8\Multiply.class
+[debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8\Multiply.class
 [debug] 	fpu8\TreeMultiplier.class
 [debug] 	  E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes\fpu8\TreeMultiplier.class
 [debug] 	Main$.class

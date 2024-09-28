@@ -1,6 +1,8 @@
 #Successful Tests
-#Mon Sep 23 00:00:43 CEST 2024
-fpu8.TestTreeMultiplier=1727042443572
-fpu8.TestFunctionTester=1727042443531
-fpu8.TestDivide=1727042442940
-fpu8.TestAdd=1727042443617
+#Sun Sep 29 01:24:04 CEST 2024
+fpu8.TestTreeMultiplier=1727565844668
+fpu8.TestFunctionTester=1727565844617
+fpu8.TestMultiply=1727565844011
+fpu8.TestDivide=1727565843980
+fpu8.TestAdd=1727565844802
+fpu8.TestCompare=1727565843979

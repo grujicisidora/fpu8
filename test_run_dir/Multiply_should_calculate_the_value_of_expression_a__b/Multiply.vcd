@@ -1,0 +1,205 @@
+$date
+2024-09-28T23:24+0000
+$end
+$version
+0.2
+$end
+$comment
+
+$end
+$timescale 1ns  $end
+$scope module Multiply $end
+ $var wire 6 ! result_exponentShiftLeft $end
+ $var wire 8 " result $end
+ $var wire 2 # roundingMode $end
+ $var wire 8 $ z $end
+ $var wire 7 % result_product_partialSums_0 $end
+ $var wire 4 & result_finalExponent_1 $end
+ $var wire 4 ' result_firstOperandFraction $end
+ $var wire 4 ( result_finalFraction $end
+ $var wire 6 ) result_exponent $end
+ $var wire 6 * result_exponentShiftRight $end
+ $var wire 8 + result_product $end
+ $var wire 1 , clock $end
+ $var wire 1 - result_isResultInfty $end
+ $var wire 4 . result_z_lo $end
+ $var wire 8 / b_data $end
+ $var wire 4 0 result_secondOperandFraction $end
+ $var wire 1 1 result_overflow $end
+ $var wire 8 2 a_data $end
+ $var wire 5 3 result_roundedFraction $end
+ $var wire 5 4 result_z_hi_7 $end
+ $var wire 5 5 result_z_hi_8 $end
+ $var wire 5 6 result_z_hi $end
+ $var wire 1 7 result_isResult0 $end
+ $var wire 7 8 result_shiftedCalcValue $end
+ $var wire 7 9 result_shift $end
+ $var wire 5 : result_finalExponent $end
+ $var wire 4 ; result_product_partialProducts_compare $end
+ $var wire 1 < saturationMode $end
+ $var wire 7 = result_tempFraction $end
+ $var wire 4 > result_z_lo_1 $end
+ $var wire 4 ? result_z_lo_2 $end
+ $var wire 5 @ result_z_hi_5 $end
+ $var wire 5 A result_z_hi_6 $end
+ $var wire 4 B result_z_hi_3 $end
+ $var wire 5 C result_z_hi_4 $end
+ $var wire 4 D result_z_hi_1 $end
+ $var wire 4 E result_z_hi_2 $end
+ $var wire 1 F enable $end
+ $var wire 1 G result_isResultNaN $end
+ $var wire 1 H result_addOne $end
+ $var wire 1 I reset $end
+ $var wire 3 J result_finalFraction_1 $end
+ $var wire 1 K result_sign $end
+ $var wire 6 L result_product_partialProducts_2 $end
+ $var wire 7 M result_product_partialProducts_3 $end
+ $var wire 4 N result_product_partialProducts_0 $end
+ $var wire 5 O result_product_partialProducts_1 $end
+ $var wire 5 P result_tempExponent $end
+ $var wire 4 Q result_product_partialProducts_compare_3 $end
+ $var wire 4 R result_product_partialProducts_compare_2 $end
+ $var wire 4 S result_product_partialProducts_compare_1 $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+01
+07
+0<
+0F
+0G
+0H
+0I
+0K
+b00 #
+b00000 3
+b00000 5
+b00000 4
+b00000 6
+b00000 :
+b0000 (
+b0000 &
+b00000 A
+b0000 '
+b00000 @
+b00000 C
+b0000 0
+b0000 .
+b000000 L
+b0000 ;
+b00000 O
+b00000 P
+b0000 D
+b00000000 +
+b0000 E
+b0000 B
+b0000000 M
+b0000 >
+b0000 ?
+b00000000 "
+b00000000 $
+b000 J
+b0000 R
+b0000000 =
+b000000 )
+b0000 S
+b0000 Q
+b000000 *
+b0000 N
+b00000000 2
+b000000 !
+b00000000 /
+b0000000 9
+b0000000 8
+b0000000 %
+0,
+0-
+$end
+#0
+b110011 !
+b01111 A
+b0111 B
+b01111 C
+b0111 D
+b1111 E
+b110100 )
+1I
+b001100 *
+b0111 .
+b01111 5
+b01111 6
+17
+b0000110 9
+b0111 >
+b0111 ?
+#1
+1,
+#6
+b00111 @
+1H
+0I
+b110 J
+b1010000 M
+b1010 N
+b10100 O
+b00111 P
+b1111 Q
+b1111 S
+b000110 !
+b00111110 "
+b0011110 %
+b0111 &
+b1010 '
+b1110 (
+b000111 )
+b111001 *
+b01101110 +
+0,
+b01001011 /
+b1011 0
+b00101010 2
+b01110 3
+07
+b1101110 8
+b0000000 9
+b00111 :
+b1111 ;
+b1101110 =
+#11
+1,
+#16
+0,
+#21
+1,
+#26
+b00111110 $
+1F
+0,
+#31
+1,
+#36
+0,
+#41
+1,
+#46
+b10111 @
+b11111 A
+b10111110 "
+b10101010 2
+b10111110 $
+b10000 4
+b1111 D
+b11111 6
+1K
+0,
+#51
+1,
+#56
+0,
+#61
+1,
+#66
+b00000000 2
+0F
+0,
+b00000000 /

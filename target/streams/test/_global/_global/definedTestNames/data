@@ -1,1 +1,1 @@
-["fpu8.TestAdd","fpu8.TestTreeMultiplier","fpu8.TestFunctionTester","fpu8.TestDivide"]
+["fpu8.TestTreeMultiplier","fpu8.TestMultiply","fpu8.TestAdd","fpu8.TestFunctionTester","fpu8.TestDivide","fpu8.TestCompare"]

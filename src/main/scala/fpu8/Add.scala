@@ -2,10 +2,10 @@ package fpu8
 
 import chisel3._
 
-class Add (val format: Int) extends Module {
+class Add (val e5m2: Boolean) extends Module {
   val enable = IO(Input(UInt(1.W)))
-  val a = IO(Input(new FloatingPoint(format)))
-  val b = IO(Input(new FloatingPoint(format)))
+  val a = IO(Input(new FloatingPoint(e5m2)))
+  val b = IO(Input(new FloatingPoint(e5m2)))
   val roundingMode = IO(Input(UInt(2.W)))
   val saturationMode = IO(Input(UInt(1.W)))
   val subtract = IO(Input(UInt(1.W)))

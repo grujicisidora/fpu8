@@ -1,0 +1,169 @@
+$date
+2024-09-28T23:24+0000
+$end
+$version
+0.2
+$end
+$comment
+
+$end
+$timescale 1ns  $end
+$scope module Compare $end
+ $var wire 4 ! z_result_hi $end
+ $var wire 1 " enable $end
+ $var wire 8 # a_data $end
+ $var wire 1 $ reset $end
+ $var wire 3 % compareMode $end
+ $var wire 4 & z_result_hi_5 $end
+ $var wire 4 ' z_result_hi_6 $end
+ $var wire 4 ( z_result_hi_7 $end
+ $var wire 4 ) z_result_hi_1 $end
+ $var wire 4 * z_result_hi_2 $end
+ $var wire 4 + z_result_hi_3 $end
+ $var wire 4 , z_result_hi_4 $end
+ $var wire 8 - z $end
+ $var wire 8 . z_result $end
+ $var wire 1 / clock $end
+ $var wire 8 0 b_data $end
+ $var wire 8 1 z_result_2 $end
+ $var wire 8 2 z_result_1 $end
+ $var wire 8 3 z_result_4 $end
+ $var wire 8 4 z_result_3 $end
+ $var wire 8 5 z_result_6 $end
+ $var wire 8 6 z_result_5 $end
+ $var wire 8 7 z_result_7 $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+b00000000 -
+b0000 !
+b000 %
+b0000 ,
+b00000000 #
+b0000 *
+b0000 +
+b0000 (
+b0000 )
+b0000 &
+b0000 '
+0"
+0$
+b00000000 7
+b00000000 6
+b00000000 3
+b00000000 2
+b00000000 5
+b00000000 4
+b00000000 .
+b00000000 1
+0/
+b00000000 0
+$end
+#0
+b0111 !
+1$
+b0111 &
+b0111 '
+b0111 (
+b0111 )
+b0111 *
+b0111 +
+b0111 ,
+b00111000 .
+b00111000 1
+b00111000 3
+b00111000 4
+b00111000 5
+#1
+1/
+#6
+b00101010 #
+0$
+b00111000 .
+0/
+b01001011 0
+b00000000 1
+b00000000 2
+b00000000 3
+b00111000 4
+b00000000 5
+b00000000 6
+b00111000 7
+#11
+1/
+#16
+0/
+#21
+1/
+#26
+1"
+b00111000 -
+0/
+#31
+1/
+#36
+b001 %
+b00000000 -
+0/
+#41
+1/
+#46
+0/
+#51
+1/
+#56
+b010 %
+0/
+#61
+1/
+#66
+0/
+#71
+1/
+#76
+b011 %
+b00111000 -
+0/
+#81
+1/
+#86
+0/
+#91
+1/
+#96
+b100 %
+b00000000 -
+0/
+#101
+1/
+#106
+0/
+#111
+1/
+#116
+b101 %
+b00111000 -
+0/
+#121
+1/
+#126
+0/
+#131
+1/
+#136
+b00111000 2
+b10101010 #
+b000 %
+b00111000 6
+0/
+#141
+1/
+#146
+0/
+#151
+1/
+#156
+b00000000 0
+0"
+b00000000 #
+0/
