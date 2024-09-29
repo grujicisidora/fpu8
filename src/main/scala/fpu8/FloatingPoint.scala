@@ -6,6 +6,7 @@ import chisel3.util._
 import scala.math.pow
 
 class FloatingPoint(e5m2: Boolean) extends Bundle {
+
   val data = Input(UInt(8.W))
 
   val exponentLength = {
@@ -107,7 +108,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     reducePartialProducts(partialProducts)
   }
 
-  def prepareForAddition(other: FloatingPoint)(subtract: UInt): (UInt, UInt, UInt, UInt, UInt) = {
+  def prepareForAddition(other: FloatingPoint, subtract: UInt): (UInt, UInt, UInt, UInt, UInt) = {
     val compare = this.isAbsValGreater(other)
     val greaterOperand = Mux(compare, this, other)
     val smallerOperand = Mux(compare, other, this)
@@ -276,6 +277,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     }
     // morala je da se napravi nova promenljiva zbog faze zaokruzivanja broja
     val tempFraction1 = tempFraction(6, 7 - tempFractionLength)
+
     val addOne = (!roundingMode(1) && !roundingMode(0) && tempFraction1(2) && (tempFraction1(1) || tempFraction1(0))) || // zaokruzivanje do najblizeg
       (!roundingMode(1) && !roundingMode(0) && tempFraction1(2) && !tempFraction1(1) && !tempFraction1(0) && tempFraction1(3)) || // zaokruzivanje do najblizeg
       (!roundingMode(1) && roundingMode(0) && (tempFraction1(2) || tempFraction1(1) || tempFraction1(0)) && sign.asBool) || // prema -infty tj. prema nizem
@@ -415,8 +417,6 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       (!roundingMode(1) && roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && sign.asBool) || // prema -infty
       (roundingMode(1) && !roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && !sign.asBool) // prema +infty
 
-    //val makeFractionShorter = if (e5m2) 1 else 0
-
     val roundedFraction = tempFraction(6 - makeFractionShorter, 3) +& addOne.asUInt
 
     val finalFraction = Mux(roundedFraction(mantissaLength + 1) === 1.U,
@@ -467,57 +467,64 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   }
 
 
-  def +(other: FloatingPoint)(roundingMode: UInt, saturationMode: UInt, subtract: UInt): UInt = {
-    //val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = this.prepareForAddition(other)(subtract)
-    val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = prepareForAddition(other)(subtract)
+  def +(other: FloatingPoint): (UInt, UInt, UInt) => UInt = {
+    (roundingMode: UInt, saturationMode: UInt, subtract: UInt) => {
+      val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = prepareForAddition(other, subtract)
 
-    val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.isInfty && other.isInfty && subtraction.asBool))
-    val isResultInfty = WireDefault((this.isInfty || other.isInfty) & !isResultNaN)
-    val isResult0 = WireDefault(this.isAbsValEqualTo(other) && subtraction.asBool && !isResultNaN && !isResultInfty)
+      val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.isInfty && other.isInfty && subtraction.asBool))
+      val isResultInfty = WireDefault((this.isInfty || other.isInfty) & !isResultNaN)
+      val isResult0 = WireDefault(this.isAbsValEqualTo(other) && subtraction.asBool && !isResultNaN && !isResultInfty)
 
-    val calculatedValue = Mux(subtraction === 1.U,
-      greaterOperandFraction -& smallerOperandFraction, // xx.xxx...
-      greaterOperandFraction +& smallerOperandFraction) // xx.xxx...
+      val calculatedValue = Mux(subtraction === 1.U,
+        greaterOperandFraction -& smallerOperandFraction, // xx.xxx...
+        greaterOperandFraction +& smallerOperandFraction) // xx.xxx...
 
-    val (overflow, finalExponent, finalFraction) = normalizeAfterAddition(sign, exponent, calculatedValue, roundingMode)
+      val (overflow, finalExponent, finalFraction) = normalizeAfterAddition(sign, exponent, calculatedValue, roundingMode)
 
-    finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+    }
   }
 
-  def *(other: FloatingPoint)(roundingMode: UInt, saturationMode: UInt): UInt = {
-    val isResultNaN = WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
-    val isResultInfty = WireDefault((this.isInfty && !other.is0 && !other.isNaN) || (other.isInfty && !this.is0 && !this.isNaN))
-    val isResult0 = WireDefault((this.is0 && !other.isNaN) || (other.is0 && !this.isNaN))
+  def *(other: FloatingPoint): (UInt, UInt) => UInt = {
+  //(roundingMode: UInt, saturationMode: UInt): UInt = {
+    (roundingMode: UInt, saturationMode: UInt) => {
+      val isResultNaN = WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
+      val isResultInfty = WireDefault((this.isInfty && !other.is0 && !other.isNaN) || (other.isInfty && !this.is0 && !this.isNaN))
+      val isResult0 = WireDefault((this.is0 && !other.isNaN) || (other.is0 && !this.isNaN))
 
-    //val (sign, firstOperandFraction, secondOperandFraction, exponent) = this.prepareForMultiplication(other)
-    val (sign, firstOperandFraction, secondOperandFraction, exponent) = prepareForMultiplication(other)
+      //val (sign, firstOperandFraction, secondOperandFraction, exponent) = this.prepareForMultiplication(other)
+      val (sign, firstOperandFraction, secondOperandFraction, exponent) = prepareForMultiplication(other)
 
-    val product = multiply(firstOperandFraction, secondOperandFraction)
+      val product = multiply(firstOperandFraction, secondOperandFraction)
 
-    val (overflow, finalExponent, finalFraction) = normalizeAfterMultiplication(sign, exponent, product, roundingMode)
+      val (overflow, finalExponent, finalFraction) = normalizeAfterMultiplication(sign, exponent, product, roundingMode)
 
-    finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+    }
   }
 
-  def /(other: FloatingPoint)(roundingMode: UInt, saturationMode: UInt): UInt = {
-    val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
-    val isResultInfty = WireDefault((other.is0 && !this.is0 && !this.isInfty && !isNaN) || (this.isInfty && !other.isNaN))
-    val isResult0 = WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
+  def /(other: FloatingPoint): (UInt, UInt) => UInt = {
+  //(roundingMode: UInt, saturationMode: UInt): UInt = {
+    (roundingMode: UInt, saturationMode: UInt) => {
+      val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
+      val isResultInfty = WireDefault((other.is0 && !this.is0 && !this.isInfty && !isNaN) || (this.isInfty && !other.isNaN))
+      val isResult0 = WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
 
-    //val (sign, dividendFraction, divisorFraction, exponent) = this.prepareForDivision(other)
-    val (sign, dividendFraction, divisorFraction, exponent) = prepareForDivision(other)
+      //val (sign, dividendFraction, divisorFraction, exponent) = this.prepareForDivision(other)
+      val (sign, dividendFraction, divisorFraction, exponent) = prepareForDivision(other)
 
-    //printf(cf"PRINTF: exponent1 $exponent\n")
+      //printf(cf"PRINTF: exponent1 $exponent\n")
 
-    val quotient = newtonDiv(dividendFraction, divisorFraction)
+      val quotient = newtonDiv(dividendFraction, divisorFraction)
 
-    //printf(cf"PRINTF: quotient $quotient\n") // ovo mi ne racuna kako treba
+      //printf(cf"PRINTF: quotient $quotient\n") // ovo mi ne racuna kako treba
 
-    val (overflow, finalExponent, finalFraction) = normalizeAfterDivision(sign, exponent, quotient, roundingMode)
+      val (overflow, finalExponent, finalFraction) = normalizeAfterDivision(sign, exponent, quotient, roundingMode)
 
-    //printf(cf"PRINTF: finalExponent $finalExponent; finalFraction $finalFraction\n")
+      //printf(cf"PRINTF: finalExponent $finalExponent; finalFraction $finalFraction\n")
 
-    finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+    }
   }
 
   def <(other: FloatingPoint): UInt = {

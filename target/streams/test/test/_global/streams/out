@@ -1,37 +1,31 @@
-[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@238405fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@238405fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestCompare, org.scalatest.tools.Framework$$anon$1@238405fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestTreeMultiplier, org.scalatest.tools.Framework$$anon$1@238405fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestFunctionTester, org.scalatest.tools.Framework$$anon$1@238405fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestMultiply, org.scalatest.tools.Framework$$anon$1@238405fa, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestCompare, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestFunctionTester, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestMultiply, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
+[info] TestDivide:
+[info] Divide
+[info] - should calculate the value of expression a / b
 [info] TestMultiply:
 [info] Multiply
 [info] - should calculate the value of expression a * b
 [info] TestCompare:
 [info] Compare
 [info] - should compare values a and b depending of a chosen mode
-[info] TestDivide:
-[info] Divide
-[info] - should calculate the value of expression a / b
 [info] TestFunctionTester:
 [info] Function tester
 [info] - should round the given number to 4 digits
 [info] - should also do the same thing as explained above
-[info] TestTreeMultiplier:
-[info] Multiplier
-[info] - should calculate the result of a * b
-[info] - should also calculate the same expression
 [info] TestAdd:
 [info] Add
 [info] - should calculate the value of expression a + b
 [info] - should also calculate the value of expression a - b
-[info] Run completed in 5 seconds, 86 milliseconds.
-[info] Total number of tests run: 9
-[info] Suites: completed 6, aborted 0
-[info] Tests: succeeded 9, failed 0, canceled 0, ignored 0, pending 0
+[info] Run completed in 4 seconds, 481 milliseconds.
+[info] Total number of tests run: 7
+[info] Suites: completed 5, aborted 0
+[info] Tests: succeeded 7, failed 0, canceled 0, ignored 0, pending 0
 [info] All tests passed.
 [debug] Passed tests:
-[debug] 	fpu8.TestTreeMultiplier
 [debug] 	fpu8.TestMultiply
 [debug] 	fpu8.TestAdd
 [debug] 	fpu8.TestFunctionTester
