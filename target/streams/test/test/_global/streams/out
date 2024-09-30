@@ -1,14 +1,14 @@
-[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestCompare, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestFunctionTester, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestMultiply, org.scalatest.tools.Framework$$anon$1@717b38fa, false, [SuiteSelector])
-[info] TestDivide:
-[info] Divide
-[info] - should calculate the value of expression a / b
+[debug] Running TaskDef(fpu8.TestFunctionTester, org.scalatest.tools.Framework$$anon$1@1a7c7a33, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestCompare, org.scalatest.tools.Framework$$anon$1@1a7c7a33, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@1a7c7a33, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestMultiply, org.scalatest.tools.Framework$$anon$1@1a7c7a33, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@1a7c7a33, false, [SuiteSelector])
 [info] TestMultiply:
 [info] Multiply
 [info] - should calculate the value of expression a * b
+[info] TestDivide:
+[info] Divide
+[info] - should calculate the value of expression a / b
 [info] TestCompare:
 [info] Compare
 [info] - should compare values a and b depending of a chosen mode
@@ -20,7 +20,7 @@
 [info] Add
 [info] - should calculate the value of expression a + b
 [info] - should also calculate the value of expression a - b
-[info] Run completed in 4 seconds, 481 milliseconds.
+[info] Run completed in 4 seconds, 316 milliseconds.
 [info] Total number of tests run: 7
 [info] Suites: completed 5, aborted 0
 [info] Tests: succeeded 7, failed 0, canceled 0, ignored 0, pending 0

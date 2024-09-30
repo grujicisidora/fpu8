@@ -233,10 +233,26 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     multiply(finalGuess(mantissaLength + 2, 0), dividendFraction) // 0x.xxxxxx(xx)
   }
 
+  def roundAndNormalize(sign: UInt, tempFraction: UInt, fractionMSB: Int, fractionLSB: Int, tempExponent: UInt, roundingMode: UInt): (Bool, UInt, UInt) = {
+    val addOne = ((roundingMode === 0.U) && tempFraction(2) && (tempFraction(1) || tempFraction(0))) || // zaokruzivanje do najblizeg
+      ((roundingMode === 0.U) && tempFraction(2) && !tempFraction(1) && !tempFraction(0) && tempFraction(3)) || // zaokruzivanje do najblizeg
+      ((roundingMode === 1.U) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && sign.asBool) || // prema -infty tj. prema nizem
+      ((roundingMode === 2.U) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && !sign.asBool) // prema +infty tj. prema visem
+
+    val roundedFraction = tempFraction(fractionMSB, fractionLSB) +& addOne.asUInt
+
+    val finalFraction = Mux(roundedFraction(mantissaLength + 1) === 1.U,
+      roundedFraction(mantissaLength + 1, 1), roundedFraction(mantissaLength, 0))
+
+    val finalExponent = Mux(roundedFraction(mantissaLength + 1) === 1.U || (roundedFraction(mantissaLength) && tempExponent === 0.U),
+      tempExponent + 1.U, tempExponent)
+
+    val overflow = (finalExponent >= (maxExponent.U +& 1.U)) || (tempExponent === maxExponent.U)
+    (overflow, finalExponent, finalFraction)
+  }
+
   def normalizeAfterAddition(sign: UInt, exponent: UInt, calculatedValue: UInt, roundingMode: UInt): (Bool, UInt, UInt) = {
     val tempFractionLength = mantissaLength + 4
-
-    val roundedFractionMSBIndex = mantissaLength + 1
 
     val calculatedValueLength = tempFractionLength + 1
 
@@ -275,27 +291,8 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
         tempFraction := paddedCalcValue(6, 0) // nema koliko vise da se pomeri
       }
     }
-    // morala je da se napravi nova promenljiva zbog faze zaokruzivanja broja
-    val tempFraction1 = tempFraction(6, 7 - tempFractionLength)
 
-    val addOne = (!roundingMode(1) && !roundingMode(0) && tempFraction1(2) && (tempFraction1(1) || tempFraction1(0))) || // zaokruzivanje do najblizeg
-      (!roundingMode(1) && !roundingMode(0) && tempFraction1(2) && !tempFraction1(1) && !tempFraction1(0) && tempFraction1(3)) || // zaokruzivanje do najblizeg
-      (!roundingMode(1) && roundingMode(0) && (tempFraction1(2) || tempFraction1(1) || tempFraction1(0)) && sign.asBool) || // prema -infty tj. prema nizem
-      (roundingMode(1) && !roundingMode(0) && (tempFraction1(2) || tempFraction1(1) || tempFraction1(0)) && !sign.asBool) // prema +infty tj. prema visem
-
-    val roundedFraction = tempFraction1(tempFractionLength - 1, 3) +& addOne.asUInt
-
-    val finalFraction = Mux(roundedFraction(roundedFractionMSBIndex) === 1.U, roundedFraction(roundedFractionMSBIndex, 1), roundedFraction(roundedFractionMSBIndex - 1, 0))
-
-    val finalExponent = Wire(UInt((exponentLength + 1).W))
-
-    finalExponent := Mux(roundedFraction(roundedFractionMSBIndex) === 1.U || (roundedFraction(roundedFractionMSBIndex - 1) === 1.U && !tempExponent.orR),
-      tempExponent +& 1.U,
-      tempExponent
-    )
-
-    val overflow = (finalExponent >= (maxExponent.U +& 1.U)) || (tempExponent === maxExponent.U)
-    (overflow, finalExponent, finalFraction)
+    roundAndNormalize(sign, tempFraction(6, 7 - tempFractionLength), tempFractionLength - 1, 3, tempExponent, roundingMode)
   }
 
   def normalizeAfterMultiplication(sign: UInt, exponent: UInt, calculatedValue: UInt, roundingMode: UInt): (Bool, UInt, UInt) = {
@@ -307,8 +304,6 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     val exponentShiftRight = 0.U((exponentLength + 2).W) - exponent
 
     val exponentShiftLeft = exponent - 1.U((exponentLength + 2).W)
-
-    //val tempExponent = Wire(UInt((exponentLength + 1).W))
 
     val tempExponent = Wire(UInt(5.W))
 
@@ -335,22 +330,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       }
     }
 
-    val addOne = (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && (tempFraction(1) || tempFraction(0))) || // zaokruzivanje do najblizeg
-      (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && !tempFraction(1) && !tempFraction(0) && tempFraction(3)) || // zaokruzivanje do najblizeg
-      (!roundingMode(1) && roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && sign.asBool) || // prema -infty
-      (roundingMode(1) && !roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && !sign.asBool) // prema +infty
-
-    val roundedFraction = tempFraction(calculatedValueLength - 2, mantissaLength) +& addOne
-
-    val finalFraction = Mux(roundedFraction(mantissaLength + 1) === 1.U,
-      roundedFraction(mantissaLength + 1, 1), roundedFraction(mantissaLength, 0))
-
-    val finalExponent = Mux(roundedFraction(mantissaLength + 1) === 1.U || (roundedFraction(mantissaLength) && tempExponent === 0.U),
-      tempExponent + 1.U, tempExponent)
-
-    val overflow = (tempExponent >= maxExponent.U) || (finalExponent >= maxExponent.U)
-
-    (overflow, finalExponent(exponentLength - 1, 0), finalFraction(mantissaLength - 1, 0))
+    roundAndNormalize(sign, tempFraction, calculatedValueLength - 2, mantissaLength, tempExponent, roundingMode)
   }
 
   def normalizeAfterDivision(sign: UInt, exponent: UInt, calculatedValue: UInt, roundingMode: UInt): (Bool, UInt, UInt) = {
@@ -412,22 +392,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     //printf(cf"PRINTF: tempExponent $tempExponent\n")
     //printf(cf"PRINTF: tempFraction $tempFraction\n")
 
-    val addOne = (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && (tempFraction(1) || tempFraction(0))) || // zaokruzivanje do najblizeg
-      (!roundingMode(1) && !roundingMode(0) && tempFraction(2) && !tempFraction(1) && !tempFraction(0) && tempFraction(3)) || // zaokruzivanje do najblizeg
-      (!roundingMode(1) && roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && sign.asBool) || // prema -infty
-      (roundingMode(1) && !roundingMode(0) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && !sign.asBool) // prema +infty
-
-    val roundedFraction = tempFraction(6 - makeFractionShorter, 3) +& addOne.asUInt
-
-    val finalFraction = Mux(roundedFraction(mantissaLength + 1) === 1.U,
-      roundedFraction(mantissaLength + 1, 1), roundedFraction(mantissaLength, 0))
-
-    val finalExponent = Mux(roundedFraction(mantissaLength + 1) === 1.U || (roundedFraction(mantissaLength) && tempExponent === 0.U),
-      tempExponent + 1.U, tempExponent)
-
-    val overflow = (tempExponent >= maxExponent.U) || (finalExponent >= maxExponent.U)
-
-    (overflow, finalExponent(exponentLength - 1, 0), finalFraction(mantissaLength - 1, 0))
+    roundAndNormalize(sign, tempFraction, 6 - makeFractionShorter, 3, tempExponent, roundingMode)
   }
 
   // ovu funkciju je potrebno srediti, potencijalno smestiti logiku u poseban modul zbog razlike kod formata
@@ -486,7 +451,6 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   }
 
   def *(other: FloatingPoint): (UInt, UInt) => UInt = {
-  //(roundingMode: UInt, saturationMode: UInt): UInt = {
     (roundingMode: UInt, saturationMode: UInt) => {
       val isResultNaN = WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
       val isResultInfty = WireDefault((this.isInfty && !other.is0 && !other.isNaN) || (other.isInfty && !this.is0 && !this.isNaN))
@@ -504,7 +468,6 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   }
 
   def /(other: FloatingPoint): (UInt, UInt) => UInt = {
-  //(roundingMode: UInt, saturationMode: UInt): UInt = {
     (roundingMode: UInt, saturationMode: UInt) => {
       val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
       val isResultInfty = WireDefault((other.is0 && !this.is0 && !this.isInfty && !isNaN) || (this.isInfty && !other.isNaN))
@@ -582,5 +545,4 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     }
     result
   }
-
 }

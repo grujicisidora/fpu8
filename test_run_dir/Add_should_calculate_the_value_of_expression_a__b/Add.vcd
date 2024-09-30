@@ -1,5 +1,5 @@
 $date
-2024-09-29T16:37+0000
+2024-09-30T18:26+0000
 $end
 $version
 0.2
@@ -23,7 +23,7 @@ $scope module Add $end
  $var wire 1 , result_isOnlySmallerDenormalized $end
  $var wire 7 - result_shiftedCalcValue $end
  $var wire 4 . result_shift $end
- $var wire 5 / result_finalExponent $end
+ $var wire 4 / result_finalExponent $end
  $var wire 2 0 roundingMode $end
  $var wire 8 1 z $end
  $var wire 4 2 result_greaterOperandFraction $end
@@ -47,19 +47,18 @@ $scope module Add $end
  $var wire 1 D enable $end
  $var wire 1 E result_isResultNaN $end
  $var wire 1 F result_addOne $end
- $var wire 7 G result_tempFraction1 $end
- $var wire 1 H reset $end
- $var wire 4 I result_smallerOperandFraction $end
- $var wire 1 J result_sign $end
- $var wire 4 K result_tempExponent $end
- $var wire 7 L result_greaterOperandFraction_1 $end
- $var wire 1 M clock $end
- $var wire 1 N result_isResultInfty $end
- $var wire 4 O result_z_lo $end
- $var wire 8 P b_data $end
- $var wire 8 Q result_smallerOperand_data $end
- $var wire 8 R result_calculatedValue $end
- $var wire 8 S result_greaterOperand_data $end
+ $var wire 1 G reset $end
+ $var wire 4 H result_smallerOperandFraction $end
+ $var wire 1 I result_sign $end
+ $var wire 4 J result_tempExponent $end
+ $var wire 7 K result_greaterOperandFraction_1 $end
+ $var wire 1 L clock $end
+ $var wire 1 M result_isResultInfty $end
+ $var wire 4 N result_z_lo $end
+ $var wire 8 O b_data $end
+ $var wire 8 P result_smallerOperand_data $end
+ $var wire 8 Q result_calculatedValue $end
+ $var wire 8 R result_greaterOperand_data $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
@@ -73,36 +72,35 @@ b00000 '
 0E
 b00000 &
 0F
+0G
 b00000 (
-0H
-0J
-b00000 /
+0I
+0L
 0M
-0N
 b00000 ;
 b00000000 C
 b00000 <
 b00000 >
 b0000 2
 b0000 .
-b00000000 S
+b0000 /
 b0000 =
 b00000000 R
 b0000 :
+b00000000 O
 b0000 9
 b00000000 Q
 b00000000 P
+b0000000 K
 b00000000 +
 b0000 B
-b0000000 L
 b0000 @
 b0000 A
 b0000 ?
 b00000000 #
-b0000 K
-b0000000 G
-b0000 I
-b0000 O
+b0000 J
+b0000 H
+b0000 N
 b00000000 3
 b0000000 5
 b0000000 6
@@ -118,9 +116,9 @@ $end
 #0
 b1111 @
 b01111 '
+1G
 b01111 (
-1H
-b0111 O
+b0111 N
 b0000110 6
 b0111 9
 b0111 :
@@ -129,22 +127,21 @@ b0111 =
 b01111 >
 b0111 ?
 #1
-1M
+1L
 #6
 b1100 A
 b1001 B
 b01011101 C
 1F
-b1011101 G
-0H
-b1010 I
-b1001 K
-b1011000 L
-0M
-b01001011 P
-b00101010 Q
-b01011101 R
-b01001011 S
+0G
+b1010 H
+b1001 J
+b1011000 K
+0L
+b01001011 O
+b00101010 P
+b01011101 Q
+b01001011 R
 b00101010 #
 b0000101 $
 b01100 %
@@ -153,7 +150,7 @@ b01001100 +
 0,
 b1011101 -
 b0100 .
-b01001 /
+b1001 /
 b1011 2
 b01011101 3
 b1011101 5
@@ -161,84 +158,81 @@ b0000000 6
 b0000101000 8
 b01001 ;
 #11
-1M
+1L
 #16
-0M
+0L
 #21
-1M
+1L
 #26
 b01001100 1
 1D
-0M
+0L
 #31
-1M
+1L
 #36
-0M
+0L
 #41
-1M
+1L
 #46
 b1010 A
 b10101010 #
 b01010011 C
 b01010 %
 0F
-b1010011 G
 b01001010 +
+0L
 b1010011 -
-0M
+b10101010 P
 b01001010 1
-b10101010 Q
-b01010011 R
+b01010011 Q
 b01010011 3
 b1010011 5
 17
 #51
-1M
+1L
 #56
-0M
+0L
 #61
-1M
+1L
 #66
 b1000 A
 b00101010 #
 b01111101 C
 b10000 %
 1F
-b1111101 G
 b01010000 +
-b1111000 L
+b1111000 K
+0L
 b1111101 -
-0M
-b01010 /
-b01001111 P
+b1010 /
+b01001111 O
+b00101010 P
 b01010000 1
-b00101010 Q
+b01111101 Q
 b1111 2
-b01111101 R
+b01001111 R
 b01111101 3
-b01001111 S
 b1111101 5
 07
 b01010 ;
 #71
-1M
+1L
 #76
-0M
+0L
 #81
-1M
+1L
 #86
 b0000 A
 b0101 B
 b00000000 C
 0F
-b0000000 G
-1J
-b0000 K
-b1010000 L
-0M
-b10101010 P
-b00000000 R
-b10101010 S
+1I
+b0000 J
+b1010000 K
+0L
+b10101010 O
+b00000000 Q
+b10101010 R
 b1010000 $
 b00000 %
 b10000 &
@@ -247,7 +241,7 @@ b11111 (
 b10000000 +
 b0000000 -
 b0000 .
-b00000 /
+b0000 /
 b10000000 1
 b1010 2
 b00000000 3
@@ -259,23 +253,22 @@ b10000 ;
 b11111 <
 b1111 ?
 #91
-1M
+1L
 #96
-0M
+0L
 #101
-1M
+1L
 #106
 b1010 A
 b1111 B
 b01001111 C
 1E
 1F
-b1001111 G
-b1111 K
-0M
-b11111010 P
-b01001111 R
-b11111010 S
+b1111 J
+0L
+b11111010 O
+b01001111 Q
+b11111010 R
 1!
 b0000001 $
 b01010 %
@@ -283,7 +276,7 @@ b01010 %
 b01111111 +
 b1001111 -
 b1010 .
-b01111 /
+b1111 /
 b01111111 1
 b01001111 3
 b1001111 5
@@ -291,13 +284,13 @@ b0000000 6
 b0000001010 8
 b11111 ;
 #111
-1M
+1L
 #116
-0M
+0L
 #121
-1M
+1L
 #126
-b00000000 P
 b00000000 #
 0D
-0M
+0L
+b00000000 O

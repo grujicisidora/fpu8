@@ -2,16 +2,5 @@
 [debug] IncrementalCompile.incrementalCompile
 [debug] previous = Stamps for: 5 products, 5 sources, 7 libraries
 [debug] current source = Set(${BASE}/src/test/scala/fpu8/TestMultiply.scala, ${BASE}/src/test/scala/fpu8/TestFunctionTester.scala, ${BASE}/src/test/scala/fpu8/TestDivide.scala, ${BASE}/src/test/scala/fpu8/TestCompare.scala, ${BASE}/src/test/scala/fpu8/TestAdd.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set(NamesChange(fpu8.FloatingPoint,ModifiedNames(changes = UsedName(prepareForAddition,[Default])))))
-[debug] The fpu8.FloatingPoint has the following regular definitions changed:
-[debug] 	UsedName(prepareForAddition,[Default]).
-[debug] All member reference dependencies will be considered within this context.
-[debug] Files invalidated by inheriting from (external) fpu8.FloatingPoint: Set()
-[debug] Now invalidating by inheritance (internally).
-[debug] Getting direct dependencies of all classes transitively invalidated by inheritance.
-[debug] Getting classes that directly depend on (external) fpu8.FloatingPoint.
-[debug] None of the modified names appears in source file of fpu8.TestMultiply. This dependency is not being considered for invalidation.
-[debug] None of the modified names appears in source file of fpu8.TestAdd. This dependency is not being considered for invalidation.
-[debug] None of the modified names appears in source file of fpu8.TestDivide. This dependency is not being considered for invalidation.
-[debug] None of the modified names appears in source file of fpu8.TestCompare. This dependency is not being considered for invalidation.
+[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
 [debug] No changes
