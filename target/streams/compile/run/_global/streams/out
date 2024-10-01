@@ -1,2 +1,84 @@
-[error] chisel3.internal.Errors: Fatal errors during hardware elaboration. Look above for error list. Rerun with --throw-on-first-error if you wish to see a stack trace.
-[error] (Compile / run) chisel3.internal.Errors: Fatal errors during hardware elaboration. Look above for error list. Rerun with --throw-on-first-error if you wish to see a stack trace.
+[error] firrtl.passes.PassExceptions: 
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.sign <= mux(_T, _GEN_22, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.overflow <= mux(_T, _GEN_26, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.is0 <= mux(_T, VOID, _GEN_62)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.isInfty <= mux(_T, _GEN_28, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.isInfty <= mux(_T, VOID, _GEN_61)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.roundingMode <= mux(_T, VOID, _GEN_58)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.NaNFractionValue <= mux(_T, _GEN_31, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.exponent <= mux(_T, VOID, _GEN_56)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.isNaN <= mux(_T, _GEN_30, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.isNaN <= mux(_T, VOID, _GEN_63)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.roundingMode <= mux(_T, _GEN_25, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.mantissa <= mux(_T, VOID, _GEN_57)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.exponent <= mux(_T, _GEN_23, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.saturationMode <= mux(_T, VOID, _GEN_60)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.saturationMode <= mux(_T, _GEN_27, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.NaNFractionValue <= mux(_T, VOID, _GEN_64)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.overflow <= mux(_T, VOID, _GEN_59)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.is0 <= mux(_T, _GEN_29, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.mantissa <= mux(_T, _GEN_24, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.sign <= mux(_T, VOID, _GEN_55)
+[error] firrtl.passes.PassException: 20 errors detected!
+[error] (Compile / run) firrtl.passes.PassExceptions: 
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.sign <= mux(_T, _GEN_22, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.overflow <= mux(_T, _GEN_26, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.is0 <= mux(_T, VOID, _GEN_62)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.isInfty <= mux(_T, _GEN_28, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.isInfty <= mux(_T, VOID, _GEN_61)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.roundingMode <= mux(_T, VOID, _GEN_58)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.NaNFractionValue <= mux(_T, _GEN_31, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.exponent <= mux(_T, VOID, _GEN_56)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.isNaN <= mux(_T, _GEN_30, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.isNaN <= mux(_T, VOID, _GEN_63)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.roundingMode <= mux(_T, _GEN_25, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.mantissa <= mux(_T, VOID, _GEN_57)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.exponent <= mux(_T, _GEN_23, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.saturationMode <= mux(_T, VOID, _GEN_60)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.saturationMode <= mux(_T, _GEN_27, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.NaNFractionValue <= mux(_T, VOID, _GEN_64)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.overflow <= mux(_T, VOID, _GEN_59)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.is0 <= mux(_T, _GEN_29, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 39:39] : [module FPU8Top]  Reference generateFinalResultE4M3 is not fully initialized.
+[error]    : generateFinalResultE4M3.mantissa <= mux(_T, _GEN_24, VOID)
+[error] firrtl.passes.CheckInitialization$RefNotInitializedException:  @[\\src\\main\\scala\\fpu8\\FPU8Top.scala 40:39] : [module FPU8Top]  Reference generateFinalResultE5M2 is not fully initialized.
+[error]    : generateFinalResultE5M2.sign <= mux(_T, VOID, _GEN_55)
+[error] firrtl.passes.PassException: 20 errors detected!
