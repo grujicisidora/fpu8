@@ -19,8 +19,10 @@ class Multiply (val e5m2: Boolean) extends Module {
   val isInfty = IO(Output(UInt(1.W)))
   val is0 = IO(Output(UInt(1.W)))
   val isNaN = IO(Output(UInt(1.W)))
+  val NaNFractionValue = IO(Output(UInt(1.W)))
 
-  val (resultSign, resultExponent, resultFraction, resultOverflow, isResultInfty, isResult0, isResultNaN) = (a * b)(roundingMode)
+  val (resultSign, resultExponent, resultFraction, resultOverflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue) =
+    (a * b)(roundingMode)
 
   when(enable === 1.U) {
     sign := resultSign
@@ -30,6 +32,7 @@ class Multiply (val e5m2: Boolean) extends Module {
     isInfty := isResultInfty
     is0 := isResult0
     isNaN := isResultNaN
+    NaNFractionValue := resultNaNFractionValue
   }.otherwise {
     sign := 0.U
     exponent := 0.U
@@ -38,5 +41,6 @@ class Multiply (val e5m2: Boolean) extends Module {
     isInfty := 0.U
     is0 := 0.U
     isNaN := 0.U
+    NaNFractionValue := 0.U
   }
 }

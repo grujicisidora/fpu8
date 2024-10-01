@@ -15,6 +15,7 @@ circuit Add :
     output isInfty : UInt<1> @[\\src\\main\\scala\\fpu8\\Add.scala 20:19]
     output is0 : UInt<1> @[\\src\\main\\scala\\fpu8\\Add.scala 21:15]
     output isNaN : UInt<1> @[\\src\\main\\scala\\fpu8\\Add.scala 22:17]
+    output NaNFractionValue : UInt<1> @[\\src\\main\\scala\\fpu8\\Add.scala 23:28]
 
     node _compare_T = bits(a_data, 6, 0) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 29:62]
     node _compare_T_1 = bits(b_data, 6, 0) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 29:81]
@@ -228,15 +229,15 @@ circuit Add :
     node _overflow_T_8 = eq(_overflow_T_7, UInt<4>("hf")) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 267:85]
     node _overflow_T_9 = and(_overflow_T_6, _overflow_T_8) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 267:42]
     node resultOverflow = or(_overflow_T_5, _overflow_T_9) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 266:134]
-    node _T_13 = eq(enable, UInt<1>("h1")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:15]
-    node _GEN_7 = mux(_T_13, resultSign, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:24 28:10 36:10]
-    node _GEN_8 = mux(_T_13, resultExponent, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:24 29:14 37:14]
-    node _GEN_9 = mux(_T_13, resultFraction, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:24 30:14 38:14]
-    node _GEN_10 = mux(_T_13, resultOverflow, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:24 31:14 39:14]
-    node _GEN_11 = mux(_T_13, UInt<1>("h0"), UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:24 32:13 40:13]
+    node _T_13 = eq(enable, UInt<1>("h1")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:15]
+    node _GEN_7 = mux(_T_13, resultSign, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:24 29:10 38:10]
+    node _GEN_8 = mux(_T_13, resultExponent, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:24 30:14 39:14]
+    node _GEN_9 = mux(_T_13, resultFraction, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:24 31:14 40:14]
+    node _GEN_10 = mux(_T_13, resultOverflow, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:24 32:14 41:14]
+    node _GEN_11 = mux(_T_13, UInt<1>("h0"), UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:24 33:13 42:13]
     node isResult0 = _isResult0_T_8 @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 469:{34,34}]
-    node _GEN_12 = mux(_T_13, isResult0, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:24 33:9 41:9]
-    node _GEN_13 = mux(_T_13, isResultNaN, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 27:24 34:11 42:11]
+    node _GEN_12 = mux(_T_13, isResult0, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:24 34:9 43:9]
+    node _GEN_13 = mux(_T_13, isResultNaN, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Add.scala 28:24 35:11 44:11]
     sign <= _GEN_7
     exponent <= pad(_GEN_8, 5)
     fraction <= _GEN_9
@@ -244,3 +245,4 @@ circuit Add :
     isInfty <= _GEN_11
     is0 <= _GEN_12
     isNaN <= _GEN_13
+    NaNFractionValue <= _GEN_11

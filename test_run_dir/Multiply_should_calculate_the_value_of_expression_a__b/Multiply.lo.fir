@@ -14,6 +14,7 @@ circuit Multiply :
     output isInfty : UInt<1> @[\\src\\main\\scala\\fpu8\\Multiply.scala 19:19]
     output is0 : UInt<1> @[\\src\\main\\scala\\fpu8\\Multiply.scala 20:15]
     output isNaN : UInt<1> @[\\src\\main\\scala\\fpu8\\Multiply.scala 21:17]
+    output NaNFractionValue : UInt<1> @[\\src\\main\\scala\\fpu8\\Multiply.scala 22:28]
 
     node _isResultNaN_T = bits(a_data, 6, 3) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 25:28]
     node _isResultNaN_T_1 = eq(_isResultNaN_T, UInt<4>("hf")) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 35:33]
@@ -269,16 +270,16 @@ circuit Multiply :
     node _overflow_T_8 = eq(_overflow_T_7, UInt<4>("hf")) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 267:85]
     node _overflow_T_9 = and(_overflow_T_6, _overflow_T_8) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 267:42]
     node resultOverflow = or(_overflow_T_5, _overflow_T_9) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 266:134]
-    node _T_27 = eq(enable, UInt<1>("h1")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:15]
-    node _GEN_7 = mux(_T_27, resultSign, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:24 26:10 34:10]
-    node _GEN_8 = mux(_T_27, resultExponent, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:24 27:14 35:14]
-    node _GEN_9 = mux(_T_27, resultFraction, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:24 28:14 36:14]
-    node _GEN_10 = mux(_T_27, resultOverflow, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:24 29:14 37:14]
-    node _GEN_11 = mux(_T_27, UInt<1>("h0"), UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:24 30:13 38:13]
+    node _T_27 = eq(enable, UInt<1>("h1")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:15]
+    node _GEN_7 = mux(_T_27, resultSign, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:24 28:10 37:10]
+    node _GEN_8 = mux(_T_27, resultExponent, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:24 29:14 38:14]
+    node _GEN_9 = mux(_T_27, resultFraction, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:24 30:14 39:14]
+    node _GEN_10 = mux(_T_27, resultOverflow, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:24 31:14 40:14]
+    node _GEN_11 = mux(_T_27, UInt<1>("h0"), UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:24 32:13 41:13]
     node isResult0 = _isResult0_T_24 @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 499:{34,34}]
-    node _GEN_12 = mux(_T_27, isResult0, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:24 31:9 39:9]
+    node _GEN_12 = mux(_T_27, isResult0, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:24 33:9 42:9]
     node isResultNaN = _isResultNaN_T_10 @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 490:{25,25}]
-    node _GEN_13 = mux(_T_27, isResultNaN, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 25:24 32:11 40:11]
+    node _GEN_13 = mux(_T_27, isResultNaN, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Multiply.scala 27:24 34:11 43:11]
     sign <= _GEN_7
     exponent <= _GEN_8
     fraction <= _GEN_9
@@ -286,3 +287,4 @@ circuit Multiply :
     isInfty <= _GEN_11
     is0 <= _GEN_12
     isNaN <= _GEN_13
+    NaNFractionValue <= _GEN_11

@@ -1,5 +1,5 @@
 $date
-2024-10-01T15:58+0000
+2024-10-01T17:52+0000
 $end
 $version
 0.2
@@ -38,51 +38,53 @@ $scope module Add $end
  $var wire 7 ; shift_1 $end
  $var wire 4 < fraction $end
  $var wire 7 = smallerOperandFraction_1 $end
- $var wire 1 > sign $end
- $var wire 1 ? overflow $end
- $var wire 5 @ exponent $end
- $var wire 7 A greaterOperandFraction_1 $end
- $var wire 1 B clock $end
- $var wire 4 C greaterOperandFraction $end
- $var wire 8 D b_data $end
- $var wire 1 E isOnlySmallerDenormalized $end
- $var wire 8 F originalCalculatedValue $end
- $var wire 8 G calculatedValue $end
- $var wire 1 H isResult0 $end
- $var wire 1 I isInfty $end
+ $var wire 1 > NaNFractionValue $end
+ $var wire 1 ? sign $end
+ $var wire 1 @ overflow $end
+ $var wire 5 A exponent $end
+ $var wire 7 B greaterOperandFraction_1 $end
+ $var wire 1 C clock $end
+ $var wire 4 D greaterOperandFraction $end
+ $var wire 8 E b_data $end
+ $var wire 1 F isOnlySmallerDenormalized $end
+ $var wire 8 G originalCalculatedValue $end
+ $var wire 8 H calculatedValue $end
+ $var wire 1 I isResult0 $end
+ $var wire 1 J isInfty $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
+b0000 D
 b0000000000 6
-b0000 C
 07
 08
 09
+b0000000 B
 b00000000 %
 0>
 0?
+0@
 b0000000 ;
-0B
 b0000000 =
-0E
+0C
 b00 ,
-b0000000 A
-0H
+0F
 b00000000 3
 0I
 b00000000 2
+0J
 b00000000 5
 b00000 0
 b00000000 G
 b0000 !
-b00000000 F
 b0000000 1
+b00000000 H
 b0000000 #
 b0000 -
 b0000 *
-b00000000 D
+b00000000 E
 b0000 &
-b00000 @
+b00000 A
 b0000 4
 0"
 0$
@@ -99,15 +101,15 @@ $end
 19
 b0000110 ;
 #1
-1B
+1C
 #6
-b1011000 A
-0B
-b1011 C
-b01001011 D
-0E
-b01011101 F
+b1011000 B
+0C
+b1011 D
+b01001011 E
+0F
 b01011101 G
+b01011101 H
 b0100 !
 b1011101 #
 b00101010 %
@@ -128,29 +130,29 @@ b1001 :
 b0000000 ;
 b0000101 =
 #11
-1B
+1C
 #16
-0B
+0C
 #21
-1B
+1C
 #26
-b01001 @
-0B
+b01001 A
+0C
 17
 b1100 <
 #31
-1B
+1C
 #36
-0B
+0C
 #41
-1B
+1C
 #46
-0B
 b1010011 #
+0C
 b10101010 %
 b1010 &
-b01010011 F
 b01010011 G
+b01010011 H
 1)
 b01010 0
 b1010011 1
@@ -159,22 +161,22 @@ b10101010 5
 08
 b1010 <
 #51
-1B
+1C
 #56
-0B
+0C
 #61
-1B
+1C
 #66
-b01010 @
-b1111000 A
-0B
+b01010 A
+b1111000 B
 b1111101 #
-b1111 C
-b01001111 D
+0C
+b1111 D
 b00101010 %
+b01001111 E
 b1000 &
-b01111101 F
 b01111101 G
+b01111101 H
 0)
 b10000 0
 b1111101 1
@@ -185,20 +187,20 @@ b00101010 5
 b1010 :
 b1000 <
 #71
-1B
+1C
 #76
-0B
+0C
 #81
-1B
+1C
 #86
-b00000 @
-b1010000 A
-0B
-b1010 C
-b10101010 D
-b00000000 F
+b00000 A
+b1010000 B
+0C
+b1010 D
+b10101010 E
 b00000000 G
-1H
+b00000000 H
+1I
 b0000 !
 b0000000 #
 b0000 &
@@ -217,24 +219,24 @@ b0000 :
 b0000110 ;
 b0000 <
 b1010000 =
-1>
+1?
 #91
-1B
+1C
 #96
-0B
+0C
 #101
-1B
+1C
 #106
-b01111 @
 b1010 !
-0B
+b01111 A
 b1001111 #
-b11111010 D
+0C
+b11111010 E
 b1010 &
-b01001111 F
 b01001111 G
 0(
-0H
+b01001111 H
+0I
 b1111 *
 b1111 -
 b01010 0
@@ -248,13 +250,13 @@ b0000000 ;
 b1010 <
 b0000001 =
 #111
-1B
+1C
 #116
-0B
+0C
 #121
-1B
+1C
 #126
-0B
-b00000000 D
+0C
 b00000000 %
+b00000000 E
 07

@@ -20,8 +20,9 @@ class Add (val e5m2: Boolean) extends Module {
   val isInfty = IO(Output(UInt(1.W)))
   val is0 = IO(Output(UInt(1.W)))
   val isNaN = IO(Output(UInt(1.W)))
+  val NaNFractionValue = IO(Output(UInt(1.W)))
 
-  val (resultSign, resultExponent, resultFraction, resultOverflow, isResultInfty, isResult0, isResultNaN) =
+  val (resultSign, resultExponent, resultFraction, resultOverflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue) =
     (a + b)(roundingMode, subtract)
 
   when(enable === 1.U) {
@@ -32,6 +33,7 @@ class Add (val e5m2: Boolean) extends Module {
     isInfty := isResultInfty
     is0 := isResult0
     isNaN := isResultNaN
+    NaNFractionValue := resultNaNFractionValue
   }.otherwise {
     sign := 0.U
     exponent := 0.U
@@ -40,5 +42,6 @@ class Add (val e5m2: Boolean) extends Module {
     isInfty := 0.U
     is0 := 0.U
     isNaN := 0.U
+    NaNFractionValue := 0.U
   }
 }

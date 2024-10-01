@@ -14,6 +14,7 @@ circuit Divide :
     output isInfty : UInt<1> @[\\src\\main\\scala\\fpu8\\Divide.scala 19:19]
     output is0 : UInt<1> @[\\src\\main\\scala\\fpu8\\Divide.scala 20:15]
     output isNaN : UInt<1> @[\\src\\main\\scala\\fpu8\\Divide.scala 21:17]
+    output NaNFractionValue : UInt<1> @[\\src\\main\\scala\\fpu8\\Divide.scala 22:28]
 
     node _isResultNaN_T = bits(a_data, 6, 3) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 25:28]
     node _isResultNaN_T_1 = eq(_isResultNaN_T, UInt<4>("hf")) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 35:33]
@@ -479,14 +480,14 @@ circuit Divide :
     node _overflow_T_8 = eq(_overflow_T_7, UInt<4>("hf")) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 267:85]
     node _overflow_T_9 = and(_overflow_T_6, _overflow_T_8) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 267:42]
     node resultOverflow = or(_overflow_T_5, _overflow_T_9) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 266:134]
-    node _T_27 = eq(enable, UInt<1>("h1")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:15]
-    node _GEN_15 = mux(_T_27, resultSign, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:24 26:10 34:10]
-    node _GEN_16 = mux(_T_27, resultExponent, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:24 27:14 35:14]
-    node _GEN_17 = mux(_T_27, resultFraction, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:24 28:14 36:14]
-    node _GEN_18 = mux(_T_27, resultOverflow, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:24 29:14 37:14]
-    node _GEN_19 = mux(_T_27, UInt<1>("h0"), UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:24 30:13 38:13]
-    node _GEN_20 = mux(_T_27, isResult0, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:24 31:9 39:9]
-    node _GEN_21 = mux(_T_27, isResultNaN, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 25:24 32:11 40:11]
+    node _T_27 = eq(enable, UInt<1>("h1")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:15]
+    node _GEN_15 = mux(_T_27, resultSign, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:24 28:10 37:10]
+    node _GEN_16 = mux(_T_27, resultExponent, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:24 29:14 38:14]
+    node _GEN_17 = mux(_T_27, resultFraction, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:24 30:14 39:14]
+    node _GEN_18 = mux(_T_27, resultOverflow, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:24 31:14 40:14]
+    node _GEN_19 = mux(_T_27, UInt<1>("h0"), UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:24 32:13 41:13]
+    node _GEN_20 = mux(_T_27, isResult0, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:24 33:9 42:9]
+    node _GEN_21 = mux(_T_27, isResultNaN, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\Divide.scala 27:24 34:11 43:11]
     sign <= _GEN_15
     exponent <= _GEN_16
     fraction <= _GEN_17
@@ -494,3 +495,4 @@ circuit Divide :
     isInfty <= _GEN_19
     is0 <= _GEN_20
     isNaN <= _GEN_21
+    NaNFractionValue <= _GEN_19

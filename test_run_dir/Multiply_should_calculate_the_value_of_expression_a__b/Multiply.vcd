@@ -1,5 +1,5 @@
 $date
-2024-10-01T15:58+0000
+2024-10-01T17:52+0000
 $end
 $version
 0.2
@@ -38,17 +38,18 @@ $scope module Multiply $end
  $var wire 5 ; resultExponent $end
  $var wire 8 < product $end
  $var wire 4 = fraction $end
- $var wire 1 > sign $end
- $var wire 6 ? exponentShiftLeft $end
- $var wire 1 @ overflow $end
- $var wire 5 A exponent $end
- $var wire 1 B clock $end
- $var wire 6 C exponentShiftRight $end
- $var wire 8 D b_data $end
- $var wire 7 E product_partialSums_0 $end
- $var wire 4 F product_partialProducts_compare $end
- $var wire 1 G isResult0 $end
- $var wire 1 H isInfty $end
+ $var wire 1 > NaNFractionValue $end
+ $var wire 1 ? sign $end
+ $var wire 6 @ exponentShiftLeft $end
+ $var wire 1 A overflow $end
+ $var wire 5 B exponent $end
+ $var wire 1 C clock $end
+ $var wire 6 D exponentShiftRight $end
+ $var wire 8 E b_data $end
+ $var wire 7 F product_partialSums_0 $end
+ $var wire 4 G product_partialProducts_compare $end
+ $var wire 1 H isResult0 $end
+ $var wire 1 I isInfty $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
@@ -58,57 +59,59 @@ b00000000 &
 09
 b000000 .
 0:
-b0000000 E
-b0000 F
+b0000000 F
 0>
-0@
-0B
+b0000 G
+0?
+0A
+0C
 b00000000 <
 b00000 '
 b00 -
-0G
 0H
 b00000 +
+0I
 b0000000 7
 b000000 %
 b00000 6
 b00000 ;
 b0000000 #
+b00000000 E
 b0000000 $
-b00000000 D
 b0000 (
 b0000 )
-b00000 A
 b0000 4
 b0000 5
+b00000 B
 b0000 2
 0"
 b0000 3
 b0000 1
 b0000000 !
-b000000 ?
 b0000 =
 0*
+b000000 @
 0,
-b000000 C
 0/
+b000000 D
 $end
 #0
+b110011 @
 b0000110 !
-b001100 C
-1G
+b001100 D
+1H
 1:
 b110100 .
-b110011 ?
 #1
-1B
+1C
 #6
-0B
-b111001 C
-b01001011 D
-b0011110 E
-b1111 F
-0G
+b000110 @
+0C
+b111001 D
+b01001011 E
+b0011110 F
+b1111 G
+0H
 b0000000 !
 b1101110 #
 b1010000 $
@@ -128,37 +131,36 @@ b1101110 7
 0:
 b00111 ;
 b01101110 <
-b000110 ?
 #11
-1B
+1C
 #16
-0B
+0C
 #21
-1B
+1C
 #26
-b00111 A
-0B
+b00111 B
+0C
 18
 b1110 =
 #31
-1B
+1C
 #36
-0B
+0C
 #41
-1B
+1C
 #46
 10
-0B
+0C
 b10101010 &
-1>
+1?
 #51
-1B
+1C
 #56
-0B
+0C
 #61
-1B
+1C
 #66
-0B
-b00000000 D
+0C
+b00000000 E
 b00000000 &
 08

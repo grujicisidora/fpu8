@@ -451,7 +451,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   }*/
 
 
-  def +(other: FloatingPoint): (UInt, UInt) => (UInt, UInt, UInt, Bool, Bool, Bool, Bool) = {
+  def +(other: FloatingPoint): (UInt, UInt) => (UInt, UInt, UInt, Bool, Bool, Bool, Bool, UInt) = {
     (roundingMode: UInt, subtract: UInt) => {
       val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = prepareForAddition(other, subtract)
 
@@ -478,11 +478,11 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
       //finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
 
-      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN)
+      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue)
     }
   }
 
-  def *(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool) = {
+  def *(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool, UInt) = {
     (roundingMode: UInt) => {
       //val isResultNaN = WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
       val isResultNaN = {
@@ -508,11 +508,11 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       val (overflow, finalExponent, finalFraction) = normalizeAfterMultiplication(sign, exponent, product, roundingMode)
 
       //finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
-      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN)
+      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue)
     }
   }
 
-  def /(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool) = {
+  def /(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool, UInt) = {
     (roundingMode: UInt) => {
       //val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
       val isResultNaN = {
@@ -548,7 +548,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       //printf(cf"PRINTF: finalExponent $finalExponent; finalFraction $finalFraction\n")
 
       //finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
-      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN)
+      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue)
     }
   }
 
