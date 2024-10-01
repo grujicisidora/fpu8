@@ -416,7 +416,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   // ovu funkciju je potrebno srediti, potencijalno smestiti logiku u poseban modul zbog razlike kod formata
   // implementirati razliku kod formata
-  def finalResult(overflow: Bool, sign: UInt, finalExponent: UInt, finalFraction: UInt)(roundingMode: UInt, saturationMode: UInt, isInfty: Bool, is0: Bool, isNaN: Bool) : UInt = {
+  /*def finalResult(overflow: Bool, sign: UInt, finalExponent: UInt, finalFraction: UInt)(roundingMode: UInt, saturationMode: UInt, isInfty: Bool, is0: Bool, isNaN: Bool) : UInt = {
     val z = Wire(UInt(8.W))
     when(!isInfty && !is0 && !isNaN) {
       when(overflow) {
@@ -448,11 +448,11 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       z := 0.U
     }
     z
-  }
+  }*/
 
 
-  def +(other: FloatingPoint): (UInt, UInt, UInt) => UInt = {
-    (roundingMode: UInt, saturationMode: UInt, subtract: UInt) => {
+  def +(other: FloatingPoint): (UInt, UInt) => (UInt, UInt, UInt, Bool, Bool, Bool, Bool) = {
+    (roundingMode: UInt, subtract: UInt) => {
       val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = prepareForAddition(other, subtract)
 
       //val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.isInfty && other.isInfty && subtraction.asBool))
@@ -476,12 +476,14 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
       val (overflow, finalExponent, finalFraction) = normalizeAfterAddition(sign, exponent, calculatedValue, roundingMode)
 
-      finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      //finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+
+      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN)
     }
   }
 
-  def *(other: FloatingPoint): (UInt, UInt) => UInt = {
-    (roundingMode: UInt, saturationMode: UInt) => {
+  def *(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool) = {
+    (roundingMode: UInt) => {
       //val isResultNaN = WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
       val isResultNaN = {
         if (e5m2) WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
@@ -505,12 +507,13 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
       val (overflow, finalExponent, finalFraction) = normalizeAfterMultiplication(sign, exponent, product, roundingMode)
 
-      finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      //finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN)
     }
   }
 
-  def /(other: FloatingPoint): (UInt, UInt) => UInt = {
-    (roundingMode: UInt, saturationMode: UInt) => {
+  def /(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool) = {
+    (roundingMode: UInt) => {
       //val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
       val isResultNaN = {
         if (e5m2) WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
@@ -544,7 +547,8 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
       //printf(cf"PRINTF: finalExponent $finalExponent; finalFraction $finalFraction\n")
 
-      finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      //finalResult(overflow, sign, finalExponent, finalFraction)(roundingMode, saturationMode, isResultInfty, isResult0, isResultNaN)
+      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN)
     }
   }
 

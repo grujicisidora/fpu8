@@ -12,9 +12,16 @@ class TestMultiply extends AnyFlatSpec with ChiselScalatestTester {
       dut.a.data.poke(42.U) // 0_0101_010
       dut.b.data.poke(75.U) // 0_1001_011
       dut.roundingMode.poke(0.U) // to nearest
-      dut.saturationMode.poke(0.U)
+      //dut.saturationMode.poke(0.U)
       dut.clock.step()
-      dut.z.expect(0.U)
+      //dut.z.expect(0.U)
+      dut.sign.expect(0.U)
+      dut.exponent.expect(0.U)
+      dut.fraction.expect(0.U)
+      dut.overflow.expect(0.U)
+      dut.isInfty.expect(0.U)
+      dut.is0.expect(0.U)
+      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -22,9 +29,16 @@ class TestMultiply extends AnyFlatSpec with ChiselScalatestTester {
       dut.a.data.poke(42.U) // 0_0101_010
       dut.b.data.poke(75.U) // 0_1001_011
       dut.roundingMode.poke(0.U) // to nearest
-      dut.saturationMode.poke(0.U)
+      //dut.saturationMode.poke(0.U)
       dut.clock.step()
-      dut.z.expect(62.U) // 0_0111_110
+      //dut.z.expect(62.U) // 0_0111_110
+      dut.sign.expect(0.U)
+      dut.exponent.expect(7.U)
+      dut.fraction.expect(14.U)
+      dut.overflow.expect(0.U)
+      dut.isInfty.expect(0.U)
+      dut.is0.expect(0.U)
+      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -32,9 +46,16 @@ class TestMultiply extends AnyFlatSpec with ChiselScalatestTester {
       dut.a.data.poke(170.U) // 1_0101_010
       dut.b.data.poke(75.U) // 0_1001_011
       dut.roundingMode.poke(0.U) // to nearest
-      dut.saturationMode.poke(0.U)
+      //dut.saturationMode.poke(0.U)
       dut.clock.step()
-      dut.z.expect(190.U) // 1_0111_110
+      //dut.z.expect(190.U) // 1_0111_110
+      dut.sign.expect(1.U)
+      dut.exponent.expect(7.U)
+      dut.fraction.expect(14.U)
+      dut.overflow.expect(0.U)
+      dut.isInfty.expect(0.U)
+      dut.is0.expect(0.U)
+      dut.isNaN.expect(0.U)
 
       dut.clock.step()
     }

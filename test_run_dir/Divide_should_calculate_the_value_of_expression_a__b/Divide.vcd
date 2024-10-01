@@ -1,5 +1,5 @@
 $date
-2024-10-01T14:09+0000
+2024-10-01T15:58+0000
 $end
 $version
 0.2
@@ -9,493 +9,462 @@ $comment
 $end
 $timescale 1ns  $end
 $scope module Divide $end
- $var wire 6 ! result_quotient_secondGuess_firstStep_partialProducts_compare $end
- $var wire 11 " result_quotient_secondGuess_finalStep_partialProducts_5 $end
- $var wire 7 # result_quotient_finalGuess_firstStepRnd $end
- $var wire 9 $ result_quotient_secondGuess_finalStep_partialProducts_3 $end
- $var wire 10 % result_quotient_secondGuess_finalStep_partialProducts_4 $end
- $var wire 7 & result_quotient_secondGuess_finalStep_partialProducts_1 $end
- $var wire 8 ' result_quotient_secondGuess_finalStep_partialProducts_2 $end
- $var wire 6 ( result_quotient_secondGuess_finalStep_partialProducts_0 $end
- $var wire 6 ) result_exponentShiftLeft $end
- $var wire 6 * result_quotient_secondGuess_finalStep_partialProducts_compare $end
- $var wire 10 + result_quotient $end
- $var wire 12 , result_quotient_finalGuess_finalStep_partialSums_1 $end
- $var wire 9 - result_quotient_finalGuess_finalStep_partialSums_0 $end
- $var wire 8 . result $end
- $var wire 4 / result_dividendFraction $end
+ $var wire 9 ! quotient_finalGuess_finalStep_partialSums_0 $end
+ $var wire 12 " quotient_finalGuess_finalStep_partialSums_1 $end
+ $var wire 4 # dividendFraction $end
+ $var wire 6 $ quotient_initGuess $end
+ $var wire 1 % is0 $end
+ $var wire 9 & quotient_secondGuess_finalStep_partialSums_0 $end
+ $var wire 6 ' quotient_finalGuess_finalStep_partialProducts_0 $end
+ $var wire 12 ( quotient_secondGuess_finalStep_partialSums_1 $end
+ $var wire 8 ) quotient_finalGuess_finalStep_partialProducts_2 $end
+ $var wire 7 * quotient_finalGuess_finalStep_partialProducts_1 $end
+ $var wire 10 + quotient_finalGuess_finalStep_partialProducts_4 $end
+ $var wire 9 , quotient_finalGuess_finalStep_partialProducts_3 $end
+ $var wire 11 - quotient_finalGuess_finalStep_partialProducts_5 $end
+ $var wire 1 . isResultNaN $end
+ $var wire 6 / quotient_secondGuess_secondStep $end
  $var wire 2 0 roundingMode $end
- $var wire 8 1 z $end
- $var wire 7 2 result_quotient_finalGuess $end
- $var wire 6 3 result_quotient_finalGuess_finalStep_partialProducts_compare_3 $end
- $var wire 6 4 result_quotient_secondGuess_firstStep_partialProducts_0 $end
- $var wire 6 5 result_quotient_finalGuess_finalStep_partialProducts_compare_4 $end
- $var wire 7 6 result_quotient_secondGuess_firstStep_partialProducts_1 $end
- $var wire 6 7 result_quotient_finalGuess_finalStep_partialProducts_compare_1 $end
- $var wire 8 8 result_quotient_secondGuess_firstStep_partialProducts_2 $end
- $var wire 6 9 result_quotient_finalGuess_finalStep_partialProducts_compare_2 $end
- $var wire 8 : result_quotient_finalGuess_finalStep_partialProducts_2 $end
- $var wire 9 ; result_quotient_secondGuess_firstStep_partialProducts_3 $end
- $var wire 7 < result_quotient_finalGuess_finalStep_partialProducts_1 $end
- $var wire 6 = result_quotient_finalGuess_finalStep_partialProducts_0 $end
- $var wire 6 > result_quotient_finalGuess_finalStep_partialProducts_compare_5 $end
- $var wire 9 ? result_quotient_partialSums_0 $end
- $var wire 11 @ result_quotient_finalGuess_finalStep_partialProducts_5 $end
- $var wire 10 A result_quotient_finalGuess_finalStep_partialProducts_4 $end
- $var wire 9 B result_quotient_finalGuess_finalStep_partialProducts_3 $end
- $var wire 6 C result_quotient_finalGuess_firstStep_partialProducts_0 $end
- $var wire 8 D result_quotient_finalGuess_firstStep_partialProducts_2 $end
- $var wire 7 E result_quotient_finalGuess_firstStep_partialProducts_1 $end
- $var wire 9 F result_quotient_finalGuess_firstStep_partialProducts_3 $end
- $var wire 4 G result_divisorFraction $end
- $var wire 4 H result_finalFraction $end
- $var wire 6 I result_exponent $end
- $var wire 12 J result_quotient_secondGuess_finalStep $end
- $var wire 6 K result_exponentShiftRight $end
- $var wire 7 L result_quotient_secondGuess $end
- $var wire 4 M result_quotient_rom_6 $end
- $var wire 4 N result_quotient_rom_5 $end
- $var wire 4 O result_quotient_rom_7 $end
- $var wire 4 P result_quotient_rom_2 $end
- $var wire 4 Q result_quotient_rom_1 $end
- $var wire 4 R result_quotient_rom_4 $end
- $var wire 4 S result_quotient_rom_3 $end
- $var wire 4 T result_tempDividendFraction $end
- $var wire 6 U result_quotient_finalGuess_secondStep $end
- $var wire 4 V result_quotient_rom_0 $end
- $var wire 1 W clock $end
- $var wire 4 X result_z_lo $end
- $var wire 8 Y b_data $end
- $var wire 6 Z result_quotient_secondGuess_secondStep $end
- $var wire 6 [ result_quotient_secondGuess_finalStep_partialProducts_compare_2 $end
- $var wire 7 \ result_quotient_partialProducts_1 $end
- $var wire 6 ] result_quotient_secondGuess_finalStep_partialProducts_compare_1 $end
- $var wire 6 ^ result_quotient_partialProducts_0 $end
- $var wire 9 _ result_quotient_partialProducts_3 $end
- $var wire 8 ` result_quotient_partialProducts_2 $end
- $var wire 6 a result_quotient_secondGuess_finalStep_partialProducts_compare_5 $end
- $var wire 6 b result_quotient_secondGuess_finalStep_partialProducts_compare_4 $end
- $var wire 6 c result_quotient_secondGuess_finalStep_partialProducts_compare_3 $end
- $var wire 4 d result_dividendShift $end
- $var wire 6 e result_quotient_partialProducts_compare $end
- $var wire 5 f result_tempExponent_1 $end
- $var wire 4 g result_divisorShift $end
- $var wire 1 h result_overflow $end
- $var wire 8 i a_data $end
- $var wire 5 j result_roundedFraction $end
- $var wire 5 k result_z_hi_7 $end
- $var wire 5 l result_z_hi_8 $end
- $var wire 5 m result_z_hi $end
- $var wire 1 n result_isResult0 $end
- $var wire 9 o result_shiftedCalcValue $end
- $var wire 9 p result_shift $end
- $var wire 5 q result_finalExponent $end
- $var wire 9 r result_quotient_finalGuess_firstStep_partialSums_0 $end
- $var wire 7 s result_quotient_secondGuess_firstStepRnd $end
- $var wire 6 t result_quotient_finalGuess_firstStep_partialProducts_compare_3 $end
- $var wire 4 u result_tempDivisorFraction $end
- $var wire 1 v saturationMode $end
- $var wire 6 w result_quotient_finalGuess_firstStep_partialProducts_compare_2 $end
- $var wire 8 x result_tempFraction $end
- $var wire 6 y result_quotient_finalGuess_firstStep_partialProducts_compare_1 $end
- $var wire 12 z result_quotient_finalGuess_finalStep $end
- $var wire 10 { result_quotient_secondGuess_firstStep $end
- $var wire 6 | result_quotient_partialProducts_compare_3 $end
- $var wire 6 } result_quotient_partialProducts_compare_2 $end
- $var wire 6 ~ result_quotient_partialProducts_compare_1 $end
- $var wire 6 "! result_quotient_initGuess $end
- $var wire 4 "" result_z_lo_1 $end
- $var wire 4 "# result_z_lo_2 $end
- $var wire 5 "$ result_z_hi_5 $end
- $var wire 5 "% result_z_hi_6 $end
- $var wire 4 "& result_z_hi_3 $end
- $var wire 5 "' result_z_hi_4 $end
- $var wire 4 "( result_z_hi_1 $end
- $var wire 4 ") result_z_hi_2 $end
- $var wire 9 "* result_quotient_secondGuess_finalStep_partialSums_0 $end
- $var wire 1 "+ enable $end
- $var wire 10 ", result_quotient_finalGuess_firstStep $end
- $var wire 12 "- result_quotient_secondGuess_finalStep_partialSums_1 $end
- $var wire 1 ". result_isResultNaN $end
- $var wire 6 "/ result_quotient_secondGuess_firstStep_partialProducts_compare_2 $end
- $var wire 6 "0 result_quotient_secondGuess_firstStep_partialProducts_compare_1 $end
- $var wire 6 "1 result_quotient_secondGuess_firstStep_partialProducts_compare_3 $end
- $var wire 1 "2 result_addOne $end
- $var wire 1 "3 reset $end
- $var wire 6 "4 result_quotient_finalGuess_firstStep_partialProducts_compare $end
- $var wire 1 "5 result_sign $end
- $var wire 6 "6 result_quotient_finalGuess_finalStep_partialProducts_compare $end
- $var wire 6 "7 result_tempExponent $end
- $var wire 9 "8 result_quotient_secondGuess_firstStep_partialSums_0 $end
+ $var wire 6 1 quotient_secondGuess_finalStep_partialProducts_compare_5 $end
+ $var wire 4 2 divisorFraction $end
+ $var wire 6 3 quotient_secondGuess_finalStep_partialProducts_compare_2 $end
+ $var wire 6 4 quotient_secondGuess_finalStep_partialProducts_compare_1 $end
+ $var wire 6 5 quotient_secondGuess_finalStep_partialProducts_compare_4 $end
+ $var wire 6 6 quotient_secondGuess_finalStep_partialProducts_compare_3 $end
+ $var wire 12 7 quotient_finalGuess_finalStep $end
+ $var wire 6 8 quotient_partialProducts_compare $end
+ $var wire 6 9 quotient_partialProducts_compare_3 $end
+ $var wire 6 : quotient_partialProducts_compare_2 $end
+ $var wire 6 ; quotient_partialProducts_compare_1 $end
+ $var wire 8 < tempFraction $end
+ $var wire 4 = divisorShift $end
+ $var wire 5 > tempExponent_1 $end
+ $var wire 6 ? quotient_finalGuess_secondStep $end
+ $var wire 1 @ addOne $end
+ $var wire 9 A quotient_partialProducts_3 $end
+ $var wire 8 B quotient_partialProducts_2 $end
+ $var wire 7 C quotient_partialProducts_1 $end
+ $var wire 6 D quotient_partialProducts_0 $end
+ $var wire 1 E sign $end
+ $var wire 4 F quotient_rom_4 $end
+ $var wire 4 G quotient_rom_3 $end
+ $var wire 4 H quotient_rom_6 $end
+ $var wire 4 I quotient_rom_5 $end
+ $var wire 4 J quotient_rom_7 $end
+ $var wire 12 K quotient_secondGuess_finalStep $end
+ $var wire 6 L exponentShiftLeft $end
+ $var wire 4 M quotient_rom_0 $end
+ $var wire 4 N quotient_rom_2 $end
+ $var wire 4 O quotient_rom_1 $end
+ $var wire 7 P quotient_finalGuess_firstStepRnd $end
+ $var wire 1 Q clock $end
+ $var wire 8 R b_data $end
+ $var wire 4 S tempDividendFraction $end
+ $var wire 7 T quotient_secondGuess $end
+ $var wire 10 U quotient $end
+ $var wire 4 V tempDivisorFraction $end
+ $var wire 1 W isResult0 $end
+ $var wire 1 X isInfty $end
+ $var wire 9 Y shift $end
+ $var wire 6 Z quotient_finalGuess_finalStep_partialProducts_compare $end
+ $var wire 1 [ resultOverflow $end
+ $var wire 9 \ shiftedCalcValue $end
+ $var wire 10 ] quotient_secondGuess_firstStep $end
+ $var wire 8 ^ a_data $end
+ $var wire 6 _ quotient_finalGuess_firstStep_partialProducts_compare_1 $end
+ $var wire 6 ` quotient_finalGuess_firstStep_partialProducts_compare_2 $end
+ $var wire 6 a quotient_finalGuess_firstStep_partialProducts_compare_3 $end
+ $var wire 10 b quotient_finalGuess_firstStep $end
+ $var wire 6 c quotient_finalGuess_firstStep_partialProducts_compare $end
+ $var wire 4 d resultFraction $end
+ $var wire 6 e quotient_secondGuess_firstStep_partialProducts_compare_3 $end
+ $var wire 6 f quotient_secondGuess_firstStep_partialProducts_compare_2 $end
+ $var wire 6 g quotient_secondGuess_firstStep_partialProducts_compare_1 $end
+ $var wire 6 h tempExponent $end
+ $var wire 6 i exponent_1 $end
+ $var wire 1 j isNaN $end
+ $var wire 1 k resultSign $end
+ $var wire 9 l quotient_secondGuess_firstStep_partialSums_0 $end
+ $var wire 5 m roundedFraction $end
+ $var wire 4 n dividendShift $end
+ $var wire 1 o enable $end
+ $var wire 8 p quotient_secondGuess_firstStep_partialProducts_2 $end
+ $var wire 1 q reset $end
+ $var wire 7 r quotient_secondGuess_firstStep_partialProducts_1 $end
+ $var wire 9 s quotient_secondGuess_firstStep_partialProducts_3 $end
+ $var wire 5 t resultExponent $end
+ $var wire 6 u quotient_secondGuess_firstStep_partialProducts_0 $end
+ $var wire 9 v quotient_partialSums_0 $end
+ $var wire 6 w quotient_secondGuess_firstStep_partialProducts_compare $end
+ $var wire 4 x fraction $end
+ $var wire 7 y quotient_secondGuess_firstStepRnd $end
+ $var wire 1 z overflow $end
+ $var wire 8 { quotient_secondGuess_finalStep_partialProducts_2 $end
+ $var wire 7 | quotient_secondGuess_finalStep_partialProducts_1 $end
+ $var wire 6 } quotient_secondGuess_finalStep_partialProducts_0 $end
+ $var wire 11 ~ quotient_secondGuess_finalStep_partialProducts_5 $end
+ $var wire 10 "! quotient_secondGuess_finalStep_partialProducts_4 $end
+ $var wire 5 "" exponent $end
+ $var wire 9 "# quotient_secondGuess_finalStep_partialProducts_3 $end
+ $var wire 8 "$ quotient_finalGuess_firstStep_partialProducts_2 $end
+ $var wire 7 "% quotient_finalGuess_firstStep_partialProducts_1 $end
+ $var wire 6 "& quotient_finalGuess_firstStep_partialProducts_0 $end
+ $var wire 9 "' quotient_finalGuess_firstStep_partialProducts_3 $end
+ $var wire 6 "( exponentShiftRight $end
+ $var wire 7 ") quotient_finalGuess $end
+ $var wire 9 "* quotient_finalGuess_firstStep_partialSums_0 $end
+ $var wire 6 "+ quotient_secondGuess_finalStep_partialProducts_compare $end
+ $var wire 6 ", quotient_finalGuess_finalStep_partialProducts_compare_5 $end
+ $var wire 6 "- quotient_finalGuess_finalStep_partialProducts_compare_3 $end
+ $var wire 6 ". quotient_finalGuess_finalStep_partialProducts_compare_4 $end
+ $var wire 6 "/ quotient_finalGuess_finalStep_partialProducts_compare_1 $end
+ $var wire 6 "0 quotient_finalGuess_finalStep_partialProducts_compare_2 $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
-b0000000000 ",
-b00000000 i
 b00 0
-b00000000 `
-b000000000 $
-b00000000 x
-b000000000 -
-b000000000000 ,
+b000000000 !
+b00000000 ^
+b000000000000 7
+0@
+b00000000 {
+b000000000000 "
+0E
+b000000000 &
+b000000000 ,
+b000000000000 (
+b00000000 p
+0Q
+b0000 #
+b00000000000 ~
 0W
-b000000000 ;
-b00000000 D
-b000000000 ?
-b000000000 B
-b00000000 Y
-b0000 /
-b000000000 F
-0h
-b000000000000 "-
-0n
-b000000 7
+0X
+b00000000 B
+0[
+b000000000 A
+b0000 2
+b0000000 ")
+b0000000 "%
+b0000 =
+b00000000 R
+0j
+0k
+0o
+0q
+b000000 6
 b000000 9
-0v
-b000000 =
-b0000000000 {
+b00000000 "$
+b000000 8
+b000000000 Y
+b000000 ;
+b000000 :
+b000000 /
+b000000000 \
+0z
+b000000 1
 b000000 3
-b000000000 _
 b000000 5
 b000000 4
-b000000000 "8
-b000000 )
-b000000 (
-b000000 *
-b00000000000 "
-b000000 !
-b000000000 p
-b000000000 o
+b000000 '
+b00000000000 -
+b000000000 l
+b0000000000 b
+b000000 $
+b000000000 s
 b000000000 "*
-b000000000 r
-b00000000000 @
-b0000000000 A
-0"+
-0".
-0"2
+b0000000000 ]
+b000000000 v
+b000000000 "#
+b0000000000 U
+b000000000 "'
+b0000000000 "!
 b000000 w
-0"3
-b000000 y
-0"5
 b000000 }
-b000000 |
-b000000 t
+b000000 u
+b000000 g
+b000000 f
+b000000 i
+b0000000 |
+b000000 h
 b0000000000 +
-b0000000 s
-b000000 ^
+b000000 _
+b0000000 r
 b000000 a
+b000000 `
 b000000 c
-b0000000000 %
-b000000 b
+b0000000 y
 b000000 e
-b000000 [
 b000000 Z
-b000000 ]
-b000000 "4
-b000000 "6
-b000000 "7
-b00000 "%
-b00000 "$
-b00000 "'
-b000000 U
-b000000 I
+b00000 ""
+b00000 >
+b000000 ",
+b000000 "-
+b000000 ".
 b000000 "/
-b0000000 \
 b000000 "0
-b000000 K
-b000000 "1
-b000000 >
-b000000 C
-b0000 "#
-b0000 ""
-b0000 "&
-b0000000 L
-b0000 ")
-b00000000 '
-b0000 "(
-b000000 "!
+b000000 L
+b000000 ?
+b000000 "&
+b0000000 T
+b000000 "(
+b000000 "+
+b000000 D
+b00000000 )
+b0000000 P
+b0000000 C
 b0000 M
-b0000000 E
-b000000000000 z
+b0000 J
 b0000 H
+b0000 I
+b0000 F
 b0000 G
-b0000 T
-b00000000 :
-b0000 R
 b0000 S
-b0000000 <
-b0000 P
-b0000 Q
-b00000 f
+b00000000 <
 b0000 N
 b0000 O
-b00000000 8
-b00000 k
-b00000 j
-b0000000 2
 b00000 m
-b00000 l
-b0000 X
-b0000000 6
-b00000000 .
 b0000 V
-b00000 q
-b00000000 1
 b0000 d
-b0000000 #
-b0000000 &
-b0000 g
-b0000 u
-b000000 ~
-b000000000000 J
+b0000000 *
+b00000 t
+0%
+b0000 n
+b000000000000 K
+b0000 x
+0.
 $end
 #0
-b0111 ""
-b0111 "#
-b01111 "%
-b0111 "&
-b01111 "'
-b0111 "(
-b1111 ")
-b000111 I
-b111001 K
-1".
-b0010 M
-b0100 N
-b1010 P
-b1100 Q
-1"3
-b0110 R
-b1000 S
-b000111 "7
-b1110 V
-b0111 X
-b0011 d
-b0011 g
-b000110 )
-b01111 l
-b01111 m
-b01111111 .
-b000001000 p
-b011110 "!
+b011110 $
+b0110 F
+b111001 "(
+b1000 G
+b0010 H
+b000111 h
+b0100 I
+b000111 i
+b000110 L
+b1110 M
+1.
+b1010 N
+b0011 n
+b1100 O
+1q
+b000001000 Y
+b0011 =
 #1
-1W
+1Q
 #6
-b111111 !
-b0100000 #
-b011000000 $
-b0110000000 %
-b0110000 &
-b01100000 '
-b011000 (
-b000010 )
-b111111 *
-b0011100110 +
-b001011100000 ,
-b00010110 .
-b1010 /
-b0010111 2
-b011000 4
-b0110000 6
-b011000000 ;
-b111111 >
-b000101110 ?
-b011000 "!
-b01011100000 @
-b00010 "$
-b010111 C
-b0101110 E
-b010111000 F
-b1011 G
-b1110 H
-b010101000 "*
-b000011 I
-b001011101000 J
-b0011111101 ",
-b111101 K
-b001001000000 "-
-b0010111 L
-0".
-b111111 "0
-b111111 "1
-0"3
-b111111 "4
-b1010 T
-b100000 U
-b000011 "7
-b001001000 "8
-0W
-b01001011 Y
-b011111 Z
-b111111 [
-b0101110 \
-b111111 ]
-b010111000 _
-b111111 b
-b111111 c
-b0000 d
-b00010 f
-b0000 g
-b00101010 i
-b01110 j
-b111001100 o
-b000000001 p
-b00010 q
-b001000101 r
-b0100001 s
-b111111 t
-b1011 u
-b01110011 x
-b111111 y
-b001011100000 z
-b0100001000 {
-b111111 |
-b111111 ~
-#11
-1W
-#16
-0W
-#21
-1W
-#26
-b000000 !
-b01101000000 "
-b000000000 $
-b0000000000 %
-b0000000 &
-b00000000 '
-b000000 (
-b001010 )
-b000000 *
-b0100011110 +
-b001101000000 ,
-b01011001 .
-b1011 /
-b01011001 1
-b0011010 2
-b000000 4
-b0110100 6
-b011010000 ;
-b001001110 ?
-b011010 "!
-b01101000000 @
-b01011 "$
-b000000 C
-b0110100 E
-b011010000 F
-b1010 G
-b1001 H
-b000000000 "*
-b001011 I
-1"+
-b001101000000 J
-b0100000100 ",
-b110101 K
-b001101000000 "-
-b0011010 L
-1"2
-b000000 "4
-b1011 T
-b001011 "7
-b000110100 "8
-0W
-b00101010 Y
-b100000 Z
-b000000 [
-b0110100 \
-b000000 ]
-b011010 ^
-b011010000 _
+b001011100000 "
+b1010 #
+b011000 $
+b010101000 &
+b001001000000 (
+b01011100000 -
+0.
+b011111 /
+b1011 2
+b111111 3
+b111111 4
+b111111 5
+b111111 6
+b001011100000 7
+b111111 9
+b111111 ;
+b01110011 <
+b0000 =
+b00010 >
+b100000 ?
+b0110000000 "!
+b010111000 A
+b011000000 "#
+b0101110 C
+b0101110 "%
+b010111 "&
+b010111000 "'
+b111101 "(
+b0010111 ")
+b001000101 "*
+b111111 "+
+b111111 ",
+b001011101000 K
+b000010 L
+b0100000 P
+0Q
+b01001011 R
+b1010 S
+b0010111 T
+b0011100110 U
+b1011 V
+b000000001 Y
+b111001100 \
+b0100001000 ]
+b00101010 ^
+b111111 _
 b111111 a
-b000000 b
-b000000 c
-b111111 e
-b01011 f
-b01001011 i
-b01001 j
-b100011110 o
-b000000000 p
-b01011 q
-b000110100 r
-b0100000 s
-b1010 u
-b01000111 x
-b001101000000 z
-b0100000100 {
-#31
-1W
-#36
-0W
-#41
-1W
-#46
-b111111 !
-b00000000000 "
-b011000000 $
-b0110000000 %
-b0110000 &
-b01100000 '
-b011000 (
-b000010 )
-b111111 *
-b0011100110 +
-b001011100000 ,
-b00010110 .
-b1010 /
-b00010110 1
-b0010111 2
-b011000 4
-b0110000 6
-b011000000 ;
-b000101110 ?
-b011000 "!
-b01011100000 @
-b00010 "$
-b010111 C
-b0101110 E
-b010111000 F
-b1011 G
-b1110 H
-b010101000 "*
-b000011 I
-b001011101000 J
-b0011111101 ",
-b111101 K
-b001001000000 "-
-b0010111 L
-0"2
-b111111 "4
-b1010 T
-b000011 "7
-b001001000 "8
-0W
-b01001011 Y
-b011111 Z
-b111111 [
-b0101110 \
-b111111 ]
-b000000 ^
-b010111000 _
-b000000 a
-b111111 b
+b0011111101 b
 b111111 c
-b000000 e
-b00010 f
-b00101010 i
-b01110 j
-b111001100 o
-b000000001 p
-b00010 q
-b001000101 r
-b0100001 s
-b1011 u
-b01110011 x
-b001011100000 z
-b0100001000 {
+b1110 d
+b111111 e
+b111111 g
+b000011 h
+b000011 i
+b001001000 l
+b01110 m
+b0000 n
+0q
+b0110000 r
+b011000000 s
+b00010 t
+b011000 u
+b000101110 v
+b111111 w
+b0100001 y
+b01100000 {
+b0110000 |
+b011000 }
+#11
+1Q
+#16
+0Q
+#21
+1Q
+#26
+b001101000000 "
+b1011 #
+b011010 $
+b000000000 &
+b001101000000 (
+b01101000000 -
+b100000 /
+b111111 1
+b1010 2
+b000000 3
+b000000 4
+b000000 5
+b000000 6
+b001101000000 7
+b111111 8
+b01000111 <
+b01011 >
+b0000000000 "!
+1@
+b01011 ""
+b011010000 A
+b000000000 "#
+b0110100 C
+b0110100 "%
+b011010 D
+b000000 "&
+b011010000 "'
+b110101 "(
+b0011010 ")
+b000110100 "*
+b000000 "+
+b001101000000 K
+b001010 L
+0Q
+b00101010 R
+b1011 S
+b0011010 T
+b0100011110 U
+b1010 V
+b000000000 Y
+b100011110 \
+b0100000100 ]
+b01001011 ^
+b0100000100 b
+b000000 c
+b1001 d
+b001011 h
+b001011 i
+b000110100 l
+b01001 m
+1o
+b0110100 r
+b011010000 s
+b01011 t
+b000000 u
+b001001110 v
+b000000 w
+b1001 x
+b0100000 y
+b00000000 {
+b0000000 |
+b000000 }
+b01101000000 ~
+#31
+1Q
+#36
+0Q
+#41
+1Q
+#46
+b001011100000 "
+b1010 #
+b011000 $
+b010101000 &
+b001001000000 (
+b01011100000 -
+b011111 /
+b000000 1
+b1011 2
+b111111 3
+b111111 4
+b111111 5
+b111111 6
+b001011100000 7
+b000000 8
+b01110011 <
+b00010 >
+b0110000000 "!
+0@
+b00010 ""
+b010111000 A
+b011000000 "#
+b0101110 C
+b0101110 "%
+b000000 D
+b010111 "&
+b010111000 "'
+b111101 "(
+b0010111 ")
+b001000101 "*
+b111111 "+
+b001011101000 K
+b000010 L
+0Q
+b01001011 R
+b1010 S
+b0010111 T
+b0011100110 U
+b1011 V
+b000000001 Y
+b111001100 \
+b0100001000 ]
+b00101010 ^
+b0011111101 b
+b111111 c
+b1110 d
+b000011 h
+b000011 i
+b001001000 l
+b01110 m
+b0110000 r
+b011000000 s
+b00010 t
+b011000 u
+b000101110 v
+b111111 w
+b1110 x
+b0100001 y
+b01100000 {
+b0110000 |
+b011000 }
+b00000000000 ~
 #51
-1W
+1Q
 #56
-0W
-b00000000 Y
-b00000000 i
-0"+
+0Q
+b00000000 R
+b00000000 ^
+0o

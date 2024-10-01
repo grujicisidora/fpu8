@@ -1,5 +1,5 @@
 $date
-2024-10-01T14:09+0000
+2024-10-01T15:58+0000
 $end
 $version
 0.2
@@ -9,189 +9,156 @@ $comment
 $end
 $timescale 1ns  $end
 $scope module Multiply $end
- $var wire 6 ! result_exponentShiftLeft $end
- $var wire 1 " result_overflow $end
- $var wire 8 # a_data $end
- $var wire 5 $ result_roundedFraction $end
- $var wire 5 % result_z_hi_7 $end
- $var wire 5 & result_z_hi_8 $end
- $var wire 5 ' result_z_hi $end
- $var wire 1 ( result_isResult0 $end
- $var wire 8 ) result $end
- $var wire 7 * result_shiftedCalcValue $end
- $var wire 7 + result_shift $end
- $var wire 5 , result_finalExponent $end
+ $var wire 7 ! shift $end
+ $var wire 1 " resultOverflow $end
+ $var wire 7 # shiftedCalcValue $end
+ $var wire 7 $ product_partialProducts_3 $end
+ $var wire 6 % product_partialProducts_2 $end
+ $var wire 8 & a_data $end
+ $var wire 5 ' product_partialProducts_1 $end
+ $var wire 4 ( product_partialProducts_0 $end
+ $var wire 4 ) resultFraction $end
+ $var wire 1 * is0 $end
+ $var wire 5 + tempExponent $end
+ $var wire 1 , isResultNaN $end
  $var wire 2 - roundingMode $end
- $var wire 4 . result_product_partialProducts_compare $end
- $var wire 8 / z $end
- $var wire 1 0 saturationMode $end
- $var wire 7 1 result_tempFraction $end
- $var wire 7 2 result_product_partialSums_0 $end
- $var wire 4 3 result_z_lo_1 $end
- $var wire 4 4 result_z_lo_2 $end
- $var wire 5 5 result_z_hi_5 $end
- $var wire 5 6 result_z_hi_6 $end
- $var wire 4 7 result_z_hi_3 $end
- $var wire 5 8 result_z_hi_4 $end
- $var wire 4 9 result_z_hi_1 $end
- $var wire 4 : result_z_hi_2 $end
- $var wire 4 ; result_firstOperandFraction $end
- $var wire 4 < result_finalFraction $end
- $var wire 6 = result_exponent $end
- $var wire 1 > enable $end
- $var wire 1 ? result_isResultNaN $end
- $var wire 6 @ result_exponentShiftRight $end
- $var wire 1 A result_addOne $end
- $var wire 8 B result_product $end
- $var wire 1 C reset $end
- $var wire 1 D result_sign $end
- $var wire 6 E result_product_partialProducts_2 $end
- $var wire 7 F result_product_partialProducts_3 $end
- $var wire 4 G result_product_partialProducts_0 $end
- $var wire 5 H result_product_partialProducts_1 $end
- $var wire 5 I result_tempExponent $end
- $var wire 4 J result_product_partialProducts_compare_3 $end
- $var wire 1 K clock $end
- $var wire 4 L result_product_partialProducts_compare_2 $end
- $var wire 4 M result_product_partialProducts_compare_1 $end
- $var wire 4 N result_z_lo $end
- $var wire 8 O b_data $end
- $var wire 4 P result_secondOperandFraction $end
+ $var wire 6 . exponent_1 $end
+ $var wire 1 / isNaN $end
+ $var wire 1 0 resultSign $end
+ $var wire 4 1 firstOperandFraction $end
+ $var wire 4 2 product_partialProducts_compare_3 $end
+ $var wire 4 3 product_partialProducts_compare_2 $end
+ $var wire 4 4 product_partialProducts_compare_1 $end
+ $var wire 4 5 secondOperandFraction $end
+ $var wire 5 6 roundedFraction $end
+ $var wire 7 7 tempFraction $end
+ $var wire 1 8 enable $end
+ $var wire 1 9 addOne $end
+ $var wire 1 : reset $end
+ $var wire 5 ; resultExponent $end
+ $var wire 8 < product $end
+ $var wire 4 = fraction $end
+ $var wire 1 > sign $end
+ $var wire 6 ? exponentShiftLeft $end
+ $var wire 1 @ overflow $end
+ $var wire 5 A exponent $end
+ $var wire 1 B clock $end
+ $var wire 6 C exponentShiftRight $end
+ $var wire 8 D b_data $end
+ $var wire 7 E product_partialSums_0 $end
+ $var wire 4 F product_partialProducts_compare $end
+ $var wire 1 G isResult0 $end
+ $var wire 1 H isInfty $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
 00
+b00000000 &
+08
+09
+b000000 .
+0:
+b0000000 E
+b0000 F
 0>
-0?
-0A
-b00000 %
-0C
-b00000 $
-0D
+0@
+0B
+b00000000 <
 b00000 '
 b00 -
-b00000 &
-0K
-b00000 ,
-b00000 5
+0G
+0H
+b00000 +
+b0000000 7
+b000000 %
 b00000 6
-b00000 8
-b00000000 B
+b00000 ;
+b0000000 #
+b0000000 $
+b00000000 D
+b0000 (
+b0000 )
+b00000 A
 b0000 4
-b0000 3
-b0000 .
-b00000 I
-b00000 H
-b0000 <
-b0000 :
-b0000 ;
-b000000 @
-b00000000 O
-b0000 9
-b000000 E
-b0000 7
-b00000000 )
-b000000 =
-b0000 L
-b00000000 #
-b0000 M
-b0000 J
-b0000000 F
-b0000 G
-b0000 P
-b0000 N
-b0000000 2
-b000000 !
-b00000000 /
-b0000000 +
-b0000000 *
-b0000000 1
+b0000 5
+b0000 2
 0"
-0(
+b0000 3
+b0000 1
+b0000000 !
+b000000 ?
+b0000 =
+0*
+0,
+b000000 C
+0/
 $end
 #0
-b001100 @
-b110011 !
-1C
-b01111 &
-b01111 '
-1(
-b0000110 +
-b0111 N
-b0111 3
-b0111 4
-b01111 6
-b0111 7
-b01111 8
-b0111 9
-b1111 :
-b110100 =
+b0000110 !
+b001100 C
+1G
+1:
+b110100 .
+b110011 ?
 #1
-1K
+1B
 #6
-b111001 @
-1A
-b01101110 B
-0C
-b1010000 F
-b1010 G
-b10100 H
-b00111 I
-b1111 J
-0K
-b1111 M
-b01001011 O
-b1011 P
-b000110 !
-b00101010 #
-b01110 $
-0(
-b00111110 )
-b1101110 *
-b0000000 +
-b00111 ,
-b1111 .
-b1101110 1
-b0011110 2
-b00111 5
-b1010 ;
-b1110 <
-b000111 =
+0B
+b111001 C
+b01001011 D
+b0011110 E
+b1111 F
+0G
+b0000000 !
+b1101110 #
+b1010000 $
+b00101010 &
+b10100 '
+b1010 (
+b1110 )
+b00111 +
+b000111 .
+b1010 1
+b1111 2
+b1111 4
+b1011 5
+b01110 6
+b1101110 7
+19
+0:
+b00111 ;
+b01101110 <
+b000110 ?
 #11
-1K
+1B
 #16
-0K
+0B
 #21
-1K
+1B
 #26
-0K
-1>
-b00111110 /
+b00111 A
+0B
+18
+b1110 =
 #31
-1K
+1B
 #36
-0K
+0B
 #41
-1K
+1B
 #46
-b10101010 #
-1D
-b10000 %
-b10111 5
-b11111 6
-b11111 '
-b10111110 )
-b1111 9
-0K
-b10111110 /
+10
+0B
+b10101010 &
+1>
 #51
-1K
+1B
 #56
-0K
+0B
 #61
-1K
+1B
 #66
-b00000000 #
-0K
-0>
-b00000000 O
+0B
+b00000000 D
+b00000000 &
+08
