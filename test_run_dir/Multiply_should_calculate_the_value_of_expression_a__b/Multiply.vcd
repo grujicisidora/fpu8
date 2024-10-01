@@ -1,5 +1,5 @@
 $date
-2024-09-30T18:26+0000
+2024-10-01T14:09+0000
 $end
 $version
 0.2
@@ -10,190 +10,188 @@ $end
 $timescale 1ns  $end
 $scope module Multiply $end
  $var wire 6 ! result_exponentShiftLeft $end
- $var wire 8 " result $end
- $var wire 2 # roundingMode $end
- $var wire 8 $ z $end
- $var wire 7 % result_product_partialSums_0 $end
- $var wire 4 & result_firstOperandFraction $end
- $var wire 4 ' result_finalFraction $end
- $var wire 6 ( result_exponent $end
- $var wire 6 ) result_exponentShiftRight $end
- $var wire 8 * result_product $end
- $var wire 1 + clock $end
- $var wire 1 , result_isResultInfty $end
- $var wire 4 - result_z_lo $end
- $var wire 8 . b_data $end
- $var wire 4 / result_secondOperandFraction $end
- $var wire 1 0 result_overflow $end
- $var wire 8 1 a_data $end
- $var wire 5 2 result_roundedFraction $end
- $var wire 5 3 result_z_hi_7 $end
- $var wire 5 4 result_z_hi_8 $end
- $var wire 5 5 result_z_hi $end
- $var wire 1 6 result_isResult0 $end
- $var wire 7 7 result_shiftedCalcValue $end
- $var wire 7 8 result_shift $end
- $var wire 5 9 result_finalExponent $end
- $var wire 4 : result_product_partialProducts_compare $end
- $var wire 1 ; saturationMode $end
- $var wire 7 < result_tempFraction $end
- $var wire 4 = result_z_lo_1 $end
- $var wire 4 > result_z_lo_2 $end
- $var wire 5 ? result_z_hi_5 $end
- $var wire 5 @ result_z_hi_6 $end
- $var wire 4 A result_z_hi_3 $end
- $var wire 5 B result_z_hi_4 $end
- $var wire 4 C result_z_hi_1 $end
- $var wire 4 D result_z_hi_2 $end
- $var wire 1 E enable $end
- $var wire 1 F result_isResultNaN $end
- $var wire 1 G result_addOne $end
- $var wire 1 H reset $end
- $var wire 1 I result_sign $end
- $var wire 6 J result_product_partialProducts_2 $end
- $var wire 7 K result_product_partialProducts_3 $end
- $var wire 4 L result_product_partialProducts_0 $end
- $var wire 5 M result_product_partialProducts_1 $end
- $var wire 5 N result_tempExponent $end
- $var wire 4 O result_product_partialProducts_compare_3 $end
- $var wire 4 P result_product_partialProducts_compare_2 $end
- $var wire 4 Q result_product_partialProducts_compare_1 $end
+ $var wire 1 " result_overflow $end
+ $var wire 8 # a_data $end
+ $var wire 5 $ result_roundedFraction $end
+ $var wire 5 % result_z_hi_7 $end
+ $var wire 5 & result_z_hi_8 $end
+ $var wire 5 ' result_z_hi $end
+ $var wire 1 ( result_isResult0 $end
+ $var wire 8 ) result $end
+ $var wire 7 * result_shiftedCalcValue $end
+ $var wire 7 + result_shift $end
+ $var wire 5 , result_finalExponent $end
+ $var wire 2 - roundingMode $end
+ $var wire 4 . result_product_partialProducts_compare $end
+ $var wire 8 / z $end
+ $var wire 1 0 saturationMode $end
+ $var wire 7 1 result_tempFraction $end
+ $var wire 7 2 result_product_partialSums_0 $end
+ $var wire 4 3 result_z_lo_1 $end
+ $var wire 4 4 result_z_lo_2 $end
+ $var wire 5 5 result_z_hi_5 $end
+ $var wire 5 6 result_z_hi_6 $end
+ $var wire 4 7 result_z_hi_3 $end
+ $var wire 5 8 result_z_hi_4 $end
+ $var wire 4 9 result_z_hi_1 $end
+ $var wire 4 : result_z_hi_2 $end
+ $var wire 4 ; result_firstOperandFraction $end
+ $var wire 4 < result_finalFraction $end
+ $var wire 6 = result_exponent $end
+ $var wire 1 > enable $end
+ $var wire 1 ? result_isResultNaN $end
+ $var wire 6 @ result_exponentShiftRight $end
+ $var wire 1 A result_addOne $end
+ $var wire 8 B result_product $end
+ $var wire 1 C reset $end
+ $var wire 1 D result_sign $end
+ $var wire 6 E result_product_partialProducts_2 $end
+ $var wire 7 F result_product_partialProducts_3 $end
+ $var wire 4 G result_product_partialProducts_0 $end
+ $var wire 5 H result_product_partialProducts_1 $end
+ $var wire 5 I result_tempExponent $end
+ $var wire 4 J result_product_partialProducts_compare_3 $end
+ $var wire 1 K clock $end
+ $var wire 4 L result_product_partialProducts_compare_2 $end
+ $var wire 4 M result_product_partialProducts_compare_1 $end
+ $var wire 4 N result_z_lo $end
+ $var wire 8 O b_data $end
+ $var wire 4 P result_secondOperandFraction $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
 00
-06
-0;
-0E
-0F
-0G
-0H
-0I
-b00 #
-b00000 3
-b00000 2
+0>
+0?
+0A
+b00000 %
+0C
+b00000 $
+0D
+b00000 '
+b00 -
+b00000 &
+0K
+b00000 ,
 b00000 5
-b00000 4
-b00000 9
-b0000 -
-b00000 ?
-b0000 &
-b0000 '
-b00000 @
-b00000 B
-b000000 J
-b0000 /
-b0000 =
+b00000 6
+b00000 8
+b00000000 B
+b0000 4
+b0000 3
+b0000 .
+b00000 I
+b00000 H
+b0000 <
 b0000 :
-b00000 M
-b00000 N
-b0000 D
-b0000000 K
-b00000000 *
-b0000 C
-b0000 A
-b0000 >
+b0000 ;
+b000000 @
+b00000000 O
+b0000 9
+b000000 E
+b0000 7
+b00000000 )
+b000000 =
 b0000 L
-b00000000 "
-b00000000 $
-b000000 )
-b0000000 <
-b000000 (
+b00000000 #
+b0000 M
+b0000 J
+b0000000 F
+b0000 G
 b0000 P
-b0000 Q
-b0000 O
+b0000 N
+b0000000 2
 b000000 !
-b0000000 7
-b00000000 .
-b00000000 1
-b0000000 8
-b0000000 %
-0+
-0,
+b00000000 /
+b0000000 +
+b0000000 *
+b0000000 1
+0"
+0(
 $end
 #0
-b01111 @
+b001100 @
 b110011 !
-b0111 A
-b01111 B
-b0111 C
-b1111 D
-b110100 (
-1H
-b001100 )
-b0111 -
-b01111 4
-b01111 5
-16
-b0000110 8
-b0111 =
-b0111 >
-#1
-1+
-#6
-1G
-0H
-b1010000 K
-b1010 L
-b10100 M
-b00111 N
-b1111 O
-b1111 Q
-b000110 !
-b00111110 "
-b0011110 %
-b1010 &
-b1110 '
-b000111 (
-b111001 )
-b01101110 *
-0+
-b01001011 .
-b1011 /
-b00101010 1
-b01110 2
-06
-b1101110 7
-b0000000 8
-b00111 9
+1C
+b01111 &
+b01111 '
+1(
+b0000110 +
+b0111 N
+b0111 3
+b0111 4
+b01111 6
+b0111 7
+b01111 8
+b0111 9
 b1111 :
-b1101110 <
-b00111 ?
+b110100 =
+#1
+1K
+#6
+b111001 @
+1A
+b01101110 B
+0C
+b1010000 F
+b1010 G
+b10100 H
+b00111 I
+b1111 J
+0K
+b1111 M
+b01001011 O
+b1011 P
+b000110 !
+b00101010 #
+b01110 $
+0(
+b00111110 )
+b1101110 *
+b0000000 +
+b00111 ,
+b1111 .
+b1101110 1
+b0011110 2
+b00111 5
+b1010 ;
+b1110 <
+b000111 =
 #11
-1+
+1K
 #16
-0+
+0K
 #21
-1+
+1K
 #26
-b00111110 $
-1E
-0+
+0K
+1>
+b00111110 /
 #31
-1+
+1K
 #36
-0+
+0K
 #41
-1+
+1K
 #46
-b11111 @
-b10101010 1
-b10111110 "
-b10000 3
-b1111 C
-b10111110 $
-b11111 5
-1I
-0+
-b10111 ?
+b10101010 #
+1D
+b10000 %
+b10111 5
+b11111 6
+b11111 '
+b10111110 )
+b1111 9
+0K
+b10111110 /
 #51
-1+
+1K
 #56
-0+
+0K
 #61
-1+
+1K
 #66
-b00000000 1
-0E
-0+
-b00000000 .
+b00000000 #
+0K
+0>
+b00000000 O

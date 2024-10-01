@@ -7,7 +7,7 @@ import scala.math.pow
 
 class FloatingPoint(e5m2: Boolean) extends Bundle {
 
-  val data = Input(UInt(8.W))
+  val data = UInt(8.W)
 
   val exponentLength = {
     if(!e5m2) 4
@@ -38,9 +38,17 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   def isMantissaMax: Bool = mantissa === maxMantissa.U
 
-  def isNaN: Bool = isExpMax && !isMantissa0
+  //def isNaN: Bool = isExpMax && !isMantissa0
+  def isNaN: Bool = isExpMax && {
+    if (e5m2) !isMantissa0
+    else isMantissaMax
+  }
 
-  def isInfty: Bool = isExpMax && isMantissa0
+  //def isInfty: Bool = isExpMax && isMantissa0
+  def isInfty: Bool = {
+    if (e5m2) isExpMax && isMantissa0
+    else false.B
+  }
 
   def is0: Bool = isExp0 && isMantissa0
 
@@ -106,6 +114,11 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       }
     }
     reducePartialProducts(partialProducts)
+  }
+
+  def getResultNaNFractionValue(other: FloatingPoint): UInt = {
+    if (e5m2) Mux(this.mantissa > other.mantissa, this.mantissa(0), other.mantissa(0))
+    else 0.U
   }
 
   def prepareForAddition(other: FloatingPoint, subtract: UInt): (UInt, UInt, UInt, UInt, UInt) = {
@@ -247,7 +260,13 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     val finalExponent = Mux(roundedFraction(mantissaLength + 1) === 1.U || (roundedFraction(mantissaLength) && tempExponent === 0.U),
       tempExponent + 1.U, tempExponent)
 
-    val overflow = (finalExponent >= (maxExponent.U +& 1.U)) || (tempExponent === maxExponent.U)
+    //val overflow = (finalExponent >= (maxExponent.U +& 1.U)) || (tempExponent === maxExponent.U)
+    val overflow = {
+      if (e5m2) (finalExponent >= (maxExponent.U +& 1.U)) || (tempExponent === maxExponent.U)
+      else (finalExponent > maxExponent.U) || ((finalExponent(exponentLength - 1, 0) === maxExponent.U) && (finalFraction === 15.U)) ||
+        ((tempExponent >= maxExponent.U) && (tempFraction(fractionMSB, fractionLSB) === 15.U))
+    }
+
     (overflow, finalExponent, finalFraction)
   }
 
@@ -436,9 +455,20 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     (roundingMode: UInt, saturationMode: UInt, subtract: UInt) => {
       val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = prepareForAddition(other, subtract)
 
-      val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.isInfty && other.isInfty && subtraction.asBool))
-      val isResultInfty = WireDefault((this.isInfty || other.isInfty) & !isResultNaN)
+      //val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.isInfty && other.isInfty && subtraction.asBool))
+      val isResultNaN = {
+        if (e5m2) WireDefault(this.isNaN || other.isNaN || (this.isInfty && other.isInfty && subtraction.asBool))
+        else WireDefault(this.isNaN || other.isNaN)
+      }
+      //val isResultInfty = WireDefault((this.isInfty || other.isInfty) & !isResultNaN)
+      val isResultInfty = {
+        if (e5m2) WireDefault((this.isInfty || other.isInfty) & !isResultNaN)
+        else false.B
+      }
+
       val isResult0 = WireDefault(this.isAbsValEqualTo(other) && subtraction.asBool && !isResultNaN && !isResultInfty)
+
+      val resultNaNFractionValue = getResultNaNFractionValue(other)
 
       val calculatedValue = Mux(subtraction === 1.U,
         greaterOperandFraction -& smallerOperandFraction, // xx.xxx...
@@ -452,9 +482,21 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   def *(other: FloatingPoint): (UInt, UInt) => UInt = {
     (roundingMode: UInt, saturationMode: UInt) => {
-      val isResultNaN = WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
-      val isResultInfty = WireDefault((this.isInfty && !other.is0 && !other.isNaN) || (other.isInfty && !this.is0 && !this.isNaN))
+      //val isResultNaN = WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
+      val isResultNaN = {
+        if (e5m2) WireDefault((this.isInfty && other.is0) || this.isNaN || (other.isInfty && this.is0) || other.isNaN)
+        else WireDefault(this.isNaN || other.isNaN)
+      }
+
+      //val isResultInfty = WireDefault((this.isInfty && !other.is0 && !other.isNaN) || (other.isInfty && !this.is0 && !this.isNaN))
+      val isResultInfty = {
+        if (e5m2) WireDefault((this.isInfty && !other.is0 && !other.isNaN) || (other.isInfty && !this.is0 && !this.isNaN))
+        else false.B
+      }
+
       val isResult0 = WireDefault((this.is0 && !other.isNaN) || (other.is0 && !this.isNaN))
+
+      val resultNaNFractionValue = getResultNaNFractionValue(other)
 
       //val (sign, firstOperandFraction, secondOperandFraction, exponent) = this.prepareForMultiplication(other)
       val (sign, firstOperandFraction, secondOperandFraction, exponent) = prepareForMultiplication(other)
@@ -469,9 +511,25 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   def /(other: FloatingPoint): (UInt, UInt) => UInt = {
     (roundingMode: UInt, saturationMode: UInt) => {
-      val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
-      val isResultInfty = WireDefault((other.is0 && !this.is0 && !this.isInfty && !isNaN) || (this.isInfty && !other.isNaN))
-      val isResult0 = WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
+      //val isResultNaN = WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
+      val isResultNaN = {
+        if (e5m2) WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
+        else this.isNaN || other.isNaN || other.is0
+      }
+
+      //val isResultInfty = WireDefault((other.is0 && !this.is0 && !this.isInfty && !isNaN) || (this.isInfty && !other.isNaN))
+      val isResultInfty = {
+        if (e5m2) WireDefault((other.is0 && !this.is0 && !this.isInfty && !this.isNaN) || (this.isInfty && !other.isNaN))
+        else false.B
+      }
+
+      //val isResult0 = WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
+      val isResult0 = {
+        if (e5m2) WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
+        else is0 && !other.is0 && !other.isNaN
+      }
+
+      val resultNaNFractionValue = getResultNaNFractionValue(other)
 
       //val (sign, dividendFraction, divisorFraction, exponent) = this.prepareForDivision(other)
       val (sign, dividendFraction, divisorFraction, exponent) = prepareForDivision(other)
@@ -493,7 +551,15 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   def <(other: FloatingPoint): UInt = {
     val result = Wire(UInt(8.W))
 
-    when(this.sign > other.sign || (this.sign === 1.U && isAbsValGreater(other)) || (this.sign === 0.U && !isAbsValGreater(other))){
+    val isResultNaN = this.isNaN || other.isNaN
+    val resultNaNFractionValue = getResultNaNFractionValue(other)
+
+    when(isResultNaN){
+      result := {
+        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
+        else Cat(0.U, maxExponent.U, maxMantissa.U)
+      }
+    }.elsewhen(this.sign > other.sign || (this.sign === 1.U && isAbsValGreater(other)) || (this.sign === 0.U && !isAbsValGreater(other))){
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1)/2).U, 0.U(mantissaLength.W))
     }.otherwise{
@@ -505,7 +571,15 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   def >(other: FloatingPoint): UInt = {
     val result = Wire(UInt(8.W))
 
-    when(this.sign < other.sign || (this.sign === 1.U && !isAbsValGreater(other)) || (this.sign === 0.U && isAbsValGreater(other))) {
+    val isResultNaN = this.isNaN || other.isNaN
+    val resultNaNFractionValue = getResultNaNFractionValue(other)
+
+    when(isResultNaN){
+      result := {
+        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
+        else Cat(0.U, maxExponent.U, maxMantissa.U)
+      }
+    }.elsewhen(this.sign < other.sign || (this.sign === 1.U && !isAbsValGreater(other)) || (this.sign === 0.U && isAbsValGreater(other))) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
@@ -517,7 +591,15 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   def ==(other: FloatingPoint): UInt = {
     val result = Wire(UInt(8.W))
 
-    when(this.data === other.data) {
+    val isResultNaN = this.isNaN || other.isNaN
+    val resultNaNFractionValue = getResultNaNFractionValue(other)
+
+    when(isResultNaN) {
+      result := {
+        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
+        else Cat(0.U, maxExponent.U, maxMantissa.U)
+      }
+    }.elsewhen(this.data === other.data) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
@@ -527,17 +609,51 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   }
 
   def <=(other: FloatingPoint): UInt = {
-    (this < other) ^ (this == other)
+    val result = Wire(UInt(8.W))
+
+    val isResultNaN = this.isNaN || other.isNaN
+    val resultNaNFractionValue = getResultNaNFractionValue(other)
+
+    when(isResultNaN) {
+      result := {
+        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
+        else Cat(0.U, maxExponent.U, maxMantissa.U)
+      }
+    }.otherwise{
+      result := (this < other) ^ (this == other)
+    }
+    result
   }
 
   def >=(other: FloatingPoint): UInt = {
-    (this > other) ^ (this == other)
+    val result = Wire(UInt(8.W))
+
+    val isResultNaN = this.isNaN || other.isNaN
+    val resultNaNFractionValue = getResultNaNFractionValue(other)
+
+    when(isResultNaN) {
+      result := {
+        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
+        else Cat(0.U, maxExponent.U, maxMantissa.U)
+      }
+    }.otherwise {
+      result := (this > other) ^ (this == other)
+    }
+    result
   }
 
   def !=(other: FloatingPoint): UInt = {
     val result = Wire(UInt(8.W))
 
-    when(this.data =/= other.data) {
+    val isResultNaN = this.isNaN || other.isNaN
+    val resultNaNFractionValue = getResultNaNFractionValue(other)
+
+    when(isResultNaN) {
+      result := {
+        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
+        else Cat(0.U, maxExponent.U, maxMantissa.U)
+      }
+    }.elsewhen(this.data =/= other.data) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {

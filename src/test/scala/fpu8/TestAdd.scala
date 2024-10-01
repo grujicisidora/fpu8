@@ -65,12 +65,12 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
 
       dut.enable.poke(1.U)
       dut.a.data.poke(42.U) // 0_0101_010
-      dut.b.data.poke(250.U) // 1_1111_010 - NaN
+      dut.b.data.poke(250.U) // 1_1111_010
       dut.roundingMode.poke(0.U) // to nearest
       dut.saturationMode.poke(0.U)
       dut.subtract.poke(0.U)
       dut.clock.step()
-      dut.z.expect(127.U) // 0_1111_111
+      dut.z.expect(250.U) // 1_1111_010
 
       dut.clock.step()
     }
