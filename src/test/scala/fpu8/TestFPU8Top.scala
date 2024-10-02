@@ -1,7 +1,6 @@
 package fpu8
 
 import chisel3._
-import chisel3.util._
 import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
 

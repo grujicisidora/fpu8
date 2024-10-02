@@ -10,8 +10,6 @@ class Divide(val e5m2: Boolean) extends Module {
   val a = IO(Input(new FloatingPoint(e5m2)))
   val b = IO(Input(new FloatingPoint(e5m2)))
   val roundingMode = IO(Input(UInt(2.W)))
-  //val saturationMode = IO(Input(UInt(1.W)))
-  //val z = IO(Output(UInt(8.W)))
   val sign = IO(Output(UInt(1.W)))
   val exponent = IO(Output(UInt((exponentLength + 1).W)))
   val fraction = IO(Output(UInt((mantissaLength + 1).W)))
@@ -43,5 +41,4 @@ class Divide(val e5m2: Boolean) extends Module {
     isNaN := 0.U
     NaNFractionValue := 0.U
   }
-
 }

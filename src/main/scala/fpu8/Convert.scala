@@ -17,5 +17,4 @@ class Convert(e5m2: Boolean) extends Module {
   }.otherwise{
     z := 0.U
   }
-
 }
