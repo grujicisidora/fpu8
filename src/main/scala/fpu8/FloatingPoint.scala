@@ -665,4 +665,97 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     }
     result
   }
+
+  def convert(): UInt = {
+    require(!this.e5m2, "Wrong FP8 encoding.")
+    val fraction = Cat(!isExp0.asUInt, mantissa)
+    val (shiftedFraction, shift) = shiftToMSB1(fraction)
+
+    val tempExponent = Mux(isExp0, 9.U -& shift, 8.U +& exponent)
+    val tempFraction = shiftedFraction(mantissaLength, 1)
+    //printf(cf"PRINTF: tempFraction $tempFraction\n")
+
+    val addOne = exponent.orR.asUInt & shiftedFraction(mantissaLength - 2, 0).andR.asUInt
+
+    //printf(cf"PRINTF: addOne $addOne\n")
+
+    val roundedFraction = tempFraction +& addOne
+    //printf(cf"PRINTF: roundedFraction $roundedFraction\n")
+
+    val finalExponent = Mux(roundedFraction(mantissaLength) === 1.U, tempExponent + 1.U, tempExponent)
+    val finalFraction = Mux(roundedFraction(mantissaLength) === 1.U,
+      roundedFraction(mantissaLength, mantissaLength - 2),
+      roundedFraction(mantissaLength - 1, mantissaLength - 3))
+
+    val result = Wire(UInt(8.W))
+
+    when(!is0 && !isNaN) {
+      result := Cat(sign, finalExponent, finalFraction(mantissaLength - 2, mantissaLength - 3))
+    }.elsewhen(is0 && !isNaN) {
+      result := Cat(sign, 0.U((exponentLength + 1).W), 0.U((mantissaLength - 1).W))
+    }.elsewhen(isNaN) {
+      result := Cat(0.U, (maxExponent * 2 + 1).U, ((maxMantissa - 1) / 2).U)
+    }.otherwise {
+      result := 0.U
+    }
+    result
+  }
+
+  def convert(roundingMode: UInt, saturationMode: UInt): UInt = {
+    require(this.e5m2, "Wrong FP8 encoding.")
+
+    val isResultNaN = isNaN || isInfty
+
+    val fraction = Cat(!isExp0.asUInt, mantissa)
+
+    val tempExponent = exponent -& 8.U
+
+    val isDenormalized = tempExponent(exponentLength) || (tempExponent(exponentLength - 1, 0) === 0.U)
+    val overflow = !tempExponent(exponentLength) && tempExponent(exponentLength - 1)
+    val shift = Mux(isDenormalized, 1.U -& tempExponent, 0.U)
+
+    val tempFraction = Cat(fraction, 0.U((exponentLength - 1).W)) >> shift
+
+    val addOne = ((roundingMode === 0.U) && tempFraction(2) && (tempFraction(1) || tempFraction(0))) || // zaokruzivanje do najblizeg
+      ((roundingMode === 0.U) && tempFraction(2) && !tempFraction(1) && !tempFraction(0) && tempFraction(3)) || // zaokruzivanje do najblizeg
+      ((roundingMode === 1.U) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && sign.asBool) || // prema -infty tj. prema nizem
+      ((roundingMode === 2.U) && (tempFraction(2) || tempFraction(1) || tempFraction(0)) && !sign.asBool) // prema +infty tj. prema visem
+
+    val roundedFraction = tempFraction(mantissaLength + 4, mantissaLength + 1) +& addOne.asUInt
+
+    val finalExponent = Mux(overflow, ((maxExponent - 1) / 2).U,
+      Mux(isDenormalized, 0.U, tempExponent(exponentLength - 2, 0)))
+
+    val finalFraction = roundedFraction(mantissaLength + 1, 0)
+
+    val result = Wire(UInt(8.W))
+
+    when(!isResultNaN) {
+      when(overflow) {
+        when((roundingMode === 0.U && saturationMode === 0.U) ||
+          (roundingMode === 1.U && saturationMode === 0.U && sign === 0.U) ||
+          (roundingMode === 2.U && saturationMode === 0.U && sign === 0.U)) {
+          result := Cat(0.U, ((maxExponent - 1) / 2).U, (maxMantissa * 2 + 1).U)
+        }.elsewhen((roundingMode === 0.U && saturationMode === 1.U) ||
+          (roundingMode === 3.U && saturationMode === 0.U)) {
+          result := Cat(sign, ((maxExponent - 1) / 2).U, (maxMantissa * 2).U)
+        }.elsewhen((roundingMode === 1.U && saturationMode === 1.U && sign === 0.U) ||
+          (roundingMode === 2.U && sign === 1.U)) {
+          result := Cat(sign, ((maxExponent - 1) / 2).U, (maxMantissa * 2).U)
+        }.elsewhen((roundingMode === 1.U && sign === 1.U) ||
+          (roundingMode === 2.U && saturationMode === 1.U && sign === 0.U)) {
+          result := Cat(sign, ((maxExponent - 1) / 2).U, (maxMantissa * 2).U)
+        }.otherwise {
+          result := 0.U
+        }
+      }.otherwise {
+        result := Cat(sign, finalExponent, finalFraction(mantissaLength, 0))
+      }
+    }.elsewhen(isResultNaN) {
+      result := Cat(0.U, ((maxExponent - 1) / 2).U, (maxMantissa * 2 + 1).U)
+    }.otherwise {
+      result := 0.U
+    }
+    result
+  }
 }

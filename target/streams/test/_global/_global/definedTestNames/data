@@ -1,1 +1,1 @@
-["fpu8.TestMultiply","fpu8.TestAdd","fpu8.TestGenerateFinalResult","fpu8.TestFPU8Top","fpu8.TestFPU8Generator","fpu8.TestDivide","fpu8.TestCompare"]
+["fpu8.TestMultiply","fpu8.TestAdd","fpu8.TestGenerateFinalResult","fpu8.TestFPU8Top","fpu8.TestFPU8Generator","fpu8.TestDivide","fpu8.TestCompare","fpu8.TestConvert"]

@@ -1,6 +1,6 @@
 [debug] [zinc] IncrementalCompile -----------
 [debug] IncrementalCompile.incrementalCompile
-[debug] previous = Stamps for: 11 products, 9 sources, 3 libraries
-[debug] current source = Set(${BASE}/src/main/scala/fpu8/Compare.scala, ${BASE}/src/main/scala/fpu8/Divide.scala, ${BASE}/src/main/scala/fpu8/Add.scala, ${BASE}/src/main/scala/fpu8/FloatingPoint.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/fpu8/FPU8Generator.scala, ${BASE}/src/main/scala/fpu8/FPU8Top.scala, ${BASE}/src/main/scala/fpu8/GenerateFinalResult.scala, ${BASE}/src/main/scala/fpu8/Multiply.scala)
+[debug] previous = Stamps for: 12 products, 10 sources, 3 libraries
+[debug] current source = Set(${BASE}/src/main/scala/fpu8/Compare.scala, ${BASE}/src/main/scala/fpu8/Divide.scala, ${BASE}/src/main/scala/fpu8/Convert.scala, ${BASE}/src/main/scala/fpu8/Add.scala, ${BASE}/src/main/scala/fpu8/FloatingPoint.scala, ${BASE}/src/main/scala/Main.scala, ${BASE}/src/main/scala/fpu8/FPU8Generator.scala, ${BASE}/src/main/scala/fpu8/FPU8Top.scala, ${BASE}/src/main/scala/fpu8/GenerateFinalResult.scala, ${BASE}/src/main/scala/fpu8/Multiply.scala)
 [debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
 [debug] No changes

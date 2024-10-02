@@ -159,6 +159,17 @@ class TestFPU8Generator extends AnyFlatSpec with ChiselScalatestTester {
       dut.saturationMode.poke(0.U)
       dut.clock.step()
       dut.z.expect(89.U)
+
+      dut.clock.step()
+
+      dut.enable.poke(1.U)
+      dut.a.data.poke(75.U)
+      dut.b.data.poke(42.U)
+      dut.opCode.poke(10.U) // convert
+      dut.roundingMode.poke(0.U)
+      dut.saturationMode.poke(0.U)
+      dut.clock.step()
+      dut.z.expect(70.U)
     }
   }
 
@@ -315,6 +326,17 @@ class TestFPU8Generator extends AnyFlatSpec with ChiselScalatestTester {
       dut.saturationMode.poke(0.U)
       dut.clock.step()
       dut.z.expect(93.U)
+
+      dut.clock.step()
+
+      dut.enable.poke(1.U)
+      dut.a.data.poke(75.U)
+      dut.b.data.poke(42.U)
+      dut.opCode.poke(10.U) // convert
+      dut.roundingMode.poke(0.U)
+      dut.saturationMode.poke(0.U)
+      dut.clock.step()
+      dut.z.expect(86.U)
     }
   }
 }

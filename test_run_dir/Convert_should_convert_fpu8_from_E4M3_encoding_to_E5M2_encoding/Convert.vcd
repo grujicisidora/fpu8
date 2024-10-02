@@ -1,0 +1,95 @@
+$date
+2024-10-02T20:30+0000
+$end
+$version
+0.2
+$end
+$comment
+
+$end
+$timescale 1ns  $end
+$scope module Convert $end
+ $var wire 5 ! z_tempExponent $end
+ $var wire 3 " z_tempFraction $end
+ $var wire 6 # z_result_hi $end
+ $var wire 1 $ enable $end
+ $var wire 4 % z_shiftedFraction $end
+ $var wire 8 & a_data $end
+ $var wire 4 ' z_shift $end
+ $var wire 1 ( reset $end
+ $var wire 6 ) z_result_hi_1 $end
+ $var wire 6 * z_result_hi_2 $end
+ $var wire 2 + roundingMode $end
+ $var wire 4 , z_roundedFraction $end
+ $var wire 8 - z $end
+ $var wire 8 . z_result $end
+ $var wire 1 / saturationMode $end
+ $var wire 1 0 z_addOne $end
+ $var wire 1 1 clock $end
+ $var wire 5 2 z_finalExponent $end
+ $var wire 3 3 z_finalFraction $end
+ $var wire 4 4 z_fraction $end
+$upscope $end
+$enddefinitions $end
+$dumpvars
+00
+b0000 %
+01
+b00000 2
+b00000000 -
+b000 "
+b00000000 &
+b0000 ,
+b00000 !
+b0000 '
+b0000 4
+b000000 )
+b000 3
+0$
+b000000 *
+b00 +
+0(
+b000000 #
+b00000000 .
+0/
+$end
+#0
+b00110 !
+b00110 2
+b000110 #
+b0011 '
+1(
+b011111 *
+#1
+11
+#6
+b10001 !
+b101 "
+b010001 #
+b1011 %
+b01001011 &
+b0000 '
+0(
+b0110 ,
+b01000110 .
+10
+01
+b10001 2
+b110 3
+b1011 4
+#11
+11
+#16
+01
+#21
+11
+#26
+01
+1$
+b01000110 -
+#31
+11
+#36
+01
+0$
+b00000000 &

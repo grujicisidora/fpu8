@@ -22,6 +22,8 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
 
   val compare = Module(new Compare(e5m2))
 
+  val convert = Module(new Convert(e5m2))
+
   val generateFinalResult = Module(new GenerateFinalResult(e5m2))
 
   addSub.enable := Mux(opCode === 0.U || opCode === 1.U, enable, 0.U)
@@ -49,6 +51,11 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
           Mux(opCode === 8.U, 4.U, 5.U)))))
   compare.a := a
   compare.b := b
+
+  convert.enable := Mux(opCode === 10.U, enable, 0.U)
+  convert.a := a
+  convert.roundingMode := roundingMode
+  convert.saturationMode := saturationMode
 
   generateFinalResult.enable := enable
 
@@ -91,7 +98,7 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
     generateFinalResult.NaNFractionValue := divide.NaNFractionValue
 
     z := generateFinalResult.z
-  }.otherwise {
+  }.elsewhen(opCode === 4.U || opCode === 5.U || opCode === 6.U || opCode === 7.U || opCode === 8.U || opCode === 9.U){
     generateFinalResult.sign := 0.U
     generateFinalResult.exponent := 0.U
     generateFinalResult.mantissa := 0.U
@@ -104,6 +111,31 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
     generateFinalResult.NaNFractionValue := 0.U
 
     z := compare.z
-  }
+  }.elsewhen(opCode === 10.U){
+    generateFinalResult.sign := 0.U
+    generateFinalResult.exponent := 0.U
+    generateFinalResult.mantissa := 0.U
+    generateFinalResult.roundingMode := 0.U
+    generateFinalResult.overflow := 0.U
+    generateFinalResult.saturationMode := 0.U
+    generateFinalResult.isInfty := 0.U
+    generateFinalResult.is0 := 0.U
+    generateFinalResult.isNaN := 0.U
+    generateFinalResult.NaNFractionValue := 0.U
 
+    z := convert.z
+  }.otherwise{
+    generateFinalResult.sign := 0.U
+    generateFinalResult.exponent := 0.U
+    generateFinalResult.mantissa := 0.U
+    generateFinalResult.roundingMode := 0.U
+    generateFinalResult.overflow := 0.U
+    generateFinalResult.saturationMode := 0.U
+    generateFinalResult.isInfty := 0.U
+    generateFinalResult.is0 := 0.U
+    generateFinalResult.isNaN := 0.U
+    generateFinalResult.NaNFractionValue := 0.U
+
+    z := 0.U
+  }
 }
