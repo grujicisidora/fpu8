@@ -1,0 +1,31 @@
+[debug] > Exec(test, None, None)
+[debug] Evaluating tasks: Test / test
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 1 Scala source to E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\test-classes ...
+[info] done compiling
+[info] TestCompare:
+[info] Compare
+[info] - should compare values a and b depending of a chosen mode
+[info] TestGenerateFinalResult:
+[info] GenerateFinalResult
+[info] - should give the 8-bit floating point representation of the result
+[info] TestDivide:
+[info] Divide
+[info] - should calculate the value of expression a / b
+[info] TestMultiply:
+[info] Multiply
+[info] - should calculate the value of expression a * b
+[info] TestAdd:
+[info] Add
+[info] - should calculate the value of expression a + b
+[info] - should also calculate the value of expression a - b
+[info] TestFPU8Top:
+[info] FPU8Top
+[info] - should calculate various expressions between numbers in two different fp8 representations.
+[info] Run completed in 5 seconds, 533 milliseconds.
+[info] Total number of tests run: 7
+[info] Suites: completed 6, aborted 0
+[info] Tests: succeeded 7, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
+[success] Total time: 6 s, completed Oct 1, 2024, 10:31:35 PM
+[debug] > Exec(idea-shell, None, None)
