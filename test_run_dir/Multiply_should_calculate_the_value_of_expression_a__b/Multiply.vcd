@@ -1,5 +1,5 @@
 $date
-2024-10-02T20:58+0000
+2024-10-03T13:26+0000
 $end
 $version
 0.2
@@ -9,7 +9,7 @@ $comment
 $end
 $timescale 1ns  $end
 $scope module Multiply $end
- $var wire 7 ! shift $end
+ $var wire 3 ! shift $end
  $var wire 1 " resultOverflow $end
  $var wire 7 # shiftedCalcValue $end
  $var wire 7 $ product_partialProducts_3 $end
@@ -87,8 +87,8 @@ b0000 2
 0"
 b0000 3
 b0000 1
-b0000000 !
 b0000 =
+b000 !
 0*
 b000000 @
 0,
@@ -97,7 +97,7 @@ b000000 D
 $end
 #0
 b110011 @
-b0000110 !
+b110 !
 b001100 D
 1H
 1:
@@ -112,7 +112,7 @@ b01001011 E
 b0011110 F
 b1111 G
 0H
-b0000000 !
+b000 !
 b1101110 #
 b1010000 $
 b00101010 &

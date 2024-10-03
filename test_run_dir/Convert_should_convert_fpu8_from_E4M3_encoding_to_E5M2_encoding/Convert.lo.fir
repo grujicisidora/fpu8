@@ -31,7 +31,7 @@ circuit Convert :
     node _z_leadingZeros_T_13 = mux(_z_leadingZeros_T_11, UInt<2>("h2"), UInt<2>("h3")) @[src/main/scala/chisel3/util/Mux.scala 50:70]
     node _z_leadingZeros_T_14 = mux(_z_leadingZeros_T_10, UInt<1>("h1"), _z_leadingZeros_T_13) @[src/main/scala/chisel3/util/Mux.scala 50:70]
     node _z_leadingZeros_T_15 = mux(_z_leadingZeros_T_9, UInt<1>("h0"), _z_leadingZeros_T_14) @[src/main/scala/chisel3/util/Mux.scala 50:70]
-    node z_shift = pad(_z_leadingZeros_T_15, 4) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 55:28 58:18]
+    node z_shift = _z_leadingZeros_T_15 @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 55:28 58:18]
     node _z_shiftedValue_T = dshl(z_fraction, z_shift) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 60:27]
     node _z_tempExponent_T = bits(a_data, 6, 3) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 25:28]
     node _z_tempExponent_T_1 = eq(_z_tempExponent_T, UInt<1>("h0")) @[\\src\\main\\scala\\fpu8\\FloatingPoint.scala 33:39]

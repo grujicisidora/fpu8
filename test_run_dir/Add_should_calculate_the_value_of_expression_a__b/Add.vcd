@@ -1,5 +1,5 @@
 $date
-2024-10-02T20:58+0000
+2024-10-03T13:26+0000
 $end
 $version
 0.2
@@ -35,7 +35,7 @@ $scope module Add $end
  $var wire 1 8 addOne $end
  $var wire 1 9 reset $end
  $var wire 4 : resultExponent $end
- $var wire 7 ; shift_1 $end
+ $var wire 3 ; shift_1 $end
  $var wire 4 < fraction $end
  $var wire 7 = smallerOperandFraction_1 $end
  $var wire 1 > NaNFractionValue $end
@@ -64,7 +64,6 @@ b00000000 %
 0>
 0?
 0@
-b0000000 ;
 b0000000 =
 0C
 b00 ,
@@ -74,6 +73,7 @@ b00000000 3
 b00000000 2
 0J
 b00000000 5
+b000 ;
 b00000 0
 b00000000 G
 b0000 !
@@ -99,7 +99,7 @@ b0000 :
 $end
 #0
 19
-b0000110 ;
+b110 ;
 #1
 1C
 #6
@@ -127,7 +127,7 @@ b0000101000 6
 18
 09
 b1001 :
-b0000000 ;
+b000 ;
 b0000101 =
 #11
 1C
@@ -216,7 +216,7 @@ b00000000 3
 b1010000000 6
 08
 b0000 :
-b0000110 ;
+b110 ;
 b0000 <
 b1010000 =
 1?
@@ -246,7 +246,7 @@ b01001111 3
 b0000001010 6
 18
 b1111 :
-b0000000 ;
+b000 ;
 b1010 <
 b0000001 =
 #111

@@ -1,5 +1,5 @@
 $date
-2024-10-02T20:58+0000
+2024-10-03T13:26+0000
 $end
 $version
 0.2
@@ -15,7 +15,7 @@ $scope module Convert $end
  $var wire 1 $ enable $end
  $var wire 4 % z_shiftedFraction $end
  $var wire 8 & a_data $end
- $var wire 4 ' z_shift $end
+ $var wire 2 ' z_shift $end
  $var wire 1 ( reset $end
  $var wire 6 ) z_result_hi_1 $end
  $var wire 6 * z_result_hi_2 $end
@@ -41,8 +41,8 @@ b000 "
 b00000000 &
 b0000 ,
 b00000 !
-b0000 '
 b0000 4
+b00 '
 b000000 )
 b000 3
 0$
@@ -57,7 +57,7 @@ $end
 b00110 !
 b00110 2
 b000110 #
-b0011 '
+b11 '
 1(
 b011111 *
 #1
@@ -68,7 +68,7 @@ b101 "
 b010001 #
 b1011 %
 b01001011 &
-b0000 '
+b00 '
 0(
 b0110 ,
 b01000110 .

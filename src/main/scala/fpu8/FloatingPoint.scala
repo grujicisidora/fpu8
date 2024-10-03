@@ -52,7 +52,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   private def shiftToMSB1(value: UInt): (UInt, UInt) = {
     val width = value.getWidth
-    val leadingZeros = Wire(UInt(width.W))
+    val leadingZeros = Wire(UInt(log2Up(width).W))
     val shiftedValue = Wire(UInt(width.W))
 
     leadingZeros := PriorityEncoder(Reverse(value))

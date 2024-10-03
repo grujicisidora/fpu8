@@ -1,5 +1,5 @@
 $date
-2024-10-02T20:58+0000
+2024-10-03T13:26+0000
 $end
 $version
 0.2
@@ -143,7 +143,7 @@ $scope module FPU8Generator $end
    $var wire 8 "r greaterOperand_data $end
    $var wire 7 "t calculatedValue $end
    $var wire 8 "~ a_data $end
-   $var wire 7 #! shift_1 $end
+   $var wire 3 #! shift_1 $end
    $var wire 1 #& isInfty $end
    $var wire 1 #- sign $end
    $var wire 6 #3 exponent $end
@@ -172,7 +172,7 @@ $scope module FPU8Generator $end
    $var wire 5 C quotient_secondGuess_firstStep_partialProducts_compare $end
    $var wire 5 H quotient_secondGuess_finalStep_partialProducts_compare $end
    $var wire 6 I quotient_secondGuess $end
-   $var wire 7 J shift $end
+   $var wire 3 J shift $end
    $var wire 1 M resultNaNFractionValue $end
    $var wire 3 N tempDivisorFraction $end
    $var wire 5 O quotient_finalGuess_secondStep $end
@@ -183,7 +183,7 @@ $scope module FPU8Generator $end
    $var wire 7 ` exponent_1 $end
    $var wire 5 f quotient_partialProducts_compare $end
    $var wire 1 g isResult0 $end
-   $var wire 3 h divisorShift $end
+   $var wire 2 h divisorShift $end
    $var wire 1 m addOne $end
    $var wire 8 o quotient_finalGuess_finalStep_partialSums_0 $end
    $var wire 10 p quotient_finalGuess_finalStep_partialSums_1 $end
@@ -242,7 +242,7 @@ $scope module FPU8Generator $end
    $var wire 5 #U quotient_secondGuess_secondStep $end
    $var wire 1 #X isResultNaN $end
    $var wire 7 #Z exponentShiftRight $end
-   $var wire 3 #_ dividendShift $end
+   $var wire 2 #_ dividendShift $end
    $var wire 10 #c quotient_secondGuess_finalStep $end
    $var wire 3 #h fraction $end
    $var wire 9 #v quotient_finalGuess_finalStep_partialProducts_4 $end
@@ -297,7 +297,7 @@ $scope module FPU8Generator $end
    $var wire 5 "3 tempExponent $end
    $var wire 8 "; a_data $end
    $var wire 1 "D resultOverflow $end
-   $var wire 5 "[ shift $end
+   $var wire 3 "[ shift $end
    $var wire 7 "] exponentShiftRight $end
    $var wire 3 "e secondOperandFraction $end
    $var wire 7 #" exponent_1 $end
@@ -337,7 +337,6 @@ b00000000 }
 b0000000 #"
 b00000000 o
 0M
-b0000000 #!
 0P
 b0000 #j
 b00000000 G
@@ -379,6 +378,7 @@ b0000000 "]
 b000000 #b
 b0000000 #7
 b0000000 #1
+b00 #_
 b000000 $.
 b0000000 #N
 b000000 $/
@@ -459,7 +459,6 @@ b000000 #,
 b000000 d
 0"R
 b00000 ")
-b000 h
 b00 "5
 b000000 "@
 b000 b
@@ -507,7 +506,6 @@ b00 ".
 0"q
 0#R
 0#S
-b0000000 J
 0"v
 0"w
 0#X
@@ -523,6 +521,8 @@ b00000 #a
 b00000 #d
 0#^
 b00000 #f
+b000 J
+b00 h
 b00000 "{
 b00000 #\
 b0000000 ?
@@ -543,7 +543,6 @@ b00000 #O
 0#}
 b000 0
 0#~
-b00000 "[
 b00000 "S
 b000000000 #v
 b00000 "U
@@ -571,6 +570,7 @@ b000 #?
 b000 #=
 b000 #>
 b000 #;
+b000 "[
 b000 #<
 b00000 !
 b00000 "
@@ -581,7 +581,6 @@ b000 $0
 b000 #I
 b000 #W
 b00000 8
-b000 #_
 b00000 ;
 b000 #]
 b000 "}
@@ -618,6 +617,7 @@ b0000 j
 b0000 r
 b000 #$
 b0000 q
+b000 #!
 b000 #0
 0*
 b000 #*
@@ -634,7 +634,7 @@ b011111 "j
 b011111 $.
 1#X
 b1110001 #Z
-b010 #_
+b10 #_
 b01111 #`
 b01111 #a
 b011111 #b
@@ -662,7 +662,7 @@ b01111 <
 b0001111 ?
 b00111100 D
 b00111100 E
-b0000110 J
+b110 J
 b10 ",
 b10 "-
 b10 ".
@@ -672,13 +672,13 @@ b01111 V
 b01111 X
 b01111 Y
 b01111 Z
-b0000110 #!
+b110 #!
 b0011100 #"
 b0001111 `
 b111000 a
 b011111 d
 b00111100 "G
-b010 h
+b10 h
 b011111 #,
 b10 "L
 1#.
@@ -691,7 +691,7 @@ b10 #4
 1t
 b10 #8
 b001 #<
-b00100 "[
+b100 "[
 b011 #=
 b101 #>
 b1100100 "]
@@ -727,7 +727,7 @@ b00000000 G
 b10010 ")
 b11111 H
 b001001 I
-b0000001 J
+b001 J
 b11 ",
 b01000 K
 b11 "-
@@ -752,7 +752,7 @@ b11111 "=
 b11111 \
 b0111001 ]
 b00010100 ^
-b0000000 #!
+b000 #!
 b111000 "@
 b0001101 #"
 b0000111 `
@@ -766,7 +766,7 @@ b00111100 "G
 0"H
 0"I
 b111 #*
-b000 h
+b00 h
 b11111 #+
 b01001011 "J
 b1100 j
@@ -801,7 +801,7 @@ b00101010 #9
 b001111 #:
 1x
 b111 #;
-b00001 "[
+b001 "[
 b10100 z
 b1110011 "]
 b110 "^
@@ -845,7 +845,7 @@ b11111 "{
 b10010 #\
 b11111 "|
 b110 "}
-b000 #_
+b00 #_
 b00101010 "~
 b0010011001 #c
 b1100 #i
@@ -936,7 +936,7 @@ b100 "(
 b01011 ")
 b00000 H
 b001011 I
-b0000000 J
+b000 J
 b10 ",
 b00000 K
 b10 "-
@@ -985,7 +985,7 @@ b01000010 "W
 b010000 #:
 0x
 b110 #;
-b00010 "[
+b010 "[
 b10000 z
 b1111011 "]
 b00000000 #@
@@ -1059,7 +1059,7 @@ b111 "(
 b10010 ")
 b11111 H
 b001001 I
-b0000001 J
+b001 J
 b11 ",
 b01000 K
 b11 "-
@@ -1108,7 +1108,7 @@ b00110110 "W
 b001111 #:
 1x
 b111 #;
-b00001 "[
+b001 "[
 b10100 z
 b1110011 "]
 b00001001 #@
@@ -1299,7 +1299,7 @@ b00111100 G
 b10010 ")
 b00000 H
 b001011 I
-b0000000 J
+b000 J
 b01000 K
 b01110 L
 b01001011 "/
@@ -1317,7 +1317,7 @@ b01001011 ";
 b10010 "<
 b0110111 ]
 b01010110 ^
-b0000000 #!
+b000 #!
 b0001101 #"
 b0010111 `
 b010111 ##
@@ -1348,7 +1348,7 @@ b01001101 "W
 b00101010 #9
 b010000 #:
 b110 #;
-b00001 "[
+b001 "[
 b10100 z
 b01001011 {
 b1110011 "]
@@ -1434,7 +1434,7 @@ b10010 ")
 b11111 H
 b001001 I
 0"+
-b0000001 J
+b001 J
 b11 ",
 b01000 K
 b11 "-
@@ -1459,7 +1459,7 @@ b01110 "<
 b0111001 ]
 b00010100 ^
 b111000 "@
-b0000000 #!
+b000 #!
 b0001101 #"
 b0000111 `
 b000110 ##
@@ -1508,7 +1508,7 @@ b11 #8
 b001111 #:
 1x
 b111 #;
-b00001 "[
+b001 "[
 b10100 z
 b00111010 {
 b1110011 "]
@@ -1650,7 +1650,7 @@ b00111100 G
 b10010 ")
 b00000 H
 b001011 I
-b0000000 J
+b000 J
 b01000 K
 b01110 L
 b01001011 "/
@@ -1703,7 +1703,7 @@ b01001101 "W
 b00101010 #9
 b010000 #:
 b110 #;
-b00001 "[
+b001 "[
 b10100 z
 b01011101 {
 b1110011 "]

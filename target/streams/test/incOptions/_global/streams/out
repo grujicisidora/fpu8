@@ -1,29 +1,2 @@
 [debug] Created transactional ClassFileManager with tempDir = E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\test-classes.bak
-[debug] About to delete class files:
-[debug] 	TestDivide.class
-[debug] 	TestMultiply.class
-[debug] 	TestFPU8Generator.class
-[debug] 	TestAdd.class
-[debug] 	TestConvert.class
-[debug] 	TestCompare.class
-[debug] 	TestGenerateFinalResult.class
-[debug] 	TestFPU8Top.class
-[debug] We backup class files:
-[debug] 	TestDivide.class
-[debug] 	TestMultiply.class
-[debug] 	TestFPU8Generator.class
-[debug] 	TestAdd.class
-[debug] 	TestConvert.class
-[debug] 	TestCompare.class
-[debug] 	TestGenerateFinalResult.class
-[debug] 	TestFPU8Top.class
-[debug] Registering generated classes:
-[debug] 	TestDivide.class
-[debug] 	TestMultiply.class
-[debug] 	TestFPU8Generator.class
-[debug] 	TestAdd.class
-[debug] 	TestConvert.class
-[debug] 	TestCompare.class
-[debug] 	TestGenerateFinalResult.class
-[debug] 	TestFPU8Top.class
 [debug] Removing the temporary directory used for backing up class files: E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\test-classes.bak

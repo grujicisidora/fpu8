@@ -1,5 +1,5 @@
 $date
-2024-10-02T20:58+0000
+2024-10-03T13:26+0000
 $end
 $version
 0.2
@@ -56,7 +56,7 @@ $scope module FPU8Top $end
      $var wire 1 #& addOne $end
      $var wire 1 #9 sign $end
      $var wire 1 #X isOnlySmallerDenormalized $end
-     $var wire 7 #p shift_1 $end
+     $var wire 3 #p shift_1 $end
      $var wire 10 #t shiftedFraction_shifted $end
      $var wire 4 #u tempExponent $end
      $var wire 5 #z roundedFraction $end
@@ -111,7 +111,7 @@ $scope module FPU8Top $end
      $var wire 6 "6 quotient_partialProducts_0 $end
      $var wire 6 "A exponentShiftLeft $end
      $var wire 9 "E quotient_finalGuess_firstStep_partialSums_0 $end
-     $var wire 9 "G shift $end
+     $var wire 4 "G shift $end
      $var wire 4 "K tempDividendFraction $end
      $var wire 6 "L quotient_secondGuess_finalStep_partialProducts_compare $end
      $var wire 6 "M quotient_secondGuess_firstStep_partialProducts_compare_3 $end
@@ -161,8 +161,8 @@ $scope module FPU8Top $end
      $var wire 1 %Y overflow $end
      $var wire 6 %` quotient_initGuess $end
      $var wire 1 %f resultSign $end
-     $var wire 4 %g divisorShift $end
-     $var wire 4 %l dividendShift $end
+     $var wire 2 %g divisorShift $end
+     $var wire 2 %l dividendShift $end
      $var wire 9 %w quotient_partialSums_0 $end
      $var wire 1 %y sign $end
      $var wire 4 &% fraction $end
@@ -209,7 +209,7 @@ $scope module FPU8Top $end
      $var wire 5 #W roundedFraction $end
      $var wire 6 #v exponentShiftRight $end
      $var wire 6 #w exponent_1 $end
-     $var wire 7 #} shift $end
+     $var wire 3 #} shift $end
      $var wire 1 $1 resultSign $end
      $var wire 1 $G resultOverflow $end
      $var wire 8 $Q b_data $end
@@ -309,7 +309,7 @@ $scope module FPU8Top $end
      $var wire 4 &; z_fraction $end
      $var wire 8 &R a_data $end
      $var wire 3 &T z_tempFraction $end
-     $var wire 4 &v z_shift $end
+     $var wire 2 &v z_shift $end
      $var wire 8 '/ z_result $end
     $upscope $end
   $upscope $end
@@ -391,7 +391,7 @@ $scope module FPU8Top $end
      $var wire 1 #{ overflow $end
      $var wire 6 #| tempExponent_1 $end
      $var wire 5 $C quotient_partialProducts_compare $end
-     $var wire 3 $F divisorShift $end
+     $var wire 2 $F divisorShift $end
      $var wire 3 $L dividendFraction $end
      $var wire 8 $b quotient_finalGuess_firstStep $end
      $var wire 5 $o quotient_secondGuess_firstStep_partialProducts_compare $end
@@ -406,7 +406,7 @@ $scope module FPU8Top $end
      $var wire 6 %7 quotient_secondGuess_firstStep_partialProducts_1 $end
      $var wire 8 %8 quotient_secondGuess_finalStep_partialSums_0 $end
      $var wire 10 %9 quotient_secondGuess_finalStep_partialSums_1 $end
-     $var wire 3 %B dividendShift $end
+     $var wire 2 %B dividendShift $end
      $var wire 5 %C quotient_finalGuess_firstStep_partialProducts_compare $end
      $var wire 5 %E quotient_secondGuess_secondStep $end
      $var wire 5 %N quotient_finalGuess_finalStep_partialProducts_compare $end
@@ -415,7 +415,7 @@ $scope module FPU8Top $end
      $var wire 1 %c is0 $end
      $var wire 5 %t quotient_secondGuess_firstStep_partialProducts_compare_1 $end
      $var wire 5 %v quotient_secondGuess_firstStep_partialProducts_compare_2 $end
-     $var wire 7 &H shift $end
+     $var wire 3 &H shift $end
      $var wire 4 &q roundedFraction $end
      $var wire 8 &s quotient_secondGuess_firstStep $end
      $var wire 1 &| enable $end
@@ -498,7 +498,7 @@ $scope module FPU8Top $end
      $var wire 6 [ smallerOperandFraction_1 $end
      $var wire 1 "- subtract $end
      $var wire 1 "9 addOne $end
-     $var wire 7 "D shift_1 $end
+     $var wire 3 "D shift_1 $end
      $var wire 1 "H NaNFractionValue $end
      $var wire 1 "J isInfty $end
      $var wire 3 "Y greaterOperandFraction $end
@@ -544,7 +544,7 @@ $scope module FPU8Top $end
      $var wire 3 "1 fraction $end
      $var wire 8 "V b_data $end
      $var wire 7 #j exponentShiftLeft $end
-     $var wire 5 $& shift $end
+     $var wire 3 $& shift $end
      $var wire 1 $I isResult0 $end
      $var wire 1 $J overflow $end
      $var wire 1 $P addOne $end
@@ -758,7 +758,6 @@ b00000 "c
 0#~
 b00000 "b
 b00000 #C
-b00000 $&
 0$c
 b00000 #G
 0&&
@@ -870,7 +869,6 @@ b00000 %5
 0&|
 b0000000000 {
 b000000000 "E
-b000000000 "G
 b00000 &u
 b000000000 "5
 b00000000000 &+
@@ -906,6 +904,7 @@ b00000 l
 b00000000 /
 b00000000 1
 b00000000 0
+b0000 "G
 b00 &~
 b000000000000 #U
 b0000000000 #t
@@ -916,6 +915,7 @@ b0000 #4
 0"
 0%
 0&
+b00 &v
 b0000000000 %9
 0-
 b0000 "d
@@ -939,6 +939,7 @@ b00000000 _
 b0000 "s
 0?
 b00000000 &t
+b00 %l
 0@
 b0000 #V
 b00000000 &{
@@ -949,10 +950,10 @@ b00 %m
 b0000 "v
 b00000000 &x
 b0000000 "I
+b00 %g
 b0000 "x
 b0000 "}
 0I
-b0000000 "D
 0J
 b000000 '+
 b0000 "~
@@ -1011,15 +1012,16 @@ b0000 &5
 b00 $^
 b0000000000 &l
 0}
+b00 %B
 b000000 #|
 b0000000 "r
 b0000000 #S
 b0000 $v
 b000000 %0
 b0000 &;
-b0000000 #p
 b0000000 %1
 b0000000 #j
+b00 $F
 b00 %'
 b0000 $z
 b000000 $U
@@ -1035,13 +1037,11 @@ b0000000 %#
 b0000 '(
 b00 #o
 b0000 &I
-b0000 %g
 b0000 ')
 b0000 &K
 b00 #[
 b0000 %i
 b000000 $A
-b0000 %l
 b0000 &M
 b0000000 #:
 b000000 $D
@@ -1100,7 +1100,6 @@ b000000 #5
 b00000000 #P
 b0000 &r
 b000000 "W
-b0000 &v
 b000 w
 b000000 "L
 b000000 "M
@@ -1115,13 +1114,11 @@ b00000000 #Y
 b0000000 s
 b0000000 %h
 b00000000 #_
-b0000000 &H
 b000000 #'
 b00000000 #^
 b00000000 #]
 b0000000 ''
 b000000 "<
-b0000000 #}
 b0000000 %?
 b00000000 #f
 b000000 "?
@@ -1195,7 +1192,7 @@ b000000000 S
 b00000000 "$
 b000 #s
 b000 &"
-b000 %B
+b000 #}
 b000 &!
 b000 $\
 b00000000 "3
@@ -1209,6 +1206,7 @@ b000 $u
 b000 %V
 b00000000 #8
 b00000000 "V
+b000 &H
 b00000000 "_
 b00000000 #@
 b000 %o
@@ -1218,25 +1216,27 @@ b00000000 $$
 b00000000 "a
 b00000000 "`
 b000 "Y
+b000 $&
 b000 "n
 b000 "o
 b000 $/
 b000 "i
 b000 "p
 b000 "q
-b000 $F
 b000 #d
+b000 #p
 b000 $L
 b0000 D
 b000 ",
 b000 "1
 b000000 &z
 b0000 f
+b000 "D
 b000000 &w
 b000000 &n
 $end
 #0
-b0011 &v
+b11 &v
 b110011 &w
 b10 &~
 b00111100 /
@@ -1259,8 +1259,8 @@ b011111 "?
 b10 "@
 b000110 "A
 b0001110 #$
-b0000110 "D
-b000001000 "G
+b110 "D
+b1000 "G
 b00111000 g
 1k
 b011111 #5
@@ -1271,7 +1271,7 @@ b00111000 "`
 b00111000 "a
 b01111 "b
 b00111100 $$
-b00100 $&
+b100 $&
 b111111 $(
 b10 "f
 b10 "g
@@ -1313,21 +1313,21 @@ b1110001 %#
 b01111 %$
 b011111 $D
 b01111 $E
-b010 $F
+b10 $F
 1$I
 b0011011 #j
 b10 #m
 b10 #n
 b10 #o
-b0000110 #p
+b110 #p
 b001100 #v
 b110100 #w
 b00110 $Z
 b101 $]
-b0000110 #}
+b110 #}
 b000110 $_
 b01111 %A
-b010 %B
+b10 %B
 b111001 %M
 b01111 &0
 b0001111 $q
@@ -1344,15 +1344,15 @@ b0001111 %^
 b0111 &@
 b01111 '!
 b011110 %`
-b0000110 &H
-b0011 %g
+b110 &H
+b11 %g
 b0111 &I
 b1100100 %h
 b01111 &J
 b0111 &K
 b01111 &L
 b0111 &M
-b0011 %l
+b11 %l
 b011111 %p
 1'2
 b011111 &Z
@@ -1424,10 +1424,10 @@ b01001011 _
 b00101010 #"
 b000010 "A
 b0000110 #$
-b0000000 "D
+b000 "D
 b001000101 "E
 1#&
-b000000001 "G
+b0001 "G
 b1010 f
 b00111000 g
 b0000101 "I
@@ -1474,7 +1474,7 @@ b10010 #C
 b00101010 #D
 b11111 "c
 b0011111101 $%
-b00001 $&
+b001 $&
 b0100 "d
 b11 "f
 b01001 #G
@@ -1515,7 +1515,7 @@ b001001000000 %"
 0#a
 b1111001 %#
 b111 #d
-b000 $F
+b00 $F
 b0110000 %(
 b1100 $H
 b010010000 #g
@@ -1537,7 +1537,7 @@ b010010 %0
 b11 #o
 b0100100 %1
 1$P
-b0000000 #p
+b000 #p
 b01001011 $Q
 b0100100 %3
 b0110110 #q
@@ -1562,13 +1562,13 @@ b000110 #|
 b01000 %>
 b000 $]
 b0100000 %?
-b0000000 #}
+b000 #}
 b001101 $_
 b111 &!
 b00010 %@
 b110 &"
 b0111001 $`
-b000 %B
+b00 %B
 b1100 &#
 b11111 %C
 b00111111 $b
@@ -1626,8 +1626,8 @@ b1011 '%
 1'&
 b0011110 ''
 b1110 '(
-b0000001 &H
-b0000 %g
+b001 &H
+b00 %g
 b1001 ')
 1'*
 b1110011 %h
@@ -1636,7 +1636,7 @@ b1100 %i
 1',
 b00101010 %j
 b01011101 %k
-b0000 %l
+b00 %l
 b01110 '.
 b00110101 '/
 1%n
@@ -1670,7 +1670,7 @@ b0111 &q
 b1110 &r
 b00111111 &s
 b01001011 &t
-b0000 &v
+b00 &v
 b000110 &w
 b01101110 &x
 b00101010 &{
@@ -1794,7 +1794,7 @@ b000110 "A
 b0001110 #$
 b000110100 "E
 0#&
-b000000000 "G
+b0000 "G
 b1010000 "I
 b000000 "L
 0#-
@@ -1817,7 +1817,7 @@ b00011 #A
 b00111000 "a
 b01011 #C
 b0100000100 $%
-b00010 $&
+b010 $&
 b1000 "d
 b10 "f
 b00000 #G
@@ -1864,7 +1864,7 @@ b10 #o
 b0101100 %1
 0$P
 b00101010 $Q
-b0000001 #p
+b001 #p
 b0101100 %3
 b0100001 #q
 b01011 #r
@@ -1930,7 +1930,7 @@ b1010 '%
 0'&
 b0010100 ''
 b1100 '(
-b0000000 &H
+b000 &H
 b0110 ')
 0'*
 b1111011 %h
@@ -2020,7 +2020,7 @@ b000010 "A
 b0000110 #$
 b001000101 "E
 1#&
-b000000001 "G
+b0001 "G
 b0000101 "I
 b111111 "L
 1#-
@@ -2043,7 +2043,7 @@ b00111 #A
 b00000000 "a
 b10010 #C
 b0011111101 $%
-b00001 $&
+b001 $&
 b1001 "d
 b11 "f
 b01001 #G
@@ -2090,7 +2090,7 @@ b11 #o
 b0100100 %1
 1$P
 b01001011 $Q
-b0000000 #p
+b000 #p
 b0100100 %3
 b0110110 #q
 b10010 #r
@@ -2156,7 +2156,7 @@ b1011 '%
 1'&
 b0011110 ''
 b1110 '(
-b0000001 &H
+b001 &H
 b1001 ')
 1'*
 b1110011 %h
@@ -2385,7 +2385,7 @@ b10011 #r
 b10000 #z
 b000101 #|
 b01001 %>
-b0000010 #}
+b010 #}
 b001101 $_
 b0111001 $`
 b00101010 &'
@@ -2496,10 +2496,10 @@ b01001011 _
 b01001011 #"
 b001010 "A
 b0010110 #$
-b0000000 "D
+b000 "D
 b000110100 "E
 0#&
-b000000000 "G
+b0000 "G
 b1011 f
 b00000000 g
 b0000101 "I
@@ -2531,7 +2531,7 @@ b00000000 $$
 b10010 #C
 b01001011 #D
 b0100000100 $%
-b00001 $&
+b001 $&
 b0001 "d
 b00000 #G
 b010110000 #H
@@ -2603,7 +2603,7 @@ b01010 #z
 b110 $\
 b010111 #|
 b01000 %>
-b0000000 #}
+b000 #}
 b010001 $_
 b01011 %@
 b000 &"
@@ -2657,7 +2657,7 @@ b01001010 %b
 b1010 '%
 b0010110 ''
 b1110 '(
-b0000000 &H
+b000 &H
 b1001 ')
 b1110011 %h
 b1010 %i
@@ -2766,11 +2766,11 @@ b00101010 #"
 b000010 "A
 0a
 b0000110 #$
-b0000000 "D
+b000 "D
 0#%
 b001000101 "E
 1#&
-b000000001 "G
+b0001 "G
 b1010 f
 b00111000 g
 b0000101 "I
@@ -2811,7 +2811,7 @@ b00111100 $$
 b10010 #C
 b00101010 #D
 b0011111101 $%
-b00001 $&
+b001 $&
 b0010 "d
 b11 "f
 b01001 #G
@@ -2870,7 +2870,7 @@ b0100100 %1
 1$P
 b00000 %2
 b01001011 $Q
-b0000000 #p
+b000 #p
 b0100100 %3
 b0110110 #q
 b10010 #r
@@ -2958,7 +2958,7 @@ b1011 '%
 1'&
 b0011110 ''
 b1110 '(
-b0000001 &H
+b001 &H
 b1001 ')
 1'*
 b1110011 %h
@@ -3131,7 +3131,7 @@ b0010110 #$
 b01011 b
 b000110100 "E
 1#&
-b000000000 "G
+b0000 "G
 b1011 f
 b00000000 g
 b0000101 "I
@@ -3172,7 +3172,7 @@ b00000000 $$
 b10010 #C
 b01001011 #D
 b0100000100 $%
-b00001 $&
+b001 $&
 b0011 "d
 b00000 #G
 b010110000 #H
@@ -3224,7 +3224,7 @@ b0101100 %1
 1$P
 b01011 %2
 b00101010 $Q
-b0000000 #p
+b000 #p
 b0101100 %3
 b0100110 #q
 1$R
@@ -3304,7 +3304,7 @@ b1010 '%
 b0010110 ''
 0%f
 b1110 '(
-b0000000 &H
+b000 &H
 b1001 ')
 b1110011 %h
 b1100 %i
@@ -3425,7 +3425,7 @@ b000010 "A
 b0000110 #$
 b001000101 "E
 1#&
-b000000001 "G
+b0001 "G
 b1010 f
 b00111000 g
 b0000101 "I
@@ -3464,7 +3464,7 @@ b00111100 $$
 b10010 #C
 b00101010 #D
 b0011111101 $%
-b00001 $&
+b001 $&
 b0100 "d
 b11 "f
 b01001 #G
@@ -3522,7 +3522,7 @@ b0100100 %1
 1$P
 b00000 %2
 b01001011 $Q
-b0000000 #p
+b000 #p
 b0100100 %3
 b0110110 #q
 b10010 #r
@@ -3606,7 +3606,7 @@ b1011 '%
 b00000000 %e
 b0011110 ''
 b1110 '(
-b0000001 &H
+b001 &H
 b1001 ')
 1'*
 b1110011 %h
@@ -3761,7 +3761,7 @@ b000110 "A
 b0001110 #$
 b000110100 "E
 0#&
-b000000000 "G
+b0000 "G
 b1010000 "I
 b000000 "L
 0#-
@@ -3784,7 +3784,7 @@ b00011 #A
 b00111000 "a
 b01011 #C
 b0100000100 $%
-b00010 $&
+b010 $&
 b1000 "d
 b10 "f
 b00000 #G
@@ -3831,7 +3831,7 @@ b10 #o
 b0101100 %1
 0$P
 b00101010 $Q
-b0000001 #p
+b001 #p
 b0101100 %3
 b0100001 #q
 b01011 #r
@@ -3897,7 +3897,7 @@ b1010 '%
 0'&
 b0010100 ''
 b1100 '(
-b0000000 &H
+b000 &H
 b0110 ')
 0'*
 b1111011 %h
@@ -3987,7 +3987,7 @@ b000010 "A
 b0000110 #$
 b001000101 "E
 1#&
-b000000001 "G
+b0001 "G
 b0000101 "I
 b111111 "L
 1#-
@@ -4010,7 +4010,7 @@ b00111 #A
 b00000000 "a
 b10010 #C
 b0011111101 $%
-b00001 $&
+b001 $&
 b1001 "d
 b11 "f
 b01001 #G
@@ -4057,7 +4057,7 @@ b11 #o
 b0100100 %1
 1$P
 b01001011 $Q
-b0000000 #p
+b000 #p
 b0100100 %3
 b0110110 #q
 b10010 #r
@@ -4123,7 +4123,7 @@ b1011 '%
 1'&
 b0011110 ''
 b1110 '(
-b0000001 &H
+b001 &H
 b1001 ')
 1'*
 b1110011 %h
@@ -4348,7 +4348,7 @@ b10011 #r
 b10000 #z
 b000101 #|
 b01001 %>
-b0000010 #}
+b010 #}
 b001101 $_
 b0111001 $`
 b00101010 &'
@@ -4457,10 +4457,10 @@ b01001011 _
 b01001011 #"
 b001010 "A
 b0010110 #$
-b0000000 "D
+b000 "D
 b000110100 "E
 0#&
-b000000000 "G
+b0000 "G
 b1011 f
 b00000000 g
 b0000101 "I
@@ -4492,7 +4492,7 @@ b00000000 $$
 b10010 #C
 b01001011 #D
 b0100000100 $%
-b00001 $&
+b001 $&
 b0001 "d
 b00000 #G
 b010110000 #H
@@ -4567,7 +4567,7 @@ b01010 #z
 b110 $\
 b010111 #|
 b01000 %>
-b0000000 #}
+b000 #}
 b010001 $_
 b01011 %@
 b000 &"
@@ -4620,7 +4620,7 @@ b001011 %a
 b1010 '%
 b0010110 ''
 b1110 '(
-b0000000 &H
+b000 &H
 b1001 ')
 b1110011 %h
 b1010 %i
@@ -4727,11 +4727,11 @@ b00101010 #"
 b000010 "A
 0a
 b0000110 #$
-b0000000 "D
+b000 "D
 b001000101 "E
 1#&
 1e
-b000000001 "G
+b0001 "G
 b1010 f
 0"H
 b00111000 g
@@ -4773,7 +4773,7 @@ b00111100 $$
 b10010 #C
 b00101010 #D
 b0011111101 $%
-b00001 $&
+b001 $&
 b0010 "d
 b11 "f
 b01001 #G
@@ -4841,7 +4841,7 @@ b0100100 %1
 1$P
 b00000 %2
 b01001011 $Q
-b0000000 #p
+b000 #p
 b0100100 %3
 b0110110 #q
 b10010 #r
@@ -4925,7 +4925,7 @@ b1011 '%
 1'&
 b0011110 ''
 b1110 '(
-b0000001 &H
+b001 &H
 b1001 ')
 1'*
 b1110011 %h
@@ -5104,7 +5104,7 @@ b000110100 "E
 1#&
 b010111 #'
 0e
-b000000000 "G
+b0000 "G
 b1011 f
 b00000000 g
 b0000101 "I
@@ -5144,7 +5144,7 @@ b00000000 $$
 b10010 #C
 b01001011 #D
 b0100000100 $%
-b00001 $&
+b001 $&
 b0011 "d
 b00000 #G
 b011110 $)
@@ -5203,7 +5203,7 @@ b0101100 %1
 1$P
 b01011 %2
 b00101010 $Q
-b0000000 #p
+b000 #p
 b0101100 %3
 b0100110 #q
 b10010 #r
@@ -5280,7 +5280,7 @@ b1010 '%
 b0010110 ''
 0%f
 b1110 '(
-b0000000 &H
+b000 &H
 b1001 ')
 b1110011 %h
 b1100 %i

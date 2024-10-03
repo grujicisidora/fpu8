@@ -1,5 +1,5 @@
 $date
-2024-10-02T20:58+0000
+2024-10-03T13:26+0000
 $end
 $version
 0.2
@@ -116,7 +116,7 @@ $scope module FPU8Generator $end
    $var wire 8 "a greaterOperand_data $end
    $var wire 8 "c calculatedValue $end
    $var wire 8 "i a_data $end
-   $var wire 7 "j shift_1 $end
+   $var wire 3 "j shift_1 $end
    $var wire 1 "w sign $end
    $var wire 5 "| exponent $end
    $var wire 8 ## smallerOperand_data $end
@@ -141,7 +141,7 @@ $scope module FPU8Generator $end
    $var wire 6 A quotient_secondGuess_firstStep_partialProducts_compare $end
    $var wire 6 F quotient_secondGuess_finalStep_partialProducts_compare $end
    $var wire 7 G quotient_secondGuess $end
-   $var wire 9 H shift $end
+   $var wire 4 H shift $end
    $var wire 4 K tempDivisorFraction $end
    $var wire 6 L quotient_finalGuess_secondStep $end
    $var wire 6 N exponentShiftLeft $end
@@ -152,7 +152,7 @@ $scope module FPU8Generator $end
    $var wire 6 [ exponent_1 $end
    $var wire 6 b quotient_partialProducts_compare $end
    $var wire 1 c isResult0 $end
-   $var wire 4 d divisorShift $end
+   $var wire 2 d divisorShift $end
    $var wire 1 j addOne $end
    $var wire 9 l quotient_finalGuess_finalStep_partialSums_0 $end
    $var wire 12 m quotient_finalGuess_finalStep_partialSums_1 $end
@@ -225,7 +225,7 @@ $scope module FPU8Generator $end
    $var wire 6 #B quotient_secondGuess_secondStep $end
    $var wire 1 #E isResultNaN $end
    $var wire 6 #F exponentShiftRight $end
-   $var wire 4 #J dividendShift $end
+   $var wire 2 #J dividendShift $end
    $var wire 12 #N quotient_secondGuess_finalStep $end
    $var wire 4 #S fraction $end
    $var wire 11 #a quotient_finalGuess_finalStep_partialProducts_5 $end
@@ -241,7 +241,7 @@ $scope module FPU8Generator $end
   $scope module convert $end
    $var wire 6 8 z_result_hi $end
    $var wire 4 ; z_roundedFraction $end
-   $var wire 4 P z_shift $end
+   $var wire 2 P z_shift $end
    $var wire 1 R z_addOne $end
    $var wire 6 S z_result_hi_2 $end
    $var wire 6 T z_result_hi_1 $end
@@ -276,7 +276,7 @@ $scope module FPU8Generator $end
    $var wire 5 ") tempExponent $end
    $var wire 8 "1 a_data $end
    $var wire 1 ": resultOverflow $end
-   $var wire 7 "L shift $end
+   $var wire 3 "L shift $end
    $var wire 6 "N exponentShiftRight $end
    $var wire 4 "S secondOperandFraction $end
    $var wire 6 "k exponent_1 $end
@@ -300,7 +300,6 @@ $enddefinitions $end
 $dumpvars
 b0000 #H
 b0000 #G
-b0000 #J
 b0000 "h
 b0000 #L
 07
@@ -315,7 +314,6 @@ b0000 #Q
 b0000 "s
 b0000 #S
 0@
-b0000000 "L
 b00000000 |
 0D
 b0000 "y
@@ -358,6 +356,7 @@ b0000000 #:
 b000000 "t
 b000000 "u
 b000000 #W
+b00 #J
 0"#
 0"$
 0"&
@@ -365,7 +364,6 @@ b000000 "p
 b000000 "q
 0"(
 b000000 "r
-b0000000 "j
 0"+
 b000000 "e
 b000000 #F
@@ -466,6 +464,7 @@ b0000000 5
 0#n
 0#o
 0#p
+b00 d
 b00000 #U
 0#q
 b00000 "v
@@ -473,6 +472,7 @@ b00000 "v
 b00000 "l
 b00000 #M
 b00000 #P
+b00 P
 b00000 "Y
 b00000 "X
 b00000 "R
@@ -486,7 +486,6 @@ b0000000000 #4
 b000000000 "n
 b0000000000 "H
 b000000000 #=
-b000000000 H
 b000000000 "^
 b000000000 #2
 b00000 #t
@@ -520,6 +519,7 @@ b00000 %
 b00000 '
 b00000 )
 b00000 (
+b000 "j
 b00000 .
 b000 #T
 b000 "z
@@ -532,12 +532,12 @@ b00000000 -
 b00000000 ,
 b0000 K
 b00000 \
+b0000 H
 b00000 _
 b0000 I
 b0000 "2
 b00000 `
 b000 "'
-b0000 P
 b0000000000 #b
 b00000 f
 b00000000 6
@@ -550,7 +550,6 @@ b00000000 2
 b0000 ">
 b00000 n
 b00000000 1
-b0000 d
 b0000 #&
 b0000 #%
 b0000 #(
@@ -565,6 +564,7 @@ b0000 "S
 b0000 g
 b0000 #8
 b0000 o
+b000 "L
 b000000000000 #N
 0*
 b0000 x
@@ -576,9 +576,9 @@ $end
 #0
 1#E
 b111001 #F
-b0011 #J
+b11 #J
 b0111 #K
-b0000110 "j
+b110 "j
 b0111 #L
 b110100 "k
 b01111 #M
@@ -608,15 +608,15 @@ b011110 <
 b000111 ?
 b00111000 B
 b00111000 C
-b000001000 H
+b1000 H
 b000110 N
-b0011 P
+b11 P
 b011111 S
 b000111 [
 b00111000 "=
 b00110 \
 b01111 `
-b0011 d
+b11 d
 b0010 #'
 b1000 #(
 b1010 #)
@@ -624,7 +624,7 @@ b0100 #*
 b0110 #+
 b1100 #,
 b1110 #-
-b0000110 "L
+b110 "L
 b101 k
 b001100 "N
 b00110 n
@@ -662,7 +662,7 @@ b00000000 E
 b111111 F
 b0010111 G
 b00111 ")
-b000000001 H
+b0001 H
 b0100 I
 b00111 J
 b1011 K
@@ -673,7 +673,7 @@ b000010 N
 b0000101000 "0
 b00101010 O
 b00101010 "1
-b0000 P
+b00 P
 b0000101 Q
 b111111 "3
 b1011000 "6
@@ -696,14 +696,14 @@ b111111 "C
 b0100000 #$
 b1011 #%
 b111111 "E
-b0000 d
+b00 d
 b111111 "F
 b111111 "G
 b10100 f
 b0011100110 "H
 b1010 g
 b1010000 h
-b0000000 "L
+b000 "L
 b000 k
 b010101000 #.
 b001001000000 #/
@@ -749,9 +749,9 @@ b111101 #F
 b111111 "f
 b1001 #G
 b1010 "h
-b0000 #J
+b00 #J
 b00101010 "i
-b0000000 "j
+b000 "j
 b000111 "k
 b00010 "l
 b001011101000 #N
@@ -853,7 +853,7 @@ b00111000 C
 b000000 F
 b0011010 G
 b00011 ")
-b000000000 H
+b0000 H
 b0000 I
 b00011 J
 b00111000 ",
@@ -912,7 +912,7 @@ b1010 #D
 b10100000 "c
 b111001 #F
 b0101 #G
-b0000001 "j
+b001 "j
 b000011 "k
 b00111 "l
 b001101000000 #N
@@ -961,7 +961,7 @@ b00000000 C
 b111111 F
 b0010111 G
 b00111 ")
-b000000001 H
+b0001 H
 b0100 I
 b00111 J
 b00111000 ",
@@ -1020,7 +1020,7 @@ b1011 #D
 b01011101 "c
 b111101 #F
 b1001 #G
-b0000000 "j
+b000 "j
 b000111 "k
 b00010 "l
 b001011101000 #N
@@ -1150,7 +1150,7 @@ b01010000 e
 b0010101010 "H
 b101000 i
 1j
-b0000010 "L
+b010 "L
 b000100000 #.
 b001000000000 #/
 b001000100000 m
@@ -1239,7 +1239,7 @@ b00111000 E
 b010 "'
 b0011010 G
 b00111 ")
-b000000000 H
+b0000 H
 b0100 I
 b00111 J
 b1010 K
@@ -1276,7 +1276,7 @@ b0100011110 "H
 b0000 g
 b1011000 h
 b000000 i
-b0000000 "L
+b000 "L
 b000000000 #.
 b001101000000 #/
 b111001 "N
@@ -1384,7 +1384,7 @@ b110 "'
 b111111 F
 b0010111 G
 b00111 ")
-b000000001 H
+b0001 H
 b0100 I
 b00111 J
 b1011 K
@@ -1471,7 +1471,7 @@ b1110 #H
 b1010 "h
 0#I
 b00101010 "i
-b0000000 "j
+b000 "j
 b000111 "k
 b00010 "l
 b001011101000 #N
@@ -1572,7 +1572,7 @@ b001 "'
 b000000 F
 b0011010 G
 b00111 ")
-b000000000 H
+b0000 H
 b0100 I
 b00111 J
 b1010 K
@@ -1658,7 +1658,7 @@ b110101 #F
 b0000 #H
 b1011 "h
 b01001011 "i
-b0000000 "j
+b000 "j
 b000111 "k
 b01011 "l
 b001101000000 #N

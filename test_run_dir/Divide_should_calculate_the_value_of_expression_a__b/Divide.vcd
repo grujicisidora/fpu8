@@ -1,5 +1,5 @@
 $date
-2024-10-02T20:58+0000
+2024-10-03T13:26+0000
 $end
 $version
 0.2
@@ -37,7 +37,7 @@ $scope module Divide $end
  $var wire 6 : quotient_partialProducts_compare_2 $end
  $var wire 6 ; quotient_partialProducts_compare_1 $end
  $var wire 8 < tempFraction $end
- $var wire 4 = divisorShift $end
+ $var wire 2 = divisorShift $end
  $var wire 5 > tempExponent_1 $end
  $var wire 6 ? quotient_finalGuess_secondStep $end
  $var wire 1 @ addOne $end
@@ -66,7 +66,7 @@ $scope module Divide $end
  $var wire 4 W tempDivisorFraction $end
  $var wire 1 X isResult0 $end
  $var wire 1 Y isInfty $end
- $var wire 9 Z shift $end
+ $var wire 4 Z shift $end
  $var wire 6 [ quotient_finalGuess_finalStep_partialProducts_compare $end
  $var wire 1 \ resultOverflow $end
  $var wire 9 ] shiftedCalcValue $end
@@ -87,7 +87,7 @@ $scope module Divide $end
  $var wire 1 l resultSign $end
  $var wire 9 m quotient_secondGuess_firstStep_partialSums_0 $end
  $var wire 5 n roundedFraction $end
- $var wire 4 o dividendShift $end
+ $var wire 2 o dividendShift $end
  $var wire 1 p enable $end
  $var wire 8 q quotient_secondGuess_firstStep_partialProducts_2 $end
  $var wire 1 r reset $end
@@ -123,6 +123,7 @@ $scope module Divide $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
+b00 =
 b00 0
 b000000000 !
 b00000000 _
@@ -146,7 +147,6 @@ b000000000 A
 b0000 2
 b0000000 "*
 b00000000 S
-b0000 =
 0k
 b0000000 "&
 0l
@@ -162,7 +162,6 @@ b000000000 ]
 b000000 /
 b000000 1
 0{
-b000000000 Z
 b000000 3
 b000000 5
 b000000 4
@@ -213,6 +212,7 @@ b0000000 Q
 b00000000 )
 b0000000 C
 b0000 J
+b00 o
 b0000 K
 b0000 H
 b0000 I
@@ -222,6 +222,7 @@ b00000000 <
 b0000 P
 b0000 N
 b0000 O
+b0000 Z
 b00000 n
 b0000 W
 b0000 e
@@ -229,7 +230,6 @@ b0000000 *
 b00000 u
 b00000000000 "!
 0%
-b0000 o
 b000000000000 L
 b000000 ~
 b0000 y
@@ -248,11 +248,11 @@ b000110 M
 1.
 b1110 N
 b1010 O
-b0011 o
+b11 o
 b1100 P
 1r
-b000001000 Z
-b0011 =
+b1000 Z
+b11 =
 #1
 1R
 #6
@@ -273,7 +273,7 @@ b001011100000 7
 b111111 9
 b111111 ;
 b01110011 <
-b0000 =
+b00 =
 b00010 >
 b100000 ?
 b0110000000 ""
@@ -297,7 +297,7 @@ b1010 T
 b0010111 U
 b0011100110 V
 b1011 W
-b000000001 Z
+b0001 Z
 b111001100 ]
 b0100001000 ^
 b00101010 _
@@ -312,7 +312,7 @@ b000011 i
 b000011 j
 b001001000 m
 b01110 n
-b0000 o
+b00 o
 0r
 b0110000 s
 b011000000 t
@@ -371,7 +371,7 @@ b1011 T
 b0011010 U
 b0100011110 V
 b1010 W
-b000000000 Z
+b0000 Z
 b100011110 ]
 b0100000100 ^
 b01001011 _
@@ -441,7 +441,7 @@ b1010 T
 b0010111 U
 b0011100110 V
 b1011 W
-b000000001 Z
+b0001 Z
 b111001100 ]
 b0100001000 ^
 b00101010 _
