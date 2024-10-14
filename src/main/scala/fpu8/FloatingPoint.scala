@@ -52,12 +52,17 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   private def shiftToMSB1(value: UInt): (UInt, UInt) = {
     val width = value.getWidth
-    val leadingZeros = Wire(UInt(log2Up(width).W))
+    val leadingZeros = Wire(UInt(log2Ceil(width).W))
     val shiftedValue = Wire(UInt(width.W))
 
     leadingZeros := PriorityEncoder(Reverse(value))
 
-    shiftedValue := value << leadingZeros
+    //shiftedValue := value << leadingZeros
+    shiftedValue := MuxLookup(leadingZeros, value(width - 1, 0),
+      (0 until width).map { i =>
+        i.U -> (value << i)(width - 1, 0)
+      }
+    )
 
     (shiftedValue, leadingZeros)
   }
@@ -259,7 +264,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
     paddedCalcValue := {
       if (!e5m2) originalCalculatedValue
-      else Cat(originalCalculatedValue, 0.U((8 - calculatedValueLength).W))
+      else Cat(originalCalculatedValue, 0.U(1.W))
     }
 
     val (shiftedCalcValue, shift) = shiftToMSB1(paddedCalcValue(6, 0))
@@ -293,9 +298,14 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
     val (shiftedCalcValue, shift) = shiftToMSB1(calculatedValue(calculatedValueLength - 2, 0))
 
-    val exponentShiftRight = 0.U((exponentLength + 2).W) - exponent
+    //val exponentShiftRight = 0.U((exponentLength + 2).W) - exponent
+    val exponentShiftRight = Wire(UInt((exponentLength + 2).W))
+    val exponentShiftLeft = Wire(UInt((exponentLength + 2).W))
 
-    val exponentShiftLeft = exponent - 1.U((exponentLength + 2).W)
+    exponentShiftRight := 0.U((exponentLength + 2).W) - exponent
+
+    //val exponentShiftLeft = exponent - 1.U((exponentLength + 2).W)
+    exponentShiftLeft := exponent - 1.U((exponentLength + 2).W)
 
     val tempExponent = Wire(UInt(5.W))
 
@@ -316,7 +326,12 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     }.otherwise {
       tempExponent := 0.U
       when(!exponent(exponentLength + 1) && (exponent(exponentLength, 0) > 0.U)) {
-        tempFraction := calculatedValue(calculatedValueLength - 2, 0) << exponentShiftLeft
+        //tempFraction := calculatedValue(calculatedValueLength - 2, 0) << exponentShiftLeft
+        tempFraction := MuxLookup(exponentShiftLeft, calculatedValue(calculatedValueLength - 2, 0),
+          (0 until calculatedValueLength - 1).map { i =>
+            i.U -> (calculatedValue(calculatedValueLength - 2, 0) << i)(calculatedValueLength - 2, 0)
+          }
+        )
       }.otherwise {
         tempFraction := Cat(calculatedValue(calculatedValueLength - 1, 2), calculatedValue(1, 0).orR.asUInt) >> exponentShiftRight
       }
@@ -330,9 +345,14 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
     val (shiftedCalcValue, shift) = shiftToMSB1(calculatedValue(calculatedValueLength - 2, 0))
 
-    val exponentShiftRight = 0.U((exponentLength + 2).W) - exponent
+    //val exponentShiftRight = 0.U((exponentLength + 2).W) - exponent
+    val exponentShiftRight = Wire(UInt((exponentLength + 2).W))
+    val exponentShiftLeft = Wire(UInt((exponentLength + 2).W))
 
-    val exponentShiftLeft = exponent - 1.U((exponentLength + 2).W)
+    exponentShiftRight := 0.U((exponentLength + 2).W) - exponent
+
+    //val exponentShiftLeft = exponent - 1.U((exponentLength + 2).W)
+    exponentShiftLeft := exponent - 1.U((exponentLength + 2).W)
 
     val tempExponent = Wire(UInt((exponentLength + 1).W))
 
@@ -386,6 +406,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
   def +(other: FloatingPoint): (UInt, UInt) => (UInt, UInt, UInt, Bool, Bool, Bool, Bool, UInt) = {
     (roundingMode: UInt, subtract: UInt) => {
       require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
+
       val (sign, greaterOperandFraction, smallerOperandFraction, exponent, subtraction) = prepareForAddition(other, subtract)
 
       val isResultNaN = {
@@ -426,7 +447,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
         else false.B
       }
 
-      val isResult0 = WireDefault((this.is0 && !other.isNaN) || (other.is0 && !this.isNaN))
+      val isResult0 = WireDefault((this.is0 && !other.isNaN && !other.isInfty) || (other.is0 && !this.isNaN && !this.isInfty))
 
       val resultNaNFractionValue = getResultNaNFractionValue(other)
 
@@ -445,18 +466,19 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
 
       val isResultNaN = {
-        if (e5m2) WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && other.isInfty))
+        if (e5m2) WireDefault(this.isNaN || other.isNaN || (this.is0 && other.is0) || (this.isInfty && (other.isInfty || other.is0)))
         else this.isNaN || other.isNaN || other.is0
       }
 
       val isResultInfty = {
-        if (e5m2) WireDefault((other.is0 && !this.is0 && !this.isInfty && !this.isNaN) || (this.isInfty && !other.isNaN))
+        if (e5m2) WireDefault((other.is0 && !this.is0 && !this.isInfty && !this.isNaN) ||
+          (this.isInfty && !other.isNaN && !other.is0 && !other.isInfty))
         else false.B
       }
 
       val isResult0 = {
         if (e5m2) WireDefault((this.is0 && !other.is0 && !other.isNaN) || (other.isInfty && !this.isInfty && !this.isNaN))
-        else is0 && !other.is0 && !other.isNaN
+        else this.is0 && !other.is0 && !other.isNaN
       }
 
       val resultNaNFractionValue = getResultNaNFractionValue(other)
@@ -574,7 +596,8 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    val isResultNaN = this.isNaN || other.isNaN
+    //val isResultNaN = this.isNaN || other.isNaN
+    val isResultNaN = this.isNaN && other.isNaN
     val resultNaNFractionValue = getResultNaNFractionValue(other)
 
     when(isResultNaN) {
