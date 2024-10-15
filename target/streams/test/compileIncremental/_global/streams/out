@@ -2,5 +2,58 @@
 [debug] IncrementalCompile.incrementalCompile
 [debug] previous = Stamps for: 8 products, 8 sources, 7 libraries
 [debug] current source = Set(${BASE}/src/test/scala/fpu8/TestMultiply.scala, ${BASE}/src/test/scala/fpu8/TestFPU8Generator.scala, ${BASE}/src/test/scala/fpu8/TestDivide.scala, ${BASE}/src/test/scala/fpu8/TestCompare.scala, ${BASE}/src/test/scala/fpu8/TestConvert.scala, ${BASE}/src/test/scala/fpu8/TestGenerateFinalResult.scala, ${BASE}/src/test/scala/fpu8/TestFPU8Top.scala, ${BASE}/src/test/scala/fpu8/TestAdd.scala)
-[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(), unmodified = ...),Set(),Set(),API Changes: Set(NamesChange(fpu8.Convert,ModifiedNames(changes = UsedName(status,[Default]))), NamesChange(fpu8.FloatingPoint,ModifiedNames(changes = UsedName(/,[Default]), UsedName(convert,[Default]), UsedName(*,[Default]), UsedName(+,[Default]))), NamesChange(fpu8.Multiply,ModifiedNames(changes = UsedName(isResultInfty,[Default]), UsedName(isResultNaN,[Default]), UsedName(isResult0,[Default]), UsedName(resultOverflow,[Default]), UsedName(resultStatus,[Default]))), NamesChange(fpu8.Divide,ModifiedNames(changes = UsedName(isResultInfty,[Default]), UsedName(isResultNaN,[Default]), UsedName(isResult0,[Default]), UsedName(resultOverflow,[Default]), UsedName(resultStatus,[Default]))), NamesChange(fpu8.Add,ModifiedNames(changes = UsedName(isResultInfty,[Default]), UsedName(isResultNaN,[Default]), UsedName(isResult0,[Default]), UsedName(resultOverflow,[Default]), UsedName(resultStatus,[Default]))), NamesChange(fpu8.Compare,ModifiedNames(changes = UsedName(isResultNaN,[Default]), UsedName(status,[Default])))))
+[debug] The fpu8.Convert has the following regular definitions changed:
+[debug] 	UsedName(status,[Default]).
+[debug] All member reference dependencies will be considered within this context.
+[debug] Files invalidated by inheriting from (external) fpu8.Convert: Set()
+[debug] Now invalidating by inheritance (internally).
+[debug] Getting direct dependencies of all classes transitively invalidated by inheritance.
+[debug] Getting classes that directly depend on (external) fpu8.Convert.
+[debug] None of the modified names appears in source file of fpu8.TestConvert. This dependency is not being considered for invalidation.
+[debug] The fpu8.FloatingPoint has the following regular definitions changed:
+[debug] 	UsedName(/,[Default]), UsedName(convert,[Default]), UsedName(*,[Default]), UsedName(+,[Default]).
+[debug] All member reference dependencies will be considered within this context.
+[debug] Files invalidated by inheriting from (external) fpu8.FloatingPoint: Set()
+[debug] Now invalidating by inheritance (internally).
+[debug] Getting direct dependencies of all classes transitively invalidated by inheritance.
+[debug] Getting classes that directly depend on (external) fpu8.FloatingPoint.
+[debug] None of the modified names appears in source file of fpu8.TestMultiply. This dependency is not being considered for invalidation.
+[debug] None of the modified names appears in source file of fpu8.TestAdd. This dependency is not being considered for invalidation.
+[debug] None of the modified names appears in source file of fpu8.TestFPU8Generator. This dependency is not being considered for invalidation.
+[debug] None of the modified names appears in source file of fpu8.TestDivide. This dependency is not being considered for invalidation.
+[debug] None of the modified names appears in source file of fpu8.TestCompare. This dependency is not being considered for invalidation.
+[debug] None of the modified names appears in source file of fpu8.TestConvert. This dependency is not being considered for invalidation.
+[debug] The fpu8.Multiply has the following regular definitions changed:
+[debug] 	UsedName(isResultInfty,[Default]), UsedName(isResultNaN,[Default]), UsedName(isResult0,[Default]), UsedName(resultOverflow,[Default]), UsedName(resultStatus,[Default]).
+[debug] All member reference dependencies will be considered within this context.
+[debug] Files invalidated by inheriting from (external) fpu8.Multiply: Set()
+[debug] Now invalidating by inheritance (internally).
+[debug] Getting direct dependencies of all classes transitively invalidated by inheritance.
+[debug] Getting classes that directly depend on (external) fpu8.Multiply.
+[debug] None of the modified names appears in source file of fpu8.TestMultiply. This dependency is not being considered for invalidation.
+[debug] The fpu8.Divide has the following regular definitions changed:
+[debug] 	UsedName(isResultInfty,[Default]), UsedName(isResultNaN,[Default]), UsedName(isResult0,[Default]), UsedName(resultOverflow,[Default]), UsedName(resultStatus,[Default]).
+[debug] All member reference dependencies will be considered within this context.
+[debug] Files invalidated by inheriting from (external) fpu8.Divide: Set()
+[debug] Now invalidating by inheritance (internally).
+[debug] Getting direct dependencies of all classes transitively invalidated by inheritance.
+[debug] Getting classes that directly depend on (external) fpu8.Divide.
+[debug] None of the modified names appears in source file of fpu8.TestDivide. This dependency is not being considered for invalidation.
+[debug] The fpu8.Add has the following regular definitions changed:
+[debug] 	UsedName(isResultInfty,[Default]), UsedName(isResultNaN,[Default]), UsedName(isResult0,[Default]), UsedName(resultOverflow,[Default]), UsedName(resultStatus,[Default]).
+[debug] All member reference dependencies will be considered within this context.
+[debug] Files invalidated by inheriting from (external) fpu8.Add: Set()
+[debug] Now invalidating by inheritance (internally).
+[debug] Getting direct dependencies of all classes transitively invalidated by inheritance.
+[debug] Getting classes that directly depend on (external) fpu8.Add.
+[debug] None of the modified names appears in source file of fpu8.TestAdd. This dependency is not being considered for invalidation.
+[debug] The fpu8.Compare has the following regular definitions changed:
+[debug] 	UsedName(isResultNaN,[Default]), UsedName(status,[Default]).
+[debug] All member reference dependencies will be considered within this context.
+[debug] Files invalidated by inheriting from (external) fpu8.Compare: Set()
+[debug] Now invalidating by inheritance (internally).
+[debug] Getting direct dependencies of all classes transitively invalidated by inheritance.
+[debug] Getting classes that directly depend on (external) fpu8.Compare.
+[debug] None of the modified names appears in source file of fpu8.TestCompare. This dependency is not being considered for invalidation.
 [debug] No changes

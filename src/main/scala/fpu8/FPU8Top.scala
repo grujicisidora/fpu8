@@ -11,6 +11,7 @@ class FPU8Top extends Module {
   val roundingMode = IO(Input(UInt(2.W)))
   val saturationMode = IO(Input(UInt(1.W)))
   val z = IO(Output(UInt(8.W)))
+  val status = IO(Output(UInt(5.W)))
 
   val aE4M3 = Wire(new FloatingPoint(false))
   val bE4M3 = Wire(new FloatingPoint(false))
@@ -43,9 +44,12 @@ class FPU8Top extends Module {
 
   when(encoding === 0.U){
     z := FPU8E4M3.z
+    status := FPU8E4M3.status
   }.elsewhen(encoding === 1.U){
     z := FPU8E5M2.z
+    status := FPU8E5M2.status
   }.otherwise{
     z := 0.U
+    status := 0.U
   }
 }

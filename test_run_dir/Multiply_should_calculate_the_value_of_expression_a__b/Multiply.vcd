@@ -1,5 +1,5 @@
 $date
-2024-10-07T11:29+0000
+2024-10-15T14:30+0000
 $end
 $version
 0.2
@@ -10,157 +10,167 @@ $end
 $timescale 1ns  $end
 $scope module Multiply $end
  $var wire 3 ! shift $end
- $var wire 1 " resultOverflow $end
- $var wire 7 # shiftedCalcValue $end
- $var wire 7 $ product_partialProducts_3 $end
- $var wire 6 % product_partialProducts_2 $end
- $var wire 8 & a_data $end
- $var wire 5 ' product_partialProducts_1 $end
- $var wire 4 ( product_partialProducts_0 $end
- $var wire 4 ) resultFraction $end
- $var wire 1 * is0 $end
- $var wire 5 + tempExponent $end
- $var wire 1 , isResultNaN $end
- $var wire 2 - roundingMode $end
- $var wire 6 . exponent_1 $end
- $var wire 1 / isNaN $end
- $var wire 1 0 resultSign $end
- $var wire 4 1 firstOperandFraction $end
- $var wire 4 2 product_partialProducts_compare_3 $end
- $var wire 4 3 product_partialProducts_compare_2 $end
- $var wire 4 4 product_partialProducts_compare_1 $end
- $var wire 4 5 secondOperandFraction $end
- $var wire 5 6 roundedFraction $end
- $var wire 7 7 tempFraction $end
+ $var wire 7 " shiftedCalcValue $end
+ $var wire 7 # product_partialProducts_3 $end
+ $var wire 6 $ product_partialProducts_2 $end
+ $var wire 8 % a_data $end
+ $var wire 5 & product_partialProducts_1 $end
+ $var wire 4 ' product_partialProducts_0 $end
+ $var wire 4 ( resultFraction $end
+ $var wire 5 ) tempExponent $end
+ $var wire 1 * isResultNaN $end
+ $var wire 2 + status_lo $end
+ $var wire 2 , roundingMode $end
+ $var wire 6 - exponent_1 $end
+ $var wire 1 . resultSign $end
+ $var wire 4 / firstOperandFraction $end
+ $var wire 4 0 product_partialProducts_compare_3 $end
+ $var wire 4 1 product_partialProducts_compare_2 $end
+ $var wire 4 2 product_partialProducts_compare_1 $end
+ $var wire 4 3 secondOperandFraction $end
+ $var wire 5 4 roundedFraction $end
+ $var wire 7 5 tempFraction $end
+ $var wire 2 6 status_hi_hi $end
+ $var wire 3 7 status_hi $end
  $var wire 1 8 enable $end
  $var wire 1 9 addOne $end
  $var wire 1 : reset $end
  $var wire 5 ; resultExponent $end
- $var wire 8 < product $end
- $var wire 4 = fraction $end
- $var wire 1 > NaNFractionValue $end
- $var wire 1 ? sign $end
- $var wire 6 @ exponentShiftLeft $end
- $var wire 1 A overflow $end
- $var wire 5 B exponent $end
- $var wire 1 C clock $end
- $var wire 6 D exponentShiftRight $end
- $var wire 8 E b_data $end
- $var wire 7 F product_partialSums_0 $end
- $var wire 4 G product_partialProducts_compare $end
- $var wire 1 H isResult0 $end
- $var wire 1 I isInfty $end
+ $var wire 5 < status $end
+ $var wire 8 = product $end
+ $var wire 4 > fraction $end
+ $var wire 5 ? resultStatus $end
+ $var wire 1 @ NaNFractionValue $end
+ $var wire 1 A sign $end
+ $var wire 6 B exponentShiftLeft $end
+ $var wire 1 C overflow $end
+ $var wire 5 D exponent $end
+ $var wire 1 E clock $end
+ $var wire 6 F exponentShiftRight $end
+ $var wire 8 G b_data $end
+ $var wire 7 H product_partialSums_0 $end
+ $var wire 4 I product_partialProducts_compare $end
+ $var wire 1 J isResult0 $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
-00
-b00000000 &
+b00 6
+b0000 >
 08
 09
-b000000 .
 0:
-b0000000 F
-0>
-b0000 G
-0?
+b00000000 %
+b0000 I
+b0000000 H
+b000 7
+0@
 0A
+b00000000 =
 0C
-b00000000 <
-b00000 '
-b00 -
-0H
-b00000 +
-0I
-b0000000 7
-b000000 %
-b00000 6
+0E
+b00000 &
+b00 ,
+b00000 )
+b00 +
+b000000 -
+0J
+b0000000 5
+b000000 $
+b00000 4
+b00000000 G
 b00000 ;
 b0000000 #
-b00000000 E
-b0000000 $
+b0000000 "
+b00000 <
 b0000 (
-b0000 )
-b0000 4
-b0000 5
-b00000 B
+b00000 ?
+b0000 '
+b000000 F
 b0000 2
-0"
 b0000 3
+b00000 D
+b0000 0
 b0000 1
-b0000 =
+b0000 /
 b000 !
 0*
-b000000 @
-0,
-0/
-b000000 D
+b000000 B
+0.
 $end
 #0
-b110011 @
 b110 !
-b001100 D
-1H
+b110011 B
+b01 6
+b001100 F
+b010 7
 1:
-b110100 .
+1J
+b01 +
+b110100 -
+b01001 ?
 #1
-1C
+1E
 #6
-b000110 @
-0C
-b111001 D
-b01001011 E
-b0011110 F
-b1111 G
-0H
+b000110 B
+0E
+b111001 F
+b01001011 G
+b0011110 H
+b1111 I
+0J
 b000 !
-b1101110 #
-b1010000 $
-b00101010 &
-b10100 '
-b1010 (
-b1110 )
-b00111 +
-b000111 .
-b1010 1
+b1101110 "
+b1010000 #
+b00101010 %
+b10100 &
+b1010 '
+b1110 (
+b00111 )
+b00 +
+b000111 -
+b1010 /
+b1111 0
 b1111 2
-b1111 4
-b1011 5
-b01110 6
-b1101110 7
+b1011 3
+b01110 4
+b1101110 5
+b00 6
+b000 7
 19
 0:
 b00111 ;
-b01101110 <
+b01101110 =
+b00000 ?
 #11
-1C
+1E
 #16
-0C
+0E
 #21
-1C
+1E
 #26
-b00111 B
-0C
+b00111 D
+0E
 18
-b1110 =
+b1110 >
 #31
-1C
+1E
 #36
-0C
+0E
 #41
-1C
+1E
 #46
-10
-0C
-b10101010 &
-1?
+1A
+b10101010 %
+0E
+1.
 #51
-1C
+1E
 #56
-0C
+0E
 #61
-1C
+1E
 #66
-0C
-b00000000 E
-b00000000 &
+b00000000 %
+0E
+b00000000 G
 08

@@ -1,5 +1,5 @@
 $date
-2024-10-07T11:29+0000
+2024-10-15T14:30+0000
 $end
 $version
 0.2
@@ -9,87 +9,93 @@ $comment
 $end
 $timescale 1ns  $end
 $scope module Convert $end
- $var wire 5 ! z_tempExponent $end
- $var wire 3 " z_tempFraction $end
- $var wire 6 # z_result_hi $end
- $var wire 1 $ enable $end
- $var wire 4 % z_shiftedFraction $end
- $var wire 8 & a_data $end
- $var wire 2 ' z_shift $end
- $var wire 1 ( reset $end
- $var wire 6 ) z_result_hi_1 $end
- $var wire 6 * z_result_hi_2 $end
- $var wire 2 + roundingMode $end
- $var wire 4 , z_roundedFraction $end
- $var wire 8 - z $end
- $var wire 8 . z_result $end
+ $var wire 2 ! shift $end
+ $var wire 4 " shiftedFraction $end
+ $var wire 1 # enable $end
+ $var wire 8 $ a_data $end
+ $var wire 1 % addOne $end
+ $var wire 1 & reset $end
+ $var wire 5 ' status $end
+ $var wire 8 ( result $end
+ $var wire 5 ) finalExponent $end
+ $var wire 5 * tempExponent $end
+ $var wire 4 + fraction $end
+ $var wire 5 , resultStatus $end
+ $var wire 2 - roundingMode $end
+ $var wire 8 . z $end
  $var wire 1 / saturationMode $end
- $var wire 1 0 z_addOne $end
- $var wire 1 1 clock $end
- $var wire 5 2 z_finalExponent $end
- $var wire 3 3 z_finalFraction $end
- $var wire 4 4 z_fraction $end
+ $var wire 6 0 result_hi_2 $end
+ $var wire 6 1 result_hi_1 $end
+ $var wire 4 2 roundedFraction $end
+ $var wire 1 3 clock $end
+ $var wire 3 4 tempFraction $end
+ $var wire 3 5 finalFraction $end
+ $var wire 6 6 result_hi $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
-00
-b0000 %
-01
-b00000 2
-b00000000 -
-b000 "
-b00000000 &
-b0000 ,
-b00000 !
-b0000 4
-b00 '
-b000000 )
-b000 3
-0$
-b000000 *
-b00 +
-0(
-b000000 #
+b000000 6
+b0000 "
+03
+b00000000 (
+b000000 1
+b0000 +
+b00000000 $
+b000000 0
+b0000 2
+0#
+b00000 '
+b00 -
+0%
+b000 5
+0&
+b00000 )
+b000 4
+b00 !
+b00000 *
+b00000 ,
 b00000000 .
 0/
 $end
 #0
-b00110 !
-b00110 2
-b000110 #
-b11 '
-1(
-b011111 *
+b011111 0
+b11 !
+1&
+b000110 6
+b00110 )
+b00110 *
+b00001 ,
 #1
-11
+13
 #6
-b10001 !
-b101 "
-b010001 #
-b1011 %
-b01001011 &
-b00 '
-0(
-b0110 ,
-b01000110 .
-10
-01
-b10001 2
-b110 3
-b1011 4
+b00 !
+b1011 "
+b01001011 $
+1%
+0&
+b01000110 (
+b10001 )
+b10001 *
+b1011 +
+b00000 ,
+b0110 2
+03
+b101 4
+b110 5
+b010001 6
 #11
-11
+13
 #16
-01
+03
 #21
-11
+13
 #26
-01
-1$
-b01000110 -
+1#
+03
+b01000110 .
 #31
-11
+13
 #36
-01
-0$
-b00000000 &
+0#
+03
+b00000000 $

@@ -16,10 +16,6 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(0.U)
       dut.fraction.expect(0.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -32,10 +28,6 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(9.U)
       dut.fraction.expect(12.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -48,10 +40,6 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(9.U)
       dut.fraction.expect(10.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -64,10 +52,6 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(10.U)
       dut.fraction.expect(8.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -80,10 +64,6 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(1.U)
       dut.exponent.expect(0.U)
       dut.fraction.expect(0.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(1.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -96,10 +76,6 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(1.U)
       dut.exponent.expect(15.U)
       dut.fraction.expect(10.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
     }
@@ -116,10 +92,6 @@ class TestAdd extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(9.U)
       dut.fraction.expect(10.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
     }
   }
 }

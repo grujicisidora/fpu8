@@ -403,7 +403,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     roundAndNormalize(sign, tempFraction, 6 - makeFractionShorter, 3, tempExponent, roundingMode)
   }
 
-  def +(other: FloatingPoint): (UInt, UInt) => (UInt, UInt, UInt, Bool, Bool, Bool, Bool, UInt) = {
+  def +(other: FloatingPoint): (UInt, UInt) => (UInt, UInt, UInt, UInt, UInt) = {
     (roundingMode: UInt, subtract: UInt) => {
       require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
 
@@ -429,11 +429,13 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
       val (overflow, finalExponent, finalFraction) = normalizeAfterAddition(sign, exponent, calculatedValue, roundingMode)
 
-      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue)
+      val status = Cat(overflow, finalExponent === 0.U, isResultNaN, isResultInfty, isResult0)
+
+      (sign, finalExponent, finalFraction, status, resultNaNFractionValue)
     }
   }
 
-  def *(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool, UInt) = {
+  def *(other: FloatingPoint): UInt => (UInt, UInt, UInt, UInt, UInt) = {
     (roundingMode: UInt) => {
       require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
 
@@ -457,11 +459,13 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
       val (overflow, finalExponent, finalFraction) = normalizeAfterMultiplication(sign, exponent, product, roundingMode)
 
-      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue)
+      val status = Cat(overflow, finalExponent === 0.U, isResultNaN, isResultInfty, isResult0)
+
+      (sign, finalExponent, finalFraction, status, resultNaNFractionValue)
     }
   }
 
-  def /(other: FloatingPoint): UInt => (UInt, UInt, UInt, Bool, Bool, Bool, Bool, UInt) = {
+  def /(other: FloatingPoint): UInt => (UInt, UInt, UInt, UInt, UInt) = {
     (roundingMode: UInt) => {
       require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
 
@@ -489,7 +493,9 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
       val (overflow, finalExponent, finalFraction) = normalizeAfterDivision(sign, exponent, quotient, roundingMode)
 
-      (sign, finalExponent, finalFraction, overflow, isResultInfty, isResult0, isResultNaN, resultNaNFractionValue)
+      val status = Cat(overflow, finalExponent === 0.U, isResultNaN, isResultInfty, isResult0)
+
+      (sign, finalExponent, finalFraction, status, resultNaNFractionValue)
     }
   }
 
@@ -614,7 +620,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     result
   }
 
-  def convert(): UInt = {
+  def convert(): (UInt, UInt) = {
     require(!this.e5m2, "Wrong FP8 encoding.")
     val fraction = Cat(!isExp0.asUInt, mantissa)
     val (shiftedFraction, shift) = shiftToMSB1(fraction)
@@ -632,20 +638,25 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
       roundedFraction(mantissaLength - 1, mantissaLength - 3))
 
     val result = Wire(UInt(8.W))
+    val status = Wire(UInt(5.W))
 
     when(!is0 && !isNaN) {
       result := Cat(sign, finalExponent, finalFraction(mantissaLength - 2, mantissaLength - 3))
+      status := 0.U
     }.elsewhen(is0 && !isNaN) {
       result := Cat(sign, 0.U((exponentLength + 1).W), 0.U((mantissaLength - 1).W))
+      status := 1.U
     }.elsewhen(isNaN) {
       result := Cat(0.U, (maxExponent * 2 + 1).U, ((maxMantissa - 1) / 2).U)
+      status := 4.U
     }.otherwise {
       result := 0.U
+      status := 0.U
     }
-    result
+    (result, status)
   }
 
-  def convert(roundingMode: UInt, saturationMode: UInt): UInt = {
+  def convert(roundingMode: UInt, saturationMode: UInt): (UInt, UInt) = {
     require(this.e5m2, "Wrong FP8 encoding.")
 
     val isResultNaN = isNaN || isInfty
@@ -673,6 +684,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     val finalFraction = roundedFraction(mantissaLength + 1, 0)
 
     val result = Wire(UInt(8.W))
+    val status = Wire(UInt(5.W))
 
     when(!isResultNaN) {
       when(overflow) {
@@ -700,6 +712,8 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     }.otherwise {
       result := 0.U
     }
-    result
+    status := Cat(overflow, isDenormalized, isResultNaN, 0.U, is0)
+
+    (result, status)
   }
 }

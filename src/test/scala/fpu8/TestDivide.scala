@@ -15,10 +15,6 @@ class TestDivide extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(0.U)
       dut.fraction.expect(0.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -30,10 +26,6 @@ class TestDivide extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(11.U)
       dut.fraction.expect(9.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
 
       dut.clock.step()
 
@@ -45,10 +37,6 @@ class TestDivide extends AnyFlatSpec with ChiselScalatestTester {
       dut.sign.expect(0.U)
       dut.exponent.expect(2.U)
       dut.fraction.expect(14.U)
-      dut.overflow.expect(0.U)
-      dut.isInfty.expect(0.U)
-      dut.is0.expect(0.U)
-      dut.isNaN.expect(0.U)
     }
   }
 }

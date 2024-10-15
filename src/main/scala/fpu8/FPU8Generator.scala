@@ -13,6 +13,7 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
   val roundingMode = IO(Input(UInt(2.W)))
   val saturationMode = IO(Input(UInt(1.W)))
   val z = IO(Output(UInt(8.W)))
+  val status = IO(Output(UInt(5.W)))
 
   val addSub = Module(new Add(e5m2))
 
@@ -64,40 +65,43 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
     generateFinalResult.exponent := addSub.exponent(exponentLength - 1, 0)
     generateFinalResult.mantissa := addSub.fraction(mantissaLength - 1, 0)
     generateFinalResult.roundingMode := roundingMode
-    generateFinalResult.overflow := addSub.overflow
+    generateFinalResult.overflow := addSub.status(4)
     generateFinalResult.saturationMode := saturationMode
-    generateFinalResult.isInfty := addSub.isInfty
-    generateFinalResult.is0 := addSub.is0
-    generateFinalResult.isNaN := addSub.isNaN
+    generateFinalResult.isInfty := addSub.status(1)
+    generateFinalResult.is0 := addSub.status(0)
+    generateFinalResult.isNaN := addSub.status(2)
     generateFinalResult.NaNFractionValue := addSub.NaNFractionValue
 
     z := generateFinalResult.z
+    status := addSub.status
   }.elsewhen(opCode === 2.U) {
     generateFinalResult.sign := multiply.sign
     generateFinalResult.exponent := multiply.exponent(exponentLength - 1, 0)
     generateFinalResult.mantissa := multiply.fraction(mantissaLength - 1, 0)
     generateFinalResult.roundingMode := roundingMode
-    generateFinalResult.overflow := multiply.overflow
+    generateFinalResult.overflow := multiply.status(4)
     generateFinalResult.saturationMode := saturationMode
-    generateFinalResult.isInfty := multiply.isInfty
-    generateFinalResult.is0 := multiply.is0
-    generateFinalResult.isNaN := multiply.isNaN
+    generateFinalResult.isInfty := multiply.status(1)
+    generateFinalResult.is0 := multiply.status(0)
+    generateFinalResult.isNaN := multiply.status(2)
     generateFinalResult.NaNFractionValue := multiply.NaNFractionValue
 
     z := generateFinalResult.z
+    status := multiply.status
   }.elsewhen(opCode === 3.U) {
     generateFinalResult.sign := divide.sign
     generateFinalResult.exponent := divide.exponent(exponentLength - 1, 0)
     generateFinalResult.mantissa := divide.fraction(mantissaLength - 1, 0)
     generateFinalResult.roundingMode := roundingMode
-    generateFinalResult.overflow := divide.overflow
+    generateFinalResult.overflow := divide.status(4)
     generateFinalResult.saturationMode := saturationMode
-    generateFinalResult.isInfty := divide.isInfty
-    generateFinalResult.is0 := divide.is0
-    generateFinalResult.isNaN := divide.isNaN
+    generateFinalResult.isInfty := divide.status(1)
+    generateFinalResult.is0 := divide.status(0)
+    generateFinalResult.isNaN := divide.status(2)
     generateFinalResult.NaNFractionValue := divide.NaNFractionValue
 
     z := generateFinalResult.z
+    status := divide.status
   }.elsewhen(opCode === 4.U || opCode === 5.U || opCode === 6.U || opCode === 7.U || opCode === 8.U || opCode === 9.U){
     generateFinalResult.sign := 0.U
     generateFinalResult.exponent := 0.U
@@ -111,6 +115,7 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
     generateFinalResult.NaNFractionValue := 0.U
 
     z := compare.z
+    status := compare.status
   }.elsewhen(opCode === 10.U){
     generateFinalResult.sign := 0.U
     generateFinalResult.exponent := 0.U
@@ -124,6 +129,7 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
     generateFinalResult.NaNFractionValue := 0.U
 
     z := convert.z
+    status := convert.status
   }.otherwise{
     generateFinalResult.sign := 0.U
     generateFinalResult.exponent := 0.U
@@ -137,5 +143,6 @@ class FPU8Generator(val e5m2: Boolean) extends Module {
     generateFinalResult.NaNFractionValue := 0.U
 
     z := 0.U
+    status := 0.U
   }
 }

@@ -1,5 +1,5 @@
 $date
-2024-10-07T11:29+0000
+2024-10-15T14:30+0000
 $end
 $version
 0.2
@@ -9,46 +9,47 @@ $comment
 $end
 $timescale 1ns  $end
 $scope module FPU8Generator $end
- $var wire 8 1 z $end
- $var wire 1 7 multiply $end
- $var wire 1 e compare $end
- $var wire 4 r opCode $end
- $var wire 1 s convert $end
- $var wire 8 "/ a_data $end
- $var wire 1 "> addSub $end
- $var wire 1 "C enable $end
- $var wire 2 "X roundingMode $end
- $var wire 1 "q clock $end
- $var wire 8 "s b_data $end
- $var wire 1 #. reset $end
- $var wire 1 #2 generateFinalResult $end
- $var wire 1 #R divide $end
- $var wire 1 #k saturationMode $end
+ $var wire 8 4 z $end
+ $var wire 1 ; multiply $end
+ $var wire 1 g compare $end
+ $var wire 4 x opCode $end
+ $var wire 1 z convert $end
+ $var wire 5 "$ status $end
+ $var wire 8 "5 a_data $end
+ $var wire 1 "G addSub $end
+ $var wire 1 "L enable $end
+ $var wire 2 "a roundingMode $end
+ $var wire 1 "{ clock $end
+ $var wire 8 "} b_data $end
+ $var wire 1 #: reset $end
+ $var wire 1 #< generateFinalResult $end
+ $var wire 1 #[ divide $end
+ $var wire 1 #u saturationMode $end
   $scope module generateFinalResult $end
-   $var wire 1 A isInfty $end
-   $var wire 8 i z $end
-   $var wire 8 { result $end
-   $var wire 2 "1 mantissa $end
-   $var wire 1 "4 NaNFractionValue $end
-   $var wire 2 "5 roundingMode $end
-   $var wire 1 "6 isNaN $end
-   $var wire 5 "< exponent $end
-   $var wire 1 "B sign $end
-   $var wire 1 "K enable $end
-   $var wire 1 "Y saturationMode $end
-   $var wire 6 "b result_z_hi_7 $end
-   $var wire 6 "c result_z_hi_8 $end
-   $var wire 6 "d result_z_hi_9 $end
-   $var wire 6 "f result_z_hi_1 $end
-   $var wire 6 "g result_z_hi_2 $end
-   $var wire 6 "h result_z_hi_3 $end
-   $var wire 6 "i result_z_hi_4 $end
-   $var wire 6 "j result_z_hi_5 $end
-   $var wire 6 "k result_z_hi_6 $end
-   $var wire 1 "n is0 $end
-   $var wire 6 #, result_z_hi $end
-   $var wire 2 #8 result_z_lo $end
-   $var wire 1 #G overflow $end
+   $var wire 1 G isInfty $end
+   $var wire 8 p z $end
+   $var wire 8 "# result $end
+   $var wire 2 "7 mantissa $end
+   $var wire 1 "; NaNFractionValue $end
+   $var wire 2 "< roundingMode $end
+   $var wire 1 "= isNaN $end
+   $var wire 5 "E exponent $end
+   $var wire 1 "K sign $end
+   $var wire 1 "U enable $end
+   $var wire 1 "b saturationMode $end
+   $var wire 6 "k result_z_hi_7 $end
+   $var wire 6 "l result_z_hi_8 $end
+   $var wire 6 "m result_z_hi_9 $end
+   $var wire 6 "p result_z_hi_1 $end
+   $var wire 6 "q result_z_hi_2 $end
+   $var wire 6 "r result_z_hi_3 $end
+   $var wire 6 "s result_z_hi_4 $end
+   $var wire 6 "t result_z_hi_5 $end
+   $var wire 6 "u result_z_hi_6 $end
+   $var wire 1 "x is0 $end
+   $var wire 6 #8 result_z_hi $end
+   $var wire 2 #B result_z_lo $end
+   $var wire 1 #P overflow $end
   $upscope $end
   $scope module compare $end
    $var wire 5 ! z_result_hi_1 $end
@@ -60,1728 +61,1783 @@ $scope module FPU8Generator $end
    $var wire 6 ' z_result_hi_8 $end
    $var wire 6 ( z_result_hi_7 $end
    $var wire 6 ) z_result_hi_6 $end
-   $var wire 8 + z_result_1 $end
-   $var wire 8 , z_result_3 $end
-   $var wire 8 - z_result_2 $end
-   $var wire 8 2 z_result_5 $end
-   $var wire 8 3 z_result_4 $end
-   $var wire 8 6 z_result $end
-   $var wire 8 D z_result_result_1 $end
-   $var wire 8 E z_result_result_3 $end
-   $var wire 8 G z_result_result_2 $end
-   $var wire 1 P z_result_isResultNaN $end
-   $var wire 6 d z_result_result_hi $end
-   $var wire 3 n compareMode $end
-   $var wire 1 v z_result_resultNaNFractionValue_1 $end
-   $var wire 1 w z_result_resultNaNFractionValue_2 $end
-   $var wire 1 x z_result_resultNaNFractionValue_3 $end
-   $var wire 8 } a_data $end
-   $var wire 2 ", z_result_result_lo_1 $end
-   $var wire 2 "- z_result_result_lo_3 $end
-   $var wire 2 ". z_result_result_lo_2 $end
-   $var wire 8 "7 z $end
-   $var wire 1 "? enable $end
-   $var wire 8 "G z_result_result $end
-   $var wire 2 "L z_result_lo_5 $end
-   $var wire 2 "M z_result_lo_4 $end
-   $var wire 2 "N z_result_lo_1 $end
-   $var wire 2 "O z_result_lo_3 $end
-   $var wire 2 "P z_result_lo_2 $end
-   $var wire 1 "R z_resultNaNFractionValue $end
-   $var wire 1 "v z_resultNaNFractionValue_1 $end
-   $var wire 1 "w z_resultNaNFractionValue_2 $end
-   $var wire 1 "x z_resultNaNFractionValue_3 $end
-   $var wire 1 "y z_resultNaNFractionValue_4 $end
-   $var wire 1 "z z_resultNaNFractionValue_5 $end
-   $var wire 2 #4 z_result_result_lo $end
-   $var wire 1 #L z_result_resultNaNFractionValue $end
-   $var wire 8 #T b_data $end
-   $var wire 5 #` z_result_result_hi_1 $end
-   $var wire 5 #a z_result_result_hi_3 $end
-   $var wire 6 #b z_result_result_hi_2 $end
-   $var wire 5 #d z_result_result_hi_5 $end
-   $var wire 6 #e z_result_result_hi_4 $end
-   $var wire 5 #f z_result_result_hi_7 $end
-   $var wire 6 #g z_result_result_hi_6 $end
-   $var wire 1 #s z_result_isResultNaN_2 $end
-   $var wire 1 #t z_result_isResultNaN_1 $end
-   $var wire 1 #u z_result_isResultNaN_3 $end
-   $var wire 2 #{ z_result_lo $end
-   $var wire 1 $$ z_isResultNaN $end
-   $var wire 1 $% z_isResultNaN_5 $end
-   $var wire 1 $& z_isResultNaN_4 $end
-   $var wire 1 $' z_isResultNaN_3 $end
-   $var wire 1 $( z_isResultNaN_2 $end
-   $var wire 1 $) z_isResultNaN_1 $end
-   $var wire 6 $. z_result_hi $end
+   $var wire 8 , z_result_1 $end
+   $var wire 8 - z_result_3 $end
+   $var wire 8 . z_result_2 $end
+   $var wire 8 5 z_result_5 $end
+   $var wire 8 6 z_result_4 $end
+   $var wire 8 9 z_result $end
+   $var wire 5 B status $end
+   $var wire 8 K z_result_result_1 $end
+   $var wire 8 M z_result_result_3 $end
+   $var wire 8 N z_result_result_2 $end
+   $var wire 1 X z_result_isResultNaN $end
+   $var wire 6 e z_result_result_hi $end
+   $var wire 3 u compareMode $end
+   $var wire 1 | z_result_resultNaNFractionValue_1 $end
+   $var wire 1 } z_result_resultNaNFractionValue_2 $end
+   $var wire 1 ~ z_result_resultNaNFractionValue_3 $end
+   $var wire 8 "% a_data $end
+   $var wire 2 "2 z_result_result_lo_1 $end
+   $var wire 2 "3 z_result_result_lo_3 $end
+   $var wire 2 "4 z_result_result_lo_2 $end
+   $var wire 8 "> z $end
+   $var wire 1 "I enable $end
+   $var wire 8 "O z_result_result $end
+   $var wire 2 "V z_result_lo_5 $end
+   $var wire 2 "W z_result_lo_4 $end
+   $var wire 2 "X z_result_lo_1 $end
+   $var wire 2 "Y z_result_lo_3 $end
+   $var wire 2 "Z z_result_lo_2 $end
+   $var wire 1 "[ z_resultNaNFractionValue $end
+   $var wire 1 #" z_resultNaNFractionValue_1 $end
+   $var wire 1 ## z_resultNaNFractionValue_2 $end
+   $var wire 1 #$ z_resultNaNFractionValue_3 $end
+   $var wire 1 #% z_resultNaNFractionValue_4 $end
+   $var wire 1 #& z_resultNaNFractionValue_5 $end
+   $var wire 2 #> z_result_result_lo $end
+   $var wire 1 #U z_result_resultNaNFractionValue $end
+   $var wire 1 #Z isResultNaN $end
+   $var wire 8 #] b_data $end
+   $var wire 5 #i z_result_result_hi_1 $end
+   $var wire 5 #j z_result_result_hi_3 $end
+   $var wire 6 #k z_result_result_hi_2 $end
+   $var wire 5 #m z_result_result_hi_5 $end
+   $var wire 6 #n z_result_result_hi_4 $end
+   $var wire 5 #o z_result_result_hi_7 $end
+   $var wire 6 #p z_result_result_hi_6 $end
+   $var wire 1 #~ z_result_isResultNaN_2 $end
+   $var wire 1 $! z_result_isResultNaN_1 $end
+   $var wire 1 $" z_result_isResultNaN_3 $end
+   $var wire 2 $) z_result_lo $end
+   $var wire 1 $/ z_isResultNaN $end
+   $var wire 1 $0 z_isResultNaN_5 $end
+   $var wire 1 $1 z_isResultNaN_4 $end
+   $var wire 1 $2 z_isResultNaN_3 $end
+   $var wire 1 $3 z_isResultNaN_2 $end
+   $var wire 1 $4 z_isResultNaN_1 $end
+   $var wire 6 $8 z_result_hi $end
   $upscope $end
   $scope module addSub $end
-   $var wire 1 9 subtract $end
-   $var wire 1 = isResult0 $end
-   $var wire 1 F resultOverflow $end
-   $var wire 5 K shift $end
-   $var wire 6 T smallerOperandFraction_1 $end
-   $var wire 7 ] originalCalculatedValue $end
-   $var wire 1 _ isNaN $end
+   $var wire 5 * resultStatus $end
+   $var wire 1 = subtract $end
+   $var wire 1 @ isResult0 $end
+   $var wire 2 D status_hi_hi $end
+   $var wire 5 S shift $end
+   $var wire 6 [ smallerOperandFraction_1 $end
+   $var wire 7 _ originalCalculatedValue $end
    $var wire 3 b fraction $end
-   $var wire 1 u resultNaNFractionValue $end
-   $var wire 7 "# shiftedCalcValue $end
-   $var wire 5 ") tempExponent $end
-   $var wire 1 "+ is0 $end
-   $var wire 1 "0 resultSign $end
-   $var wire 1 "2 overflow $end
-   $var wire 8 ": shiftedFraction_shifted $end
-   $var wire 6 "@ greaterOperandFraction_1 $end
-   $var wire 5 "F resultExponent $end
-   $var wire 1 "H isOnlySmallerDenormalized $end
-   $var wire 8 "J b_data $end
-   $var wire 1 "\ isResultNaN $end
-   $var wire 3 "^ smallerOperandFraction $end
-   $var wire 2 "_ roundingMode $end
-   $var wire 1 "m compare $end
-   $var wire 7 "o tempFraction $end
-   $var wire 8 "r greaterOperand_data $end
-   $var wire 7 "t calculatedValue $end
-   $var wire 8 "~ a_data $end
-   $var wire 3 #! shift_1 $end
-   $var wire 1 #& isInfty $end
-   $var wire 1 #- sign $end
-   $var wire 6 #3 exponent $end
-   $var wire 8 #9 smallerOperand_data $end
-   $var wire 3 #W greaterOperandFraction $end
-   $var wire 1 #[ NaNFractionValue $end
-   $var wire 5 #\ exponent_1 $end
-   $var wire 1 #^ enable $end
-   $var wire 1 #o addOne $end
-   $var wire 8 #p paddedCalcValue $end
-   $var wire 4 #r roundedFraction $end
-   $var wire 1 $" subtraction $end
-   $var wire 1 $* isResultInfty $end
-   $var wire 3 $0 resultFraction $end
+   $var wire 2 y status_lo $end
+   $var wire 1 { resultNaNFractionValue $end
+   $var wire 7 ") shiftedCalcValue $end
+   $var wire 5 "/ tempExponent $end
+   $var wire 3 "0 status_hi $end
+   $var wire 1 "6 resultSign $end
+   $var wire 1 "8 overflow $end
+   $var wire 8 "C shiftedFraction_shifted $end
+   $var wire 6 "J greaterOperandFraction_1 $end
+   $var wire 5 "N resultExponent $end
+   $var wire 1 "Q isOnlySmallerDenormalized $end
+   $var wire 8 "T b_data $end
+   $var wire 1 "e isResultNaN $end
+   $var wire 3 "g smallerOperandFraction $end
+   $var wire 2 "h roundingMode $end
+   $var wire 1 "w compare $end
+   $var wire 7 "y tempFraction $end
+   $var wire 8 "| greaterOperand_data $end
+   $var wire 7 "~ calculatedValue $end
+   $var wire 8 #* a_data $end
+   $var wire 3 #, shift_1 $end
+   $var wire 1 #9 sign $end
+   $var wire 6 #= exponent $end
+   $var wire 8 #C smallerOperand_data $end
+   $var wire 3 #` greaterOperandFraction $end
+   $var wire 1 #d NaNFractionValue $end
+   $var wire 5 #e exponent_1 $end
+   $var wire 1 #g enable $end
+   $var wire 1 #y addOne $end
+   $var wire 8 #{ paddedCalcValue $end
+   $var wire 4 #} roundedFraction $end
+   $var wire 5 $' status $end
+   $var wire 1 $- subtraction $end
+   $var wire 1 $5 isResultInfty $end
+   $var wire 3 $; resultFraction $end
   $upscope $end
   $scope module divide $end
-   $var wire 4 . roundedFraction $end
-   $var wire 8 4 quotient_secondGuess_firstStep $end
-   $var wire 6 5 quotient_secondGuess_firstStepRnd $end
-   $var wire 8 : quotient_finalGuess_firstStep $end
-   $var wire 5 < quotient_initGuess $end
-   $var wire 6 > quotient_finalGuess $end
-   $var wire 7 ? tempExponent $end
-   $var wire 1 @ isNaN $end
-   $var wire 1 B NaNFractionValue $end
-   $var wire 5 C quotient_secondGuess_firstStep_partialProducts_compare $end
-   $var wire 5 H quotient_secondGuess_finalStep_partialProducts_compare $end
-   $var wire 6 I quotient_secondGuess $end
-   $var wire 3 J shift $end
-   $var wire 1 M resultNaNFractionValue $end
-   $var wire 3 N tempDivisorFraction $end
-   $var wire 5 O quotient_finalGuess_secondStep $end
-   $var wire 7 Q exponentShiftLeft $end
-   $var wire 8 R a_data $end
-   $var wire 5 [ quotient_partialProducts_compare_1 $end
-   $var wire 5 \ quotient_partialProducts_compare_2 $end
-   $var wire 7 ` exponent_1 $end
-   $var wire 5 f quotient_partialProducts_compare $end
-   $var wire 1 g isResult0 $end
-   $var wire 2 h divisorShift $end
-   $var wire 1 m addOne $end
-   $var wire 8 o quotient_finalGuess_finalStep_partialSums_0 $end
-   $var wire 10 p quotient_finalGuess_finalStep_partialSums_1 $end
-   $var wire 6 "$ quotient_partialProducts_1 $end
-   $var wire 7 "% quotient_partialProducts_2 $end
-   $var wire 5 "& quotient_partialProducts_0 $end
-   $var wire 1 "' enable $end
-   $var wire 3 "( resultFraction $end
-   $var wire 1 "* overflow $end
-   $var wire 5 "8 quotient_secondGuess_firstStep_partialProducts_compare_2 $end
-   $var wire 5 "9 quotient_finalGuess_firstStep_partialProducts_compare $end
-   $var wire 5 "= quotient_secondGuess_firstStep_partialProducts_compare_1 $end
-   $var wire 5 "E quotient_finalGuess_finalStep_partialProducts_compare $end
-   $var wire 1 "I isResultInfty $end
-   $var wire 1 "Q is0 $end
-   $var wire 5 "S quotient_secondGuess_finalStep_partialProducts_compare_4 $end
-   $var wire 5 "T quotient_secondGuess_finalStep_partialProducts_compare_2 $end
-   $var wire 5 "U quotient_secondGuess_finalStep_partialProducts_compare_3 $end
-   $var wire 5 "V quotient_secondGuess_finalStep_partialProducts_compare_1 $end
-   $var wire 8 "W quotient $end
-   $var wire 2 "Z roundingMode $end
-   $var wire 7 "` tempFraction $end
-   $var wire 6 "a exponent $end
-   $var wire 1 "l sign $end
-   $var wire 1 "p resultSign $end
-   $var wire 5 "{ quotient_finalGuess_firstStep_partialProducts_compare_1 $end
-   $var wire 5 "| quotient_finalGuess_firstStep_partialProducts_compare_2 $end
-   $var wire 3 "} dividendFraction $end
-   $var wire 6 ## resultExponent $end
-   $var wire 5 #' quotient_finalGuess_finalStep_partialProducts_compare_1 $end
-   $var wire 5 #( quotient_finalGuess_finalStep_partialProducts_compare_3 $end
-   $var wire 5 #) quotient_finalGuess_finalStep_partialProducts_compare_2 $end
-   $var wire 5 #+ quotient_finalGuess_finalStep_partialProducts_compare_4 $end
-   $var wire 6 #5 quotient_finalGuess_firstStep_partialProducts_1 $end
-   $var wire 5 #6 quotient_finalGuess_firstStep_partialProducts_0 $end
-   $var wire 7 #7 quotient_finalGuess_firstStep_partialProducts_2 $end
-   $var wire 6 #: quotient_finalGuess_firstStepRnd $end
-   $var wire 3 #; divisorFraction $end
-   $var wire 3 #< quotient_rom_3 $end
-   $var wire 3 #= quotient_rom_2 $end
-   $var wire 3 #> quotient_rom_1 $end
-   $var wire 3 #? quotient_rom_0 $end
-   $var wire 8 #@ quotient_secondGuess_finalStep_partialSums_0 $end
-   $var wire 10 #A quotient_secondGuess_finalStep_partialSums_1 $end
-   $var wire 7 #C quotient_secondGuess_finalStep_partialProducts_2 $end
-   $var wire 8 #D quotient_secondGuess_finalStep_partialProducts_3 $end
-   $var wire 1 #E resultOverflow $end
-   $var wire 9 #F quotient_secondGuess_finalStep_partialProducts_4 $end
-   $var wire 7 #H shiftedCalcValue $end
-   $var wire 3 #I tempDividendFraction $end
-   $var wire 5 #J quotient_secondGuess_finalStep_partialProducts_0 $end
-   $var wire 6 #K quotient_secondGuess_finalStep_partialProducts_1 $end
-   $var wire 7 #N quotient_secondGuess_firstStep_partialProducts_2 $end
-   $var wire 5 #O quotient_secondGuess_firstStep_partialProducts_0 $end
-   $var wire 6 #P quotient_secondGuess_firstStep_partialProducts_1 $end
-   $var wire 5 #U quotient_secondGuess_secondStep $end
-   $var wire 1 #X isResultNaN $end
-   $var wire 7 #Z exponentShiftRight $end
-   $var wire 2 #_ dividendShift $end
-   $var wire 10 #c quotient_secondGuess_finalStep $end
-   $var wire 3 #h fraction $end
-   $var wire 9 #v quotient_finalGuess_finalStep_partialProducts_4 $end
-   $var wire 8 #w quotient_finalGuess_finalStep_partialProducts_3 $end
-   $var wire 7 #x quotient_finalGuess_finalStep_partialProducts_2 $end
-   $var wire 6 #y quotient_finalGuess_finalStep_partialProducts_1 $end
-   $var wire 5 #z quotient_finalGuess_finalStep_partialProducts_0 $end
-   $var wire 8 #| b_data $end
-   $var wire 10 $# quotient_finalGuess_finalStep $end
-   $var wire 1 $- isInfty $end
-   $var wire 6 $/ tempExponent_1 $end
+   $var wire 4 / roundedFraction $end
+   $var wire 3 1 status_hi $end
+   $var wire 8 7 quotient_secondGuess_firstStep $end
+   $var wire 6 8 quotient_secondGuess_firstStepRnd $end
+   $var wire 2 < status_lo $end
+   $var wire 8 > quotient_finalGuess_firstStep $end
+   $var wire 5 ? quotient_initGuess $end
+   $var wire 6 C quotient_finalGuess $end
+   $var wire 7 E tempExponent $end
+   $var wire 1 I NaNFractionValue $end
+   $var wire 5 J quotient_secondGuess_firstStep_partialProducts_compare $end
+   $var wire 5 O quotient_secondGuess_finalStep_partialProducts_compare $end
+   $var wire 6 P quotient_secondGuess $end
+   $var wire 2 Q status_hi_hi $end
+   $var wire 3 R shift $end
+   $var wire 1 U resultNaNFractionValue $end
+   $var wire 3 V tempDivisorFraction $end
+   $var wire 5 W quotient_finalGuess_secondStep $end
+   $var wire 7 Y exponentShiftLeft $end
+   $var wire 8 Z a_data $end
+   $var wire 5 ] quotient_partialProducts_compare_1 $end
+   $var wire 5 ^ quotient_partialProducts_compare_2 $end
+   $var wire 5 ` resultStatus $end
+   $var wire 7 a exponent_1 $end
+   $var wire 5 h quotient_partialProducts_compare $end
+   $var wire 1 k isResult0 $end
+   $var wire 2 o divisorShift $end
+   $var wire 1 t addOne $end
+   $var wire 8 v quotient_finalGuess_finalStep_partialSums_0 $end
+   $var wire 10 w quotient_finalGuess_finalStep_partialSums_1 $end
+   $var wire 6 "* quotient_partialProducts_1 $end
+   $var wire 7 "+ quotient_partialProducts_2 $end
+   $var wire 5 ", quotient_partialProducts_0 $end
+   $var wire 1 "- enable $end
+   $var wire 3 ". resultFraction $end
+   $var wire 1 "1 overflow $end
+   $var wire 5 "9 status $end
+   $var wire 5 "? quotient_secondGuess_firstStep_partialProducts_compare_2 $end
+   $var wire 5 "B quotient_finalGuess_firstStep_partialProducts_compare $end
+   $var wire 5 "F quotient_secondGuess_firstStep_partialProducts_compare_1 $end
+   $var wire 5 "M quotient_finalGuess_finalStep_partialProducts_compare $end
+   $var wire 1 "R isResultInfty $end
+   $var wire 5 "\ quotient_secondGuess_finalStep_partialProducts_compare_4 $end
+   $var wire 5 "] quotient_secondGuess_finalStep_partialProducts_compare_2 $end
+   $var wire 5 "^ quotient_secondGuess_finalStep_partialProducts_compare_3 $end
+   $var wire 5 "_ quotient_secondGuess_finalStep_partialProducts_compare_1 $end
+   $var wire 8 "` quotient $end
+   $var wire 2 "c roundingMode $end
+   $var wire 7 "i tempFraction $end
+   $var wire 6 "j exponent $end
+   $var wire 1 "v sign $end
+   $var wire 1 "z resultSign $end
+   $var wire 5 #' quotient_finalGuess_firstStep_partialProducts_compare_1 $end
+   $var wire 5 #( quotient_finalGuess_firstStep_partialProducts_compare_2 $end
+   $var wire 3 #) dividendFraction $end
+   $var wire 6 #0 resultExponent $end
+   $var wire 5 #3 quotient_finalGuess_finalStep_partialProducts_compare_1 $end
+   $var wire 5 #4 quotient_finalGuess_finalStep_partialProducts_compare_3 $end
+   $var wire 5 #5 quotient_finalGuess_finalStep_partialProducts_compare_2 $end
+   $var wire 5 #7 quotient_finalGuess_finalStep_partialProducts_compare_4 $end
+   $var wire 6 #? quotient_finalGuess_firstStep_partialProducts_1 $end
+   $var wire 5 #@ quotient_finalGuess_firstStep_partialProducts_0 $end
+   $var wire 7 #A quotient_finalGuess_firstStep_partialProducts_2 $end
+   $var wire 6 #D quotient_finalGuess_firstStepRnd $end
+   $var wire 3 #E divisorFraction $end
+   $var wire 3 #F quotient_rom_3 $end
+   $var wire 3 #G quotient_rom_2 $end
+   $var wire 3 #H quotient_rom_1 $end
+   $var wire 3 #I quotient_rom_0 $end
+   $var wire 8 #J quotient_secondGuess_finalStep_partialSums_0 $end
+   $var wire 10 #K quotient_secondGuess_finalStep_partialSums_1 $end
+   $var wire 7 #M quotient_secondGuess_finalStep_partialProducts_2 $end
+   $var wire 8 #N quotient_secondGuess_finalStep_partialProducts_3 $end
+   $var wire 9 #O quotient_secondGuess_finalStep_partialProducts_4 $end
+   $var wire 7 #Q shiftedCalcValue $end
+   $var wire 3 #R tempDividendFraction $end
+   $var wire 5 #S quotient_secondGuess_finalStep_partialProducts_0 $end
+   $var wire 6 #T quotient_secondGuess_finalStep_partialProducts_1 $end
+   $var wire 7 #W quotient_secondGuess_firstStep_partialProducts_2 $end
+   $var wire 5 #X quotient_secondGuess_firstStep_partialProducts_0 $end
+   $var wire 6 #Y quotient_secondGuess_firstStep_partialProducts_1 $end
+   $var wire 5 #^ quotient_secondGuess_secondStep $end
+   $var wire 1 #a isResultNaN $end
+   $var wire 7 #c exponentShiftRight $end
+   $var wire 2 #h dividendShift $end
+   $var wire 10 #l quotient_secondGuess_finalStep $end
+   $var wire 3 #q fraction $end
+   $var wire 9 $# quotient_finalGuess_finalStep_partialProducts_4 $end
+   $var wire 8 $$ quotient_finalGuess_finalStep_partialProducts_3 $end
+   $var wire 7 $% quotient_finalGuess_finalStep_partialProducts_2 $end
+   $var wire 6 $& quotient_finalGuess_finalStep_partialProducts_1 $end
+   $var wire 5 $( quotient_finalGuess_finalStep_partialProducts_0 $end
+   $var wire 8 $* b_data $end
+   $var wire 10 $. quotient_finalGuess_finalStep $end
+   $var wire 6 $: tempExponent_1 $end
   $upscope $end
   $scope module convert $end
-   $var wire 5 8 z_result_hi $end
-   $var wire 5 ; z_roundedFraction $end
-   $var wire 7 S z_shift $end
-   $var wire 1 U z_addOne $end
-   $var wire 5 V z_result_hi_5 $end
-   $var wire 5 W z_result_hi_4 $end
-   $var wire 5 X z_result_hi_3 $end
-   $var wire 5 Y z_result_hi_2 $end
-   $var wire 5 Z z_result_hi_1 $end
-   $var wire 8 ^ z_result $end
-   $var wire 6 a z_tempExponent $end
-   $var wire 4 q z_finalExponent $end
-   $var wire 1 t z_isDenormalized $end
-   $var wire 2 "! roundingMode $end
-   $var wire 1 "A z_overflow $end
-   $var wire 8 "u z $end
-   $var wire 3 #0 z_fraction $end
-   $var wire 7 #1 z_tempFraction $end
-   $var wire 8 #M a_data $end
-   $var wire 1 #S saturationMode $end
-   $var wire 4 #i z_finalFraction $end
-   $var wire 1 #q enable $end
-   $var wire 1 $! z_isResultNaN $end
+   $var wire 5 3 status $end
+   $var wire 4 : finalFraction $end
+   $var wire 3 A status_hi $end
+   $var wire 7 H shift $end
+   $var wire 2 \ status_lo $end
+   $var wire 5 d resultStatus $end
+   $var wire 1 f isResultNaN $end
+   $var wire 5 i result_hi_4 $end
+   $var wire 5 j result_hi_3 $end
+   $var wire 5 l result_hi_5 $end
+   $var wire 5 m result_hi_2 $end
+   $var wire 5 n result_hi_1 $end
+   $var wire 2 "' roundingMode $end
+   $var wire 7 "@ tempFraction $end
+   $var wire 8 "A result $end
+   $var wire 3 "H fraction $end
+   $var wire 4 "o finalExponent $end
+   $var wire 8 #! z $end
+   $var wire 5 #+ result_hi $end
+   $var wire 1 #- overflow $end
+   $var wire 2 #. status_hi_hi $end
+   $var wire 8 #V a_data $end
+   $var wire 1 #\ saturationMode $end
+   $var wire 6 #r tempExponent $end
+   $var wire 1 #s isDenormalized $end
+   $var wire 5 #z roundedFraction $end
+   $var wire 1 #| enable $end
+   $var wire 1 $9 addOne $end
   $upscope $end
   $scope module multiply $end
-   $var wire 1 * enable $end
-   $var wire 1 / addOne $end
-   $var wire 3 0 firstOperandFraction $end
-   $var wire 5 L resultExponent $end
+   $var wire 1 + enable $end
+   $var wire 1 0 addOne $end
+   $var wire 3 2 firstOperandFraction $end
+   $var wire 2 F status_hi_hi $end
+   $var wire 5 L status $end
+   $var wire 5 T resultExponent $end
    $var wire 6 c exponent $end
-   $var wire 4 j product_partialProducts_1 $end
-   $var wire 3 k product_partialProducts_0 $end
-   $var wire 5 l product_partialProducts_2 $end
-   $var wire 1 y overflow $end
-   $var wire 5 z shiftedCalcValue $end
-   $var wire 1 | is0 $end
-   $var wire 3 ~ product_partialProducts_compare_1 $end
-   $var wire 3 "" product_partialProducts_compare_2 $end
-   $var wire 5 "3 tempExponent $end
-   $var wire 8 "; a_data $end
-   $var wire 1 "D resultOverflow $end
-   $var wire 3 "[ shift $end
-   $var wire 7 "] exponentShiftRight $end
-   $var wire 3 "e secondOperandFraction $end
-   $var wire 7 #" exponent_1 $end
-   $var wire 3 #$ resultFraction $end
-   $var wire 8 #% b_data $end
-   $var wire 3 #* product_partialProducts_compare $end
-   $var wire 1 #/ NaNFractionValue $end
-   $var wire 2 #B roundingMode $end
-   $var wire 1 #Q isInfty $end
-   $var wire 5 #V tempFraction $end
-   $var wire 1 #Y isResultInfty $end
-   $var wire 3 #] fraction $end
-   $var wire 4 #j roundedFraction $end
-   $var wire 7 #l exponentShiftLeft $end
-   $var wire 1 #m resultSign $end
-   $var wire 1 #n isResult0 $end
-   $var wire 1 #} resultNaNFractionValue $end
-   $var wire 1 #~ isNaN $end
-   $var wire 1 $+ isResultNaN $end
-   $var wire 6 $, product $end
-   $var wire 1 $1 sign $end
+   $var wire 4 q product_partialProducts_1 $end
+   $var wire 3 r product_partialProducts_0 $end
+   $var wire 5 s product_partialProducts_2 $end
+   $var wire 1 "! overflow $end
+   $var wire 5 "" shiftedCalcValue $end
+   $var wire 3 "& product_partialProducts_compare_1 $end
+   $var wire 3 "( product_partialProducts_compare_2 $end
+   $var wire 5 ": tempExponent $end
+   $var wire 8 "D a_data $end
+   $var wire 2 "P status_lo $end
+   $var wire 3 "S status_hi $end
+   $var wire 3 "d shift $end
+   $var wire 7 "f exponentShiftRight $end
+   $var wire 3 "n secondOperandFraction $end
+   $var wire 7 #/ exponent_1 $end
+   $var wire 3 #1 resultFraction $end
+   $var wire 8 #2 b_data $end
+   $var wire 3 #6 product_partialProducts_compare $end
+   $var wire 1 #; NaNFractionValue $end
+   $var wire 2 #L roundingMode $end
+   $var wire 5 #_ tempFraction $end
+   $var wire 1 #b isResultInfty $end
+   $var wire 3 #f fraction $end
+   $var wire 4 #t roundedFraction $end
+   $var wire 7 #v exponentShiftLeft $end
+   $var wire 1 #w resultSign $end
+   $var wire 1 #x isResult0 $end
+   $var wire 1 $+ resultNaNFractionValue $end
+   $var wire 5 $, resultStatus $end
+   $var wire 1 $6 isResultNaN $end
+   $var wire 6 $7 product $end
+   $var wire 1 $< sign $end
   $upscope $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
-b00000000 i
-07
-09
+00
+b00 <
+b0000 "o
+0;
 0=
-b00000000 ^
 0@
-b00000000 {
-0A
-0B
-b00000000 }
-0F
-b0000000 #"
-b00000000 o
-0M
-0P
-b0000 #j
-b00000000 G
+b0000000 #/
+b00000000 v
+0G
+0I
+b0000000 "@
+b00000000 p
+b00000000 K
+b00000000 M
 0U
-b0000 #i
-b00000000 E
-b00000000 D
-b0000 #r
-0_
-0e
-b0000 .
+0X
+b00000000 >
+b0000 #t
+b00000000 Z
+b0000000 ")
+0f
+b0000000 "+
+b0000 /
 0g
-b0000000 "%
-b00000000 R
-0m
-b0000000 "#
-b00 #{
-0s
+b0000 #}
+b0000 :
+0k
+b00000000 N
+b0000000 "~
+b000000 8
 0t
-b0000000 #Z
-0u
-0v
-0w
-0x
-0y
-b0000000 "t
+b0000000 "y
+0z
+0{
+b0000000 #W
 0|
-b000000 #y
-b000000 5
+0}
+b0000000 #Q
+0~
 b000000 '
+b000000 #n
 b000000 )
+b000000 #p
 b000000 (
-b0000000 #l
-b000000 #e
-b000000 #g
+b000000 #r
+b00 #h
 b000000 #
+b000000 #k
 b000000 %
-b0000000 "]
-b000000 #b
-b0000000 #7
-b0000000 #1
-b00 #_
-b000000 $.
-b0000000 #N
-b000000 $/
-b0000000 "o
-b000000 #P
-0"'
-0"*
-b000000 "d
-0"+
-b000000 "f
-b0000000 #H
-b000000 "g
-b000000 "h
-b000000 "i
-b0000000 "`
-0"0
+b0000000 #c
+b000000 "t
+b000000 "u
+b000000 $7
+b000000 $8
+b000000 #Y
+b000000 $:
+0"!
+b000000 "l
+b00 "h
+b000000 "m
+b0000000 #M
+b00 #L
+b000000 "p
+b0000000 "i
+b000000 "q
+b00 $)
+b000000 "r
+b000000 "s
+b000000 #T
+b000000 $&
+0"-
+b0000000 "f
+b0000000 #A
 b000000 "j
-b000000 #K
-b000000 $,
+b0000000 $%
+0"1
 b000000 "k
-b0000000 #C
-0"2
+b00 "Y
+b000000 #=
 b00 "X
-b00000 #)
-0"4
+b000000 #?
 b00 "Z
 b00000 #+
 0"6
-b000000 "a
-b00 #8
-b000000 "b
-b000000 "c
+b00000 "M
+b00 "W
+0"8
+b00000000 #J
+b00 "V
+b000000 #D
+b00000000 $*
+b00000 "N
+b00 "a
 b00 #B
-b000000 #5
-b00000000 #M
-0">
-b00000000 "s
-b00000000 #T
+0";
+b00 "c
+b00000000 #N
+0"=
+b000000 #8
+b00000 "B
+b00 #>
 b00000 "E
-0"?
-b000000 #:
-b00000000 "r
-b00 "_
 b00000 #(
-0"A
+0#"
 b00000 "F
 b00000 #'
-0"B
+0##
 b00000 "9
-0"C
-b00000 "8
-0"D
-b00000000 "u
+0#$
+0#%
+b00000000 #V
 0#&
-b00000 "=
-b00000 "<
-0"H
-b000000 #3
+b000000 #0
+b00000 ":
+b000 r
+0"G
+b000 u
+b00000 "?
 0"I
 b00 "P
-b000 ~
 0"K
-b00000000 "~
-b00 #4
+0"L
 0#-
-b00000 "3
-b000000 a
-0#.
-b00 "M
-0#/
+b00000000 "}
+b00000000 "|
+b00000000 #]
+b00 #.
 b000000 c
-b00 "L
-b00 "O
-b00 "N
+b000000 "J
+b000000 e
 0"Q
-0#2
-b000000 #,
-b000000 d
 0"R
-b00000 ")
-b00 "5
-b000000 "@
+0"U
+b000000 [
+b00 "4
 b000 b
-b000000 ##
-0"Y
-b00000000 #p
-b000 n
-0"\
-b0000000 #x
-b000 k
+b00000 ",
+b00 "7
+0#9
+b00000 "/
+0#:
+0#;
+b0000000 #v
+0"[
+0#<
+b00000 ""
+b000000 P
+b00 "<
 0$!
+b00000 "$
 0$"
-b00000 "&
-b000000 T
-0$$
-0$%
-b00000000 #w
-0#E
-0$&
-b0000000 ]
-b000000 I
-0$'
-0#G
-0$(
-b00000000 #|
-0$)
-0$*
+0"b
+b000 V
+0"e
+b0000000 _
+b000 R
+b00000000 #{
+b00 "'
+b0000000 a
 0$+
-b0000000 `
-b00 "1
-b000000 "$
-b0000000 S
-0#L
 0$-
-b000000 >
-0"l
-0"m
-b00 "-
-0"n
-b00 ",
+b00 "3
+b00 "2
+0$/
+0$0
+b000000 C
+0#P
 0$1
-0"p
-0#Q
-b00 ".
-0"q
-0#R
-0#S
+0$2
+b000000 "*
+b0000000 Y
+0$3
+0$4
+b00 y
+b00000 #j
+0$5
+b00000 #i
+0#U
+0$6
 0"v
 0"w
-0#X
+0$9
+b00000 #m
 0"x
-0#Y
-b0000000 Q
-0"y
-b00 "!
+0#Z
+b00000 #o
 0"z
 0#[
-b000 N
-b00000 #a
-b00000 #d
-0#^
-b00000 #f
-b000 J
-b00 h
-b00000 "{
-b00000 #\
-b0000000 ?
-b00000 "|
-b00000 #`
-0#k
-0#m
-0#n
-0#o
-b00000 #V
-b00000 #U
-0#q
+0$<
+0"{
+0#\
+b00 o
+b0000000 E
+b00000 #e
+0#a
+0#b
+b0000000 H
+0#d
+0#g
+b00000 #^
+b000 2
+b00000 #_
+b000 A
+b00000 #S
+b00000 #X
 0#s
-b00000 #J
-0#t
 0#u
-b00000 #O
-0#}
-b000 0
+b00000 $,
+0#w
+0#x
+b00 \
+0#y
+b00 Q
+0#|
+b000 1
 0#~
-b00000 "S
-b000000000 #v
-b00000 "U
-b00000 #6
-b00000 "T
-b00000 "V
-b000000000 #F
+b00000 $'
+b00000 $(
+b00 F
+b00000 "]
+b00000 "\
+b00000 "_
+b00000 #@
+b00000 "^
+b00000 #4
+b00000 #3
+b00 D
+b00000 #5
+b00000 #7
+b000000000 #O
+b000000000 $#
 b00000 #z
-b0000000000 $#
-b0000000000 #A
-b0000000000 p
-b00000000 "/
-b00000000 "7
-b00000000 ";
-b00000000 ":
-b00000000 "G
-b00000000 #%
-b00000000 "J
-b00000000 "W
-b00000000 #9
-b00000000 #@
-b00000000 #D
-b000 "^
-b000 #?
-b000 #=
-b000 #>
-b000 #;
-b000 "[
-b000 #<
+b00000000 "#
+b00000000 "%
+b0000000000 w
+b000 #q
+b00000000 "5
+b00000000 ">
+b00000000 "C
+b00000000 "A
+b00000000 #!
+b00000000 "D
+b00000000 #*
+b00000000 "O
+b00000000 #2
+b00000000 "T
+b00000000 #C
+b00000000 $$
+b00000000 "`
+b000 #6
+b000 "S
+b000 #1
 b00000 !
+b000 #G
+b000 "g
+b000 #H
 b00000 "
-b000 "e
+b000 "d
+b000 #E
+b000 #F
 b00000 $
 b00000 &
-b000 $0
+b000 "n
+b00000 *
 b000 #I
-b000 #W
-b00000 8
-b00000 ;
-b000 #]
-b000 "}
-b00000 <
-b00000 C
-b000 #h
-b00000 H
-b00000 K
+b00000 3
+b000 #R
+b000 #`
+b00000 ?
+b000 $;
+b00000 B
+b000 #f
+b00000 J
 b00000 L
 b00000 O
-b00000000 +
+b00000 S
+b0000000000 $.
 b00000000 -
+b00000 T
 b00000000 ,
 b00000 W
-b00000 V
-b00000 Y
-b00000 X
-b00000 [
-b00000 Z
-b00000 \
-b00000000 :
-b000 ""
-b00000 f
+b00000 ]
+b00000 ^
+b0000000000 #K
+b00000 `
+b000 "&
+b00000 d
+b00000000 7
 b00000000 6
-b0000000000 #c
-b00000000 3
-b00000000 2
+b00000 i
+b00000000 9
+b00000 h
+b000 ".
+b00000 j
+b00000 m
+b00000000 5
 b00000 l
 b00000000 4
+b00000 n
+b00000000 .
 b000 "(
-b00000000 1
-b00000 z
-b0000 j
-b0000 r
-b000 #$
+b00000 s
+b000 "0
+b0000000000 #l
 b0000 q
-b000 #!
-b000 #0
-0*
-b000 #*
-0/
+0+
+b0000 x
+b000 #,
+b000 "H
+b000 #)
 $end
 #0
-b011111 "b
-b011111 "d
-b011110 "f
-b111111 "g
-b111110 "h
-b011110 "i
-b011111 "j
-b011111 $.
-1#X
-b1110001 #Z
-b10 #_
-b01111 #`
-b01111 #a
-b011111 #b
+b100 "d
+b001 #F
+b011 #G
+b1100100 "f
+b101 #H
+b10 $)
+b111 #I
+b01001 $,
+b011111 "k
+b011111 "m
+b011110 "p
+b111111 "q
+b111110 "r
+b011110 "s
+b011111 "t
+b011111 $8
+1#a
+b1110001 #c
 b01111 !
-b01111 #d
 b01111 "
-b011111 #e
 b011111 #
-b01111 #f
 b01111 $
-b011111 #g
 b011111 %
+b10 #h
 b01111 &
+b01111 #i
 b011111 '
+b01111 #j
 b011111 (
+b011111 #k
 b011111 )
-b0011011 #l
-1#n
-b00111100 -
-b00111100 3
+b01000 *
+b01111 #m
+b011111 #n
+b01111 #o
+b011111 #p
+b00111100 .
+b111000 #r
+1#s
+b011 1
+b0011011 #v
+1#x
 b00111100 6
-b01111 8
-b10 #{
-b01111 <
-b0001111 ?
-b00111100 D
-b00111100 E
-b110 J
-b10 ",
-b10 "-
-b10 ".
-b0001110 Q
-b1001001 S
-b01111 V
-b01111 X
-b01111 Y
-b01111 Z
-b110 #!
-b0011100 #"
-b0001111 `
-b111000 a
-b011111 d
-b00111100 "G
-b10 h
-b011111 #,
-b10 "L
-1#.
-b10 "M
-b10 "N
-b10 "O
-b101 n
-b10 "P
-b10 #4
-1t
-b10 #8
-b001 #<
-b100 "[
-b011 #=
-b101 #>
-b1100100 "]
-b111 #?
+b00111100 9
+b01111 ?
+b010 A
+b01 D
+b0001111 E
+b01 F
+b1001001 H
+b00111100 K
+b00111100 M
+b010 "0
+b10 "2
+b01 Q
+b10 "3
+b110 R
+b10 "4
+b0001110 Y
+b01 \
+b01100 `
+b0001111 a
+b01001 d
+b011111 e
+b01111 #+
+b110 #,
+b01111 j
+b01 #.
+b01111 l
+b0011100 #/
+b01111 m
+b00111100 "O
+b01111 n
+b01 "P
+b10 o
+b010 "S
+b10 "V
+b101 u
+b10 "W
+b011111 #8
+b10 "X
+1#:
+b10 "Y
+b10 "Z
+b10 #>
+b10 #B
 #1
-1"q
+1"{
 #6
-b00000000 +
-b00111100 ,
-b00000000 -
-b0111 .
-1/
-b110 0
-b00111100 2
-b00000000 3
-b00111111 4
-b001111 5
-b00111100 6
-b00111111 :
-b01100 ;
-b01001 <
-b001001 >
-b0000111 ?
-b111 ""
-b1110010 "#
-b010010 "$
-b11111 C
-b0100100 "%
-b00000000 D
-b00000000 E
-b111 "(
-b00000000 G
-b10010 ")
-b11111 H
-b001001 I
-b001 J
-b11 ",
-b01000 K
-b11 "-
-b01110 L
-b11 ".
-1M
-b00101010 "/
-b111 N
-b10001 O
-b0000110 Q
-b01110 "3
-b00101010 R
-b0000000 S
-b000001 T
-b11111 "8
-b00010 W
-b11111 "9
-b00000110 ":
-b00101010 ";
-b11111 [
-b11111 "=
-b11111 \
-b0111001 ]
-b00010100 ^
-b000 #!
-b111000 "@
-b0001101 #"
-b0000111 `
-b000110 ##
-b000010 a
-b110 #$
-b01001011 #%
-b11111 "E
-b10010 "F
-b00111100 "G
-0"H
-0"I
-b111 #*
-b00 h
-b11111 #+
-b01001011 "J
-b1100 j
-b11 "L
-b110 k
-0#.
-b11 "M
-b11000 l
-b11 "N
-1m
-b110 #0
-b11 "O
-b000 n
-b1100000 #1
-b11 "P
-b00001001 o
-b0010010000 p
-1"R
-b0010 q
-b11 #4
-b11111 "S
-b0100 r
-b010010 #5
-b01001 #6
-0t
-b0100100 #7
-1u
-b00110110 "W
-1v
-b00101010 #9
-1w
-b001111 #:
-1x
-b111 #;
-b001 "[
-b10100 z
-b1110011 "]
-b110 "^
-b00101010 }
-b00001001 #@
-b111 ~
-b0010010000 #A
-b0110110 "`
-b0010011001 $#
-b010010000 #F
-b111 "e
-b1101100 #H
-b110 #I
-b01001 #J
-b101010 $,
-1#L
-b00101010 #M
-b0100100 #N
-b000110 $/
-0"m
-b01001 #O
-b111 $0
-b010010 #P
-b1110010 "o
-0"q
-b01001011 "r
-b01001011 "s
-b01001011 #T
-b10001 #U
-b0111001 "t
-b10101 #V
-1"v
-b111 #W
-0#X
-1"w
-1"x
-1"y
-b1111001 #Z
-1"z
-b11111 "{
-b10010 #\
-b11111 "|
-b110 "}
-b00 #_
-b00101010 "~
-b0010011001 #c
-b1100 #i
-b0110 #j
-b0001100 #l
-0#n
-b01110010 #p
-b0111 #r
-b010010000 #v
-b01001 #z
-b11 #{
-b01001011 #|
-1#}
-#11
-1"q
-#16
-0"q
-#21
-1"q
-#26
-b00111100 1
-1"C
-b00111100 "7
-1"K
-1"?
-0"q
-#31
-1"q
-#36
-0"q
-#41
-1"q
-#46
-b00000000 1
-b0101 r
-b00000000 "7
-b001 n
-0"q
-#51
-1"q
-#56
-0"q
-#61
-1"q
-#66
-b0110 r
-b010 n
-0"q
-#71
-1"q
-#76
-0"q
-#81
-1"q
-#86
-b00111100 1
-b0111 r
-b00111100 "7
-b011 n
-0"q
-#91
-1"q
-#96
-0"q
-#101
-1"q
-#106
+b00000 *
 b00000000 ,
 b00111100 -
-b0100 .
-0/
-b00111100 1
-b00000000 2
-b00111100 3
-b01000010 4
-b010000 5
-b01000010 :
-b01011 <
-b001011 >
-b0001111 ?
-b1000000 "#
-b010110 "$
-b00000 C
-b0101100 "%
-b00111100 D
-b00111100 E
-b100 "(
-b01011 ")
-b00000 H
-b001011 I
-b000 J
-b10 ",
-b00000 K
-b10 "-
-b00110 L
-b10 ".
-0M
-b110 N
-b10000 O
-b0001110 Q
-b00110 "3
-b110000 T
-b00111100 "7
-b00000 "9
-b11000000 ":
-b1100000 ]
-b110000 "@
-b0000101 #"
-b0001111 `
-b001111 ##
-b100 #$
-b00101010 #%
-b00000 "E
-b01011 "F
-b000 #*
-b00101010 "J
-b10 "L
-b000 k
-b10 "M
-b10 "N
-0m
-b10 "O
-b100 n
-b10 "P
-b00000000 o
-b0010110000 p
+b00000000 .
+b0111 /
+10
+b000 1
+b110 2
+b00111100 5
+b00000000 6
+b00111111 7
+b001111 8
+b00111100 9
+b1100 :
+b00 <
+b00111111 >
+b01001 ?
+b10100 ""
+b000 A
+b001001 C
+b00101010 "%
+b00 D
+b111 "&
+b0000111 E
+b00 F
+b111 "(
+b1110010 ")
+b0000000 H
+b010010 "*
+b0100100 "+
+b11111 J
+b00000000 K
+b111 ".
+b00000000 M
+b10010 "/
+b00000000 N
+b000 "0
+b11111 O
+b001001 P
+b11 "2
+b00 Q
+b11 "3
+b001 R
+b11 "4
+b01000 S
+b00101010 "5
+b01110 T
+1U
+b111 V
+b10001 W
+b01110 ":
+b0000110 Y
+b00101010 Z
+b000001 [
+b00 \
+b11111 ]
+b11111 "?
+b11111 ^
+b1100000 "@
+b0111001 _
+b00010100 "A
+1#"
+b00000 `
+1##
+b11111 "B
+b0000111 a
+1#$
+b00000110 "C
+b00101010 "D
+1#%
+1#&
+b00000 d
+b11111 #'
+b11111 "F
+b11111 #(
+b110 "H
+b110 #)
+b00101010 #*
+b111000 "J
+b00010 i
+b000 #,
+b00 #.
+b11111 "M
+b0001101 #/
+b10010 "N
+b00111100 "O
+b000110 #0
+b110 #1
+b00 "P
+b00 o
+b01001011 #2
+0"Q
 0"R
-b10 #4
-b1000 r
-b010110 #5
-b00000 #6
-b0101100 #7
-0u
-b01000010 "W
-0v
-0w
-b010000 #:
-0x
-b110 #;
-b010 "[
-b10000 z
-b1111011 "]
-b00000000 #@
-b0010110000 #A
-b0100001 "`
-b0010110000 $#
-b010110000 #F
-b110 "e
-b1000010 #H
-b00000 #J
-b100100 $,
-0#L
-b0101100 #N
-b001111 $/
-b00000 #O
-b110 $0
-b010110 #P
-b1100000 "o
-0"q
-b00101010 "r
-b00101010 "s
-b00101010 #T
-b10000 #U
-b1100000 "t
-b10010 #V
-0"v
-b110 #W
+b1100 q
+b000 "S
+b110 r
+b01001011 "T
+b11000 s
+b111 #6
+1t
+b11 "V
+b11111 #7
+b000 u
+b11 "W
+b00001001 v
+b11 "X
+b0010010000 w
+0#:
+b11 "Y
+b0100 x
+b11 "Z
+1"[
+b11111 "\
+1{
+b11 #>
+1|
+b010010 #?
+1}
+b01001 #@
+1~
+b0100100 #A
+b00110110 "`
+b010010000 $#
+b00101010 #C
+b001111 #D
+b111 #E
+b001 "d
+b01001 $(
+b1110011 "f
+b11 $)
+b110 "g
+b01001011 $*
+b00001001 #J
+b0110110 "i
+1$+
+b0010010000 #K
+b00000 $,
+b0010011001 $.
+b010010000 #O
+b111 "n
+b0010 "o
+b1101100 #Q
+b110 #R
+b01001 #S
+1#U
+b00101010 #V
+b101010 $7
+b0100100 #W
+b01001 #X
 0"w
-0"x
-0"y
-b1110001 #Z
-0"z
-b01010 #\
-b0010110000 #c
-b0100 #j
-b0000100 #l
-b11000000 #p
-b0110 #r
-b010110000 #v
-b00000 #z
-b10 #{
-b00101010 #|
-0#}
-#111
-1"q
-#116
-0"q
-#121
-1"q
-#126
-b00111100 ,
+b010010 #Y
+b000110 $:
+b1110010 "y
+b111 $;
+0"{
+b01001011 #]
+b01001011 "|
+b01001011 "}
+b10001 #^
+b10101 #_
+b0111001 "~
+b111 #`
+0#a
+b1111001 #c
+b10010 #e
+b00 #h
+b0010011001 #l
+b000010 #r
+0#s
+b0110 #t
+b0001100 #v
+0#x
+b01100 #z
+b01110010 #{
+b0111 #}
+#11
+1"{
+#16
+0"{
+#21
+1"{
+#26
+1"U
+b00111100 4
+1"I
+0"{
+1"L
+b00111100 ">
+#31
+1"{
+#36
+0"{
+#41
+1"{
+#46
+b00000000 4
+b001 u
+b0101 x
+0"{
+b00000000 ">
+#51
+1"{
+#56
+0"{
+#61
+1"{
+#66
+b010 u
+b0110 x
+0"{
+#71
+1"{
+#76
+0"{
+#81
+1"{
+#86
+b00111100 4
+b011 u
+b0111 x
+0"{
+b00111100 ">
+#91
+1"{
+#96
+0"{
+#101
+1"{
+#106
 b00000000 -
-b0111 .
-1/
-b00111100 1
-b00111100 2
-b00000000 3
-b00111111 4
-b001111 5
-b00111111 :
-b01001 <
-b001001 >
-b0000111 ?
-b1110010 "#
-b010010 "$
-b11111 C
-b0100100 "%
-b00000000 D
-b00000000 E
-b111 "(
-b10010 ")
-b11111 H
-b001001 I
-b001 J
-b11 ",
-b01000 K
-b11 "-
-b01110 L
-b11 ".
-1M
-b111 N
-b10001 O
-b0000110 Q
-b01110 "3
-b000001 T
-b00111100 "7
-b11111 "9
-b00000110 ":
-b0111001 ]
-b111000 "@
-b0001101 #"
-b0000111 `
-b000110 ##
-b110 #$
-b01001011 #%
-b11111 "E
-b10010 "F
-b111 #*
-b01001011 "J
-b11 "L
-b110 k
-b11 "M
-b11 "N
-1m
-b11 "O
-b101 n
-b11 "P
-b00001001 o
-b0010010000 p
-1"R
-b11 #4
-b1001 r
-b010010 #5
-b01001 #6
-b0100100 #7
-1u
-b00110110 "W
-1v
-1w
-b001111 #:
-1x
-b111 #;
-b001 "[
-b10100 z
-b1110011 "]
-b00001001 #@
-b0010010000 #A
-b0110110 "`
-b0010011001 $#
-b010010000 #F
-b111 "e
-b1101100 #H
-b01001 #J
-b101010 $,
-1#L
-b0100100 #N
-b000110 $/
-b01001 #O
-b111 $0
-b010010 #P
-b1110010 "o
-0"q
-b01001011 "r
-b01001011 "s
-b01001011 #T
-b10001 #U
-b0111001 "t
-b10101 #V
-1"v
-b111 #W
-1"w
-1"x
-1"y
-b1111001 #Z
-1"z
-b10010 #\
-b0010011001 #c
-b0110 #j
-b0001100 #l
-b01110010 #p
-b0111 #r
-b010010000 #v
-b01001 #z
-b11 #{
-b01001011 #|
-1#}
-#131
-1"q
-#136
-0"q
-#141
-1"q
-#146
-b111 b
-b01001011 i
-b010010 "k
-b11 "1
-0"q
-b010010 #3
-b01001011 1
-b0000 r
-1"4
-b00000000 "7
-b11 #8
-1#[
-b10010 "<
-b01001011 {
-1#^
-0"?
-#151
-1"q
-#156
-0"q
-#161
-1"q
-#166
-b1101110 "#
-b00111100 G
-b10101010 #M
-b10101010 "/
-b1101110 "o
-1"p
-0"q
-b10101010 R
-b0110111 "t
-b10010 W
-b11111 X
-b11111 Y
-b10101010 ";
-b11111 Z
-b10101010 "~
-b0110111 ]
-b10010100 ^
-1#m
-b00111100 +
-1#o
-b01101110 #p
-b00111100 3
-b10101010 #9
-b10101010 }
-1$"
-#171
-1"q
-#176
-0"q
-#181
-1"q
-#186
-b010011 "k
-b00101010 #M
-b000101 $/
-b1110010 "o
-0"p
-0"q
-b01001111 "r
-b01001111 "s
-b01001111 #T
-b0111001 "t
-b1111010 #Z
-b10011 #\
-b00101010 "~
-b0001101 #l
-0#m
-b00000000 +
-0#o
-b01110010 #p
-b01001111 1
-b00000000 3
-b01001111 #|
-b0000110 ?
-b1110010 "#
-b00000000 G
-b10011 ")
-b01001 K
-b01111 L
-b00101010 "/
-b0000101 Q
-b01111 "3
-b00101010 R
-b00010 W
-b01111 X
-b01111 Y
-b00101010 ";
-b01111 Z
-b10011 "<
-b0111001 ]
-b00010100 ^
-b0001110 #"
-b0000110 `
-b000101 ##
-b01001111 #%
-b10011 "F
-b01001111 "J
-b01001111 i
-b010011 #3
-b00101010 #9
-b01001111 {
-b1110010 "]
-b00101010 }
-0$"
-#191
-1"q
-#196
-0"q
-#201
-1"q
-#206
-b00111100 +
-b00000000 ,
-b0101 .
-1/
-b111 0
-b01001011 1
-b00111100 3
-b01000010 4
-b010000 5
-b00000000 6
-19
-b01000010 :
-b01110 ;
-b01011 <
-b001011 >
-b0010111 ?
-b1101110 "#
-b010110 "$
-b00000 C
-b0101100 "%
-b01011 "&
-b101 "(
-b00111100 G
-b10010 ")
-b00000 H
-b001011 I
-b000 J
-b01000 K
-b01110 L
-b01001011 "/
-b110 N
-b10000 O
-b11 "1
-b0010110 Q
-b01110 "3
-b01001011 R
-b000001 T
-b01010 W
-b00000 "9
-b00000110 ":
-b01001011 ";
-b10010 "<
-b0110111 ]
-b01010110 ^
-b000 #!
-b0001101 #"
-b0010111 `
-b010111 ##
-b001010 a
-b111 b
-b00101010 #%
-b00000 "E
-b10010 "F
-b00000000 "G
-b11111 f
-b000 #*
-b00101010 "J
-b01001011 i
-b1110 j
-b000 k
-b11100 l
-b111 #0
-b1110000 #1
-b00000000 o
-b0010110000 p
-b010010 #3
-b1010 q
-b0001 r
-b010110 #5
-b00000 #6
-b0101100 #7
-b01001101 "W
-b00101010 #9
-b010000 #:
-b110 #;
-b001 "[
-b10100 z
-b01001011 {
-b1110011 "]
-b110 "^
-b01001011 }
-b00000000 #@
-b0010110000 #A
-b0100110 "`
-1$"
-b0010110000 $#
-b010110000 #F
-b110 "e
-b1001101 #H
-b111 #I
-b00000 #J
-b101010 $,
-b010010 "k
-b01001011 #M
-b0101100 #N
-b010111 $/
-1"m
-b00000 #O
-b111 $0
-b010110 #P
-b1101110 "o
-0"q
-b01001011 "r
-b00101010 "s
-b00101010 #T
-b10000 #U
-b0110111 "t
-b10101 #V
-b1101001 #Z
-b10010 #\
-b111 "}
-b01001011 "~
-b0010110000 #c
-b1110 #i
-b0001100 #l
-1#o
-b01101110 #p
-b0111 #r
-b010110000 #v
-b00000 #z
-b00101010 #|
-#211
-1"q
-#216
-0"q
-#221
-1"q
-#226
-1*
-b00000000 +
-b00111100 ,
-b00000000 -
-b0111 .
-1/
-b110 0
-b00111010 1
-b00111100 2
-b00000000 3
-b00111111 4
-b001111 5
+b00111100 .
+b0100 /
+00
+b00111100 4
+b00000000 5
 b00111100 6
-09
-b00111111 :
-b01100 ;
-b01001 <
-0=
-b001001 >
-b0000111 ?
-b1110010 "#
-b010010 "$
-b11111 C
-b0100100 "%
-b00000000 D
-b00000 "&
-b00000000 E
-b111 "(
-b00000000 G
-b10010 ")
-b11111 H
-b001001 I
-0"+
-b001 J
-b11 ",
-b01000 K
-b11 "-
-b01110 L
-b11 ".
-1M
-b00101010 "/
-b111 N
-0"0
-b10001 O
-b10 "1
-b0000110 Q
-b01110 "3
-b00101010 R
-1"4
-b000001 T
-b00010 W
-b11111 "9
-b00000110 ":
-b00101010 ";
-b01110 "<
-b0111001 ]
-b00010100 ^
-b111000 "@
-b000 #!
-b0001101 #"
-b0000111 `
-b000110 ##
-0"B
-b000010 a
-b110 #$
-b000 b
-b01001011 #%
-b001110 c
-b11111 "E
-b10010 "F
-b00111100 "G
-b00000 f
-b111 #*
-b01001011 "J
-b00111010 i
-b011111 #,
-b1100 j
-b11 "L
-0#-
-b110 k
-b11 "M
-b11000 l
-b11 "N
-1#/
-1m
-b110 #0
-b11 "O
-b1100000 #1
-b11 "P
-b00001001 o
-b0010010000 p
-1"R
-b000000 #3
-b0010 q
-b11 #4
-b0010 r
-b010010 #5
-b01001 #6
-b0100100 #7
-1u
-b00110110 "W
-b11 #8
-1v
-1w
-b001111 #:
-1x
-b111 #;
-b001 "[
-b10100 z
-b00111010 {
-b1110011 "]
-b00101010 }
-b00001001 #@
-b0010010000 #A
-b0110110 "`
-0$"
-b0010011001 $#
-b011111 "b
-b000000 "c
-b010010000 #F
-b111 "e
-b011110 "f
-b1101100 #H
-b110 #I
-b01001 #J
-b101010 $,
-1#L
-b001110 "k
-b00101010 #M
-0"m
-b0100100 #N
-b000110 $/
-b01001 #O
-b111 $0
-0"n
-b010010 #P
-b1110010 "o
-0"q
-b01001011 "r
-b01001011 "s
-b01001011 #T
-b10001 #U
-b0111001 "t
-b10101 #V
-1"v
-b111 #W
-1"w
-1"x
-1"y
-b1111001 #Z
-1"z
-0#[
-b10010 #\
-b110 #]
-b110 "}
-0#^
-b00101010 "~
-b0010011001 #c
-b1100 #i
-b0110 #j
-b0001100 #l
-0#o
-b01110010 #p
-b0111 #r
-b010010000 #v
-b01001 #z
-b11 #{
-b01001011 #|
-1#}
-#231
-1"q
-#236
-0"q
-#241
-1"q
-#246
-b111111 "b
-b1101110 "#
-b100000 "c
-b111110 "f
-b00111100 G
-b101110 "k
-b10101010 #M
-b10101010 "/
-1$1
-b1101110 "o
-1"p
-0"q
-b10101010 R
-b0110111 "t
-b10010 W
-b11111 X
-b11111 Y
-b10101010 ";
-b11111 Z
-b10101010 "~
-b0110111 ]
-b10010100 ^
-1"B
-b10111010 i
-b111111 #,
-1#m
-b00111100 +
-1#o
-b01101110 #p
-b10111010 1
-b00111100 3
-b10101010 #9
-b10111010 {
-b10101010 }
-1$"
-#251
-1"q
-#256
-0"q
-#261
-1"q
-#266
-0*
-b00111100 +
-b00000000 ,
-b00000000 -
-b0101 .
-1/
-b111 0
-b01011101 1
-b00111100 2
-b01000010 4
-b010000 5
+b01000010 7
+b010000 8
+b01000010 >
+b01011 ?
+b10000 ""
+b001011 C
+b0001111 E
+b1000000 ")
+b010110 "*
+b0101100 "+
+b00000 J
+b00111100 K
+b100 ".
+b00111100 M
+b01011 "/
+b00000 O
+b001011 P
+b10 "2
+b10 "3
+b000 R
+b10 "4
+b00000 S
+b00110 T
+0U
+b110 V
+b10000 W
+b00110 ":
+b0001110 Y
+b110000 [
+b00111100 ">
+b1100000 _
+0#"
+0##
+b00000 "B
+b0001111 a
+0#$
+b11000000 "C
+0#%
+0#&
+b110000 "J
+b00000 "M
+b0000101 #/
+b01011 "N
+b001111 #0
+b100 #1
+b00101010 #2
+b000 r
+b00101010 "T
+b000 #6
+0t
+b10 "V
+b100 u
+b10 "W
+b00000000 v
+b10 "X
+b0010110000 w
+b10 "Y
+b1000 x
+b10 "Z
+0"[
+0{
+b10 #>
+0|
+b010110 #?
+0}
+b00000 #@
+0~
+b0101100 #A
+b01000010 "`
+b010110000 $#
+b010000 #D
+b110 #E
+b010 "d
+b00000 $(
+b1111011 "f
+b10 $)
+b00101010 $*
+b00000000 #J
+b0100001 "i
+0$+
+b0010110000 #K
+b0010110000 $.
+b010110000 #O
+b110 "n
+b1000010 #Q
+b00000 #S
+0#U
+b100100 $7
+b0101100 #W
+b00000 #X
+b010110 #Y
+b001111 $:
+b1100000 "y
+b110 $;
+0"{
+b00101010 #]
+b00101010 "|
+b00101010 "}
+b10000 #^
+b10010 #_
+b1100000 "~
+b110 #`
+b1110001 #c
+b01010 #e
+b0010110000 #l
+b0100 #t
+b0000100 #v
+b11000000 #{
+b0110 #}
+#111
+1"{
+#116
+0"{
+#121
+1"{
+#126
+b00111100 -
+b00000000 .
+b0111 /
+10
+b00111100 4
+b00111100 5
 b00000000 6
-b01000010 :
-b01110 ;
-b01011 <
-b001011 >
-b0010111 ?
-b1110010 "#
-1B
-b010110 "$
-b00000 C
-b0101100 "%
-b00000000 D
-b01011 "&
-b00000000 E
-1"'
-b101 "(
-b00111100 G
-b10010 ")
-b00000 H
-b001011 I
-b000 J
-b01000 K
-b01110 L
-b01001011 "/
-b110 N
-b10000 O
-b01 "1
-b0010110 Q
-b01110 "3
-b01001011 R
-b000001 T
-b01010 W
-b00000 "9
-b01111 X
-b00000110 ":
-b01111 Y
-b01001011 ";
-b01111 Z
-b10111 "<
-b0111001 ]
-b01010110 ^
-b0001101 #"
-b0010111 `
-0"B
-b010111 ##
-b001010 a
-b00101010 #%
+b00111111 7
+b001111 8
+b00111111 >
+b01001 ?
+b10100 ""
+b001001 C
+b0000111 E
+b1110010 ")
+b010010 "*
+b0100100 "+
+b11111 J
+b00000000 K
+b111 ".
+b00000000 M
+b10010 "/
+b11111 O
+b001001 P
+b11 "2
+b11 "3
+b001 R
+b11 "4
+b01000 S
+b01110 T
+1U
+b111 V
+b10001 W
+b01110 ":
+b0000110 Y
+b000001 [
+b00111100 ">
+b0111001 _
+1#"
+1##
+b11111 "B
+b0000111 a
+1#$
+b00000110 "C
+1#%
+1#&
+b111000 "J
+b11111 "M
+b0001101 #/
+b10010 "N
+b000110 #0
+b110 #1
+b01001011 #2
+b110 r
+b01001011 "T
+b111 #6
+1t
+b11 "V
+b101 u
+b11 "W
+b00001001 v
+b11 "X
+b0010010000 w
+b11 "Y
+b1001 x
+b11 "Z
+1"[
+1{
+b11 #>
+1|
+b010010 #?
+1}
+b01001 #@
+1~
+b0100100 #A
+b00110110 "`
+b010010000 $#
+b001111 #D
+b111 #E
+b001 "d
+b01001 $(
+b1110011 "f
+b11 $)
+b01001011 $*
+b00001001 #J
+b0110110 "i
+1$+
+b0010010000 #K
+b0010011001 $.
+b010010000 #O
+b111 "n
+b1101100 #Q
+b01001 #S
+1#U
+b101010 $7
+b0100100 #W
+b01001 #X
+b010010 #Y
+b000110 $:
+b1110010 "y
+b111 $;
+0"{
+b01001011 #]
+b01001011 "|
+b01001011 "}
+b10001 #^
+b10101 #_
+b0111001 "~
+b111 #`
+b1111001 #c
+b10010 #e
+b0010011001 #l
+b0110 #t
+b0001100 #v
+b01110010 #{
+b0111 #}
+#131
+1"{
+#136
+0"{
+#141
+1"{
+#146
+b01001011 "#
+1#d
+b111 b
+b10010 "E
+1#g
+0"I
+b01001011 p
+b010010 "u
+b01001011 4
+b11 "7
+b0000 x
+1";
+0"{
+b010010 #=
+b00000000 ">
+b11 #B
+#151
+1"{
+#156
+0"{
+#161
+1"{
+#166
+b10101010 #C
+b10101010 "%
+b1101110 ")
+1$-
+b00111100 N
+b10101010 "5
+b10101010 #V
+b1101110 "y
+1"z
+0"{
+b10101010 Z
+b0110111 "~
+b0110111 _
+b10010100 "A
+b10101010 "D
+b10101010 #*
+b10010 i
+b11111 j
+b00111100 ,
+b11111 m
+b11111 n
+1#w
+b00111100 6
+1#y
+b01101110 #{
+#171
+1"{
+#176
+0"{
+#181
+1"{
+#186
+b00101010 #C
+b1110010 "f
+b01001111 $*
+0$-
+b00101010 #V
+b010011 "u
+b000101 $:
+b1110010 "y
+0"z
+0"{
+b01001111 #]
+b01001111 "|
+b01001111 "}
+b0111001 "~
+b1111010 #c
+b10011 #e
+b00000000 ,
+b0001101 #v
+b01001111 4
+0#w
+b00000000 6
+0#y
+b01110010 #{
+b01001111 "#
+b00101010 "%
+b0000110 E
+b1110010 ")
+b10011 "/
+b00000000 N
+b01001 S
+b00101010 "5
+b01111 T
+b01111 ":
+b0000101 Y
+b00101010 Z
+b0111001 _
+b00010100 "A
+b0000110 a
+b00101010 "D
+b10011 "E
+b00101010 #*
+b00010 i
+b01111 j
+b0001110 #/
+b10011 "N
+b01111 m
+b000101 #0
+b01111 n
+b01001111 #2
+b01001111 p
+b01001111 "T
+b010011 #=
+#191
+1"{
+#196
+0"{
+#201
+1"{
+#206
+b00111100 ,
+b00000000 -
+b0101 /
+10
+b111 2
+b01001011 4
+b00111100 6
+b01000010 7
+b010000 8
+b00000000 9
+b1110 :
+1=
+b01000010 >
+b01011 ?
+b10100 ""
+b01001011 "#
+b001011 C
+b01001011 "%
+b0010111 E
+b1101110 ")
+b010110 "*
+b0101100 "+
+b00000 J
+b01011 ",
+b101 ".
+b10010 "/
+b00111100 N
+b00000 O
+b001011 P
+b000 R
+b01000 S
+b01001011 "5
+b01110 T
+b11 "7
+b110 V
+b10000 W
+b01110 ":
+b0010110 Y
+b01001011 Z
+b000001 [
+b1110000 "@
+b0110111 _
+b01010110 "A
+b00000 "B
+b0010111 a
+b00000110 "C
+b111 b
+b01001011 "D
+b10010 "E
+b111 "H
+b111 #)
+b01001011 #*
+b11111 h
+b01010 i
+b000 #,
+b00000 "M
+b0001101 #/
+b10010 "N
+b00000000 "O
+b010111 #0
+b00101010 #2
+b01001011 p
+b1110 q
+b000 r
+b00101010 "T
+b11100 s
+b000 #6
+b00000000 v
+b0010110000 w
+b0001 x
+b010010 #=
+b010110 #?
+b00000 #@
+b0101100 #A
+b01001101 "`
+b010110000 $#
+b00101010 #C
+b010000 #D
+b110 #E
+b001 "d
+b00000 $(
+b1110011 "f
+b110 "g
+b00101010 $*
+b00000000 #J
+b0100110 "i
+b0010110000 #K
+1$-
+b0010110000 $.
+b010110000 #O
+b110 "n
+b1010 "o
+b1001101 #Q
+b111 #R
+b00000 #S
+b01001011 #V
+b101010 $7
+b010010 "u
+b0101100 #W
+b00000 #X
+1"w
+b010110 #Y
+b010111 $:
+b111 $;
+b1101110 "y
+0"{
+b00101010 #]
+b01001011 "|
+b00101010 "}
+b10000 #^
+b10101 #_
+b0110111 "~
+b1101001 #c
+b10010 #e
+b0010110000 #l
+b001010 #r
+b0001100 #v
+1#y
+b01110 #z
+b01101110 #{
+b0111 #}
+#211
+1"{
+#216
+0"{
+#221
+1"{
+#226
+b00000 *
+1+
+b00000000 ,
+b00111100 -
+b00000000 .
+b0111 /
+10
+b110 2
+b00111010 4
+b00111100 5
+b00000000 6
+b00111111 7
+b001111 8
+b00111100 9
+b1100 :
+0=
+b00111111 >
+b01001 ?
+0@
+b10100 ""
+b00111010 "#
+b00000 "$
+b001001 C
+b00101010 "%
+b00 D
+b0000111 E
+b1110010 ")
+b010010 "*
+b0100100 "+
+b11111 J
+b00000 ",
+b00000000 K
+b111 ".
+b00000000 M
+b10010 "/
+b00000000 N
+b000 "0
+b11111 O
+b001001 P
+b11 "2
+b11 "3
+b001 R
+b11 "4
+b01000 S
+b00101010 "5
+b01110 T
+0"6
+1U
+b10 "7
+b111 V
+b10001 W
+b01110 ":
+b0000110 Y
+1";
+b00101010 Z
+b000001 [
+b1100000 "@
+b0111001 _
+b00010100 "A
+1#"
+1##
+b11111 "B
+b0000111 a
+1#$
+b00000110 "C
+b000 b
+b00101010 "D
+1#%
+b001110 c
+1#&
+b01110 "E
+b110 "H
+b110 #)
+b00101010 #*
+b00000 h
+b111000 "J
+b00010 i
+b000 #,
+0"K
+b11111 "M
+b0001101 #/
+b10010 "N
+b00111100 "O
+b000110 #0
+b110 #1
+b01001011 #2
+b00111010 p
+b1100 q
+b110 r
+b01001011 "T
+b11000 s
+b111 #6
+1t
+b11 "V
+b11 "W
+b011111 #8
+b00001001 v
+b11 "X
+0#9
+b0010010000 w
+b11 "Y
+b0010 x
+b11 "Z
+1#;
+b00 y
+1"[
+b000000 #=
+1{
+b11 #>
+1|
+b010010 #?
+1}
+b01001 #@
+1~
+b0100100 #A
+b00110110 "`
+b010010000 $#
+b11 #B
+b001111 #D
+b111 #E
+b001 "d
+b00000 $'
+b01001 $(
+b1110011 "f
+b11 $)
+b01001011 $*
+b00001001 #J
+b0110110 "i
+1$+
+b0010010000 #K
+b011111 "k
+0$-
+b0010011001 $.
+b000000 "l
+b010010000 #O
+b111 "n
+b0010 "o
+b1101100 #Q
+b011110 "p
+b110 #R
+b01001 #S
+1#U
+b00101010 #V
+b101010 $7
+b001110 "u
+b0100100 #W
+0"w
+b01001 #X
+b010010 #Y
+b000110 $:
+0"x
+b111 $;
+b1110010 "y
+0"{
+b01001011 #]
+b01001011 "|
+b01001011 "}
+b10001 #^
+b10101 #_
+b0111001 "~
+b111 #`
+b1111001 #c
+0#d
+b10010 #e
+b110 #f
+0#g
+b0010011001 #l
+b000010 #r
+b0110 #t
+b0001100 #v
+0#y
+b01100 #z
+b01110010 #{
+b0111 #}
+#231
+1"{
+#236
+0"{
+#241
+1"{
+#246
+b10101010 #C
+b10111010 "#
+b10101010 "%
+b1101110 ")
+b111111 "k
+1$-
+b100000 "l
+b00111100 N
+b111110 "p
+b10101010 "5
+b10101010 #V
+b101110 "u
+b1101110 "y
+1"z
+1$<
+0"{
+b10101010 Z
+b0110111 "~
+b0110111 _
+b10010100 "A
+b10101010 "D
+b10101010 #*
+b10010 i
+1"K
+b11111 j
+b00111100 ,
+b11111 m
+b11111 n
+b10111010 p
+b10111010 4
+1#w
+b111111 #8
+b00111100 6
+1#y
+b01101110 #{
+#251
+1"{
+#256
+0"{
+#261
+1"{
+#266
+0+
+b00111100 ,
+b00000000 -
+b00000000 .
+b0101 /
+10
+b111 2
+b01011101 4
+b00111100 5
+b01000010 7
+b010000 8
+b00000000 9
+b1110 :
+b01000010 >
+b01011 ?
+b10100 ""
+b01011101 "#
+b001011 C
+b01001011 "%
+b0010111 E
+b1110010 ")
+b010110 "*
+1I
+b0101100 "+
+b00000 J
+b01011 ",
+b00000000 K
+1"-
+b101 ".
+b00000000 M
+b10010 "/
+b00111100 N
+b00000 O
+b001011 P
+b000 R
+b01000 S
+b01001011 "5
+b01110 T
+b01 "7
+b110 V
+b10000 W
+b01110 ":
+b0010110 Y
+b01001011 Z
+b000001 [
+b1110000 "@
+b0111001 _
+b01010110 "A
+b00000 "B
+b0010111 a
+b00000110 "C
+b01001011 "D
 b000000 c
-b00000 "E
-b10010 "F
-b00000000 "G
-b11111 f
-b000 #*
-b00101010 "J
-b01011101 i
-b011111 #,
-b1110 j
-b000 k
-b11100 l
-0#/
-b111 #0
-b1110000 #1
-b00000000 o
-b0010110000 p
-b1010 q
-b0011 r
-b010110 #5
-b00000 #6
-b0101100 #7
-b01001101 "W
-b00101010 #9
-b010000 #:
-b110 #;
-b001 "[
-b10100 z
-b01011101 {
-b1110011 "]
-b110 "^
-b01001011 }
-b00000000 #@
-0$"
-b0010110000 #A
-b0100110 "`
-b0010110000 $#
-b010111 "a
-b011111 "b
-b000000 "c
-b010110000 #F
-b110 "e
-b011110 "f
-b1001101 #H
-b111 #I
-b00000 #J
-b101010 $,
-b010111 "k
-b01001011 #M
-b0101100 #N
-b010111 $/
-1"m
-b00000 #O
-0$1
-b010110 #P
-b1110010 "o
-0"p
-0"q
-b00101010 "s
-b00101010 #T
-b10000 #U
-b0111001 "t
-b10101 #V
-b1101001 #Z
-b000 #]
-b111 "}
-b01001011 "~
-b0010110000 #c
-b101 #h
-b1110 #i
-b0001100 #l
-0#m
-0#o
-b01110010 #p
-b010110000 #v
-b00000 #z
-b00101010 #|
+b10111 "E
+b111 "H
+b111 #)
+b01001011 #*
+b11111 h
+b01010 i
+0"K
+b01111 j
+b00000 "M
+b0001101 #/
+b10010 "N
+b01111 m
+b00000000 "O
+b010111 #0
+b01111 n
+b00101010 #2
+b01011101 p
+b1110 q
+b000 r
+b00101010 "T
+b11100 s
+b000 #6
+b011111 #8
+b00000000 v
+b0010110000 w
+b0011 x
+0#;
+b010110 #?
+b00000 #@
+b0101100 #A
+b01001101 "`
+b010110000 $#
+b00101010 #C
+b010000 #D
+b110 #E
+b001 "d
+b00000 $(
+b1110011 "f
+b110 "g
+b00101010 $*
+b00000000 #J
+b0100110 "i
+b0010110000 #K
+b010111 "j
+b011111 "k
+0$-
+b000000 "l
+b0010110000 $.
+b010110000 #O
+b110 "n
+b1010 "o
+b011110 "p
+b1001101 #Q
+b111 #R
+b00000 #S
+b01001011 #V
+b101010 $7
+b010111 "u
+b0101100 #W
+b00000 #X
+1"w
+b010110 #Y
+b010111 $:
+b1110010 "y
+0"z
+0$<
+0"{
+b00101010 #]
+b00101010 "}
+b10000 #^
+b10101 #_
+b0111001 "~
+b1101001 #c
+b000 #f
+b0010110000 #l
+b101 #q
+b001010 #r
+b0001100 #v
+0#w
+0#y
+b01110 #z
+b01110010 #{
 #271
-1"q
+1"{
 #276
-0"q
+0"{
 #281
-1"q
+1"{
 #286
-0B
-0"'
-b000 #h
-b00000000 i
-b000000 "k
-1#q
-b00 "1
-0"q
-b01010110 1
-b1010 r
-0"4
-b01010110 "u
-b10 #8
-b00000 "<
-b00000000 {
-b000000 "a
+b00000000 "#
+b00000 "E
+b000000 "j
+0I
+0"-
+b000 #q
+b00000000 p
+b000000 "u
+b01010110 4
+b00 "7
+b1010 x
+0";
+0"{
+1#|
+b01010110 #!
+b10 #B
 #291
-1"q
+1"{
 #296
-0"C
-b00000000 "s
-b0000 r
-b00000000 "/
-0"q
+b00000000 "5
+b0000 x
+0"{
+0"L
+b00000000 "}
