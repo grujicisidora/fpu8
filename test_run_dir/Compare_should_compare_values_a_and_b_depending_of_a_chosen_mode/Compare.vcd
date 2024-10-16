@@ -1,5 +1,5 @@
 $date
-2024-10-15T14:30+0000
+2024-10-16T18:36+0000
 $end
 $version
 0.2
@@ -9,223 +9,172 @@ $comment
 $end
 $timescale 1ns  $end
 $scope module Compare $end
- $var wire 8 ! a_data $end
- $var wire 4 " z_result_hi_5 $end
- $var wire 5 # z_result_hi_6 $end
- $var wire 5 $ z_result_hi_7 $end
- $var wire 5 % z_result_hi_8 $end
- $var wire 4 & z_result_hi_1 $end
- $var wire 5 ' z_result_hi_2 $end
- $var wire 4 ( z_result_hi_3 $end
- $var wire 5 ) z_result_hi_4 $end
- $var wire 4 * z_result_hi_9 $end
- $var wire 1 + isResultNaN $end
- $var wire 1 , z_isResultNaN $end
- $var wire 8 - z $end
- $var wire 8 . z_result $end
- $var wire 1 / z_result_isResultNaN $end
- $var wire 8 0 z_result_2 $end
- $var wire 8 1 z_result_1 $end
- $var wire 8 2 z_result_result_3 $end
- $var wire 8 3 z_result_4 $end
- $var wire 8 4 z_result_result_2 $end
- $var wire 8 5 z_result_3 $end
- $var wire 8 6 z_result_result_1 $end
- $var wire 8 7 z_result_5 $end
- $var wire 4 8 z_result_result_hi_7 $end
- $var wire 5 9 z_result_result_hi_6 $end
- $var wire 4 : z_result_result_hi_5 $end
- $var wire 5 ; z_result_result_hi_4 $end
- $var wire 4 < z_result_result_hi_3 $end
- $var wire 5 = z_result_result_hi_2 $end
- $var wire 4 > z_result_result_hi_1 $end
- $var wire 5 ? z_result_result_hi $end
- $var wire 5 @ z_result_hi $end
- $var wire 1 A enable $end
- $var wire 1 B reset $end
- $var wire 5 C status $end
- $var wire 3 D compareMode $end
- $var wire 8 E z_result_result $end
- $var wire 1 F z_result_isResultNaN_3 $end
- $var wire 1 G z_result_isResultNaN_2 $end
- $var wire 1 H z_result_isResultNaN_1 $end
- $var wire 1 I z_isResultNaN_5 $end
- $var wire 1 J z_isResultNaN_4 $end
- $var wire 1 K z_isResultNaN_3 $end
- $var wire 1 L z_isResultNaN_2 $end
- $var wire 1 M z_isResultNaN_1 $end
- $var wire 1 N clock $end
- $var wire 8 O b_data $end
+ $var wire 8 ! result_result_6 $end
+ $var wire 8 " result_result_7 $end
+ $var wire 8 # result_result_4 $end
+ $var wire 8 $ result_result_5 $end
+ $var wire 8 % result_result_2 $end
+ $var wire 8 & result_result_3 $end
+ $var wire 1 ' enable $end
+ $var wire 8 ( result_result_1 $end
+ $var wire 8 ) result_result $end
+ $var wire 8 * a_data $end
+ $var wire 1 + reset $end
+ $var wire 5 , status $end
+ $var wire 3 - compareMode $end
+ $var wire 8 . result $end
+ $var wire 8 / z $end
+ $var wire 1 0 isNaN $end
+ $var wire 4 1 result_result_hi_7 $end
+ $var wire 4 2 result_result_hi_6 $end
+ $var wire 4 3 result_result_hi_3 $end
+ $var wire 4 4 result_result_hi_2 $end
+ $var wire 4 5 result_result_hi $end
+ $var wire 4 6 result_result_hi_5 $end
+ $var wire 4 7 result_result_hi_4 $end
+ $var wire 1 8 clock $end
+ $var wire 4 9 result_result_hi_1 $end
+ $var wire 8 : b_data $end
 $upscope $end
 $enddefinitions $end
 $dumpvars
-b00000000 -
-b0000 >
-b000 D
+00
+b00000000 *
+b00000000 &
+b00000000 )
+b00000000 (
+08
+b00000000 #
+b00000000 "
+b00000000 %
+b00000000 $
 b00000000 !
-b00000 #
-0A
-0B
-b00000 %
-b00000 $
-b00000 '
-b00000000 7
-b00000000 6
-0F
-b00000 )
-0G
-0H
-b00000000 3
-0I
-b00000000 2
-0J
-b00000000 5
-0K
-b00000000 4
-0L
-0M
+b00000000 :
+b00000 ,
+b00000000 /
 b00000000 .
-0N
-b00000000 1
-b00000000 0
-b0000 "
-b00000 9
-b00000 ;
-b0000 *
-b00000 =
-b00000000 E
-b0000 (
-b00000 ?
-b0000 &
-b00000 @
-b00000 C
-b0000 <
-b0000 :
+b000 -
+b0000 4
+b0000 5
+b0000 2
+b0000 3
+b0000 1
+0'
 0+
-b0000 8
-0,
-b00000000 O
-0/
+b0000 9
+b0000 6
+b0000 7
 $end
 #0
-b01111 @
-1B
-b00111000 E
-b0111 "
-b01111 #
-b01111 $
-b01111 %
-b0111 &
-b01111 '
-b0111 (
-b01111 )
-b0111 *
-b00111000 .
-b00111000 0
-b00111000 2
-b00111000 3
-b00111000 6
-b0111 8
-b01111 9
-b0111 :
-b01111 ;
-b0111 <
-b01111 =
-b0111 >
-b01111 ?
+b00111000 !
+b00111000 #
+b00111000 %
+b00111000 &
+b00111000 )
+1+
+b0111 1
+b0111 2
+b0111 3
+b0111 4
+b0111 5
+b0111 6
+b0111 7
+b0111 9
 #1
-1N
+18
 #6
-b00101010 !
-0B
-b00111000 E
-b00111000 .
-0N
-b01001011 O
-b00000000 0
-b00000000 1
-b00000000 2
-b00000000 3
-b00000000 4
-b00111000 5
-b00000000 6
-b00111000 7
-#11
-1N
-#16
-0N
-#21
-1N
-#26
-1A
-b00111000 -
-0N
-#31
-1N
-#36
-b001 D
-b00000000 -
-0N
-#41
-1N
-#46
-0N
-#51
-1N
-#56
-b010 D
-0N
-#61
-1N
-#66
-0N
-#71
-1N
-#76
-b011 D
-b00111000 -
-0N
-#81
-1N
-#86
-0N
-#91
-1N
-#96
-b100 D
-b00000000 -
-0N
-#101
-1N
-#106
-0N
-#111
-1N
-#116
-b101 D
-b00111000 -
-0N
-#121
-1N
-#126
-0N
-#131
-1N
-#136
-b10101010 !
-b00111000 1
-b00111000 3
-b00111000 4
-b000 D
-0N
-#141
-1N
-#146
-0N
-#151
-1N
-#156
 b00000000 !
-0A
-0N
-b00000000 O
+b00111000 "
+b00000000 #
+b00000000 $
+b00000000 %
+b00111000 &
+b00000000 (
+b00111000 )
+b00101010 *
+0+
+08
+b01001011 :
+#11
+18
+#16
+08
+#21
+18
+#26
+1'
+08
+b00111000 .
+b00111000 /
+#31
+18
+#36
+08
+b001 -
+b00000000 .
+b00000000 /
+#41
+18
+#46
+08
+#51
+18
+#56
+08
+b010 -
+#61
+18
+#66
+08
+#71
+18
+#76
+08
+b011 -
+b00111000 .
+b00111000 /
+#81
+18
+#86
+08
+#91
+18
+#96
+08
+b100 -
+b00000000 .
+b00000000 /
+#101
+18
+#106
+08
+#111
+18
+#116
+08
+b101 -
+b00111000 .
+b00111000 /
+#121
+18
+#126
+08
+#131
+18
+#136
+b00111000 $
+b00111000 (
+08
+b10101010 *
+b000 -
+#141
+18
+#146
+08
+#151
+18
+#156
+0'
+08
+b00000000 *
+b00000000 :

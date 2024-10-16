@@ -10,40 +10,39 @@ class Compare(val e5m2: Boolean) extends Module {
   val z = IO(Output(UInt(8.W)))
   val status = IO(Output(UInt(5.W)))
 
-  val isResultNaN = Wire(Bool())
+  val result = Wire(UInt(8.W))
+  val isNaN = Wire(Bool())
 
   when(enable === 1.U){
     when(compareMode === 0.U) {
-      z := a < b
-      isResultNaN := a.isNaN || b.isNaN
+      result := a < b
     }.elsewhen(compareMode === 1.U) {
-      z := a > b
-      isResultNaN := a.isNaN || b.isNaN
+      result := a > b
     }.elsewhen(compareMode === 2.U) {
-      z := a == b
-      isResultNaN := a.isNaN || b.isNaN
+      result := a == b
     }.elsewhen(compareMode === 3.U) {
-      z := a <= b
-      isResultNaN := a.isNaN || b.isNaN
+      result := a <= b
     }.elsewhen(compareMode === 4.U) {
-      z := a >= b
-      isResultNaN := a.isNaN || b.isNaN
+      result := a >= b
     }.elsewhen(compareMode === 5.U){
-      z := a != b
-      isResultNaN := a.isNaN && b.isNaN
+      result := a != b
     }.otherwise {
-      z := 0.U
-      isResultNaN := 0.U
+      result := 0.U
     }
 
-    when(isResultNaN){
+    isNaN := a.isNaN || b.isNaN
+
+    when(isNaN){
       status := 4.U
+      z := Mux(compareMode === 5.U && a.isNaN && b.isNaN, result, 0.U(8.W))
     }.otherwise{
       status := 0.U
+      z := result
     }
   }.otherwise{
+    result := 0.U
     z := 0.U
-    isResultNaN := 0.U
+    isNaN := 0.U
     status := 0.U
   }
 

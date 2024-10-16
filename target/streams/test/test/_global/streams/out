@@ -1,24 +1,28 @@
-[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestGenerateFinalResult, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestMultiply, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestFPU8Generator, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestCompare, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestFPU8Top, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[debug] Running TaskDef(fpu8.TestConvert, org.scalatest.tools.Framework$$anon$1@76d0cf76, false, [SuiteSelector])
-[info] TestMultiply:
-[info] Multiply
-[info] - should calculate the value of expression a * b
+[debug] Running TaskDef(fpu8.TestAdd, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestMultiply, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestDivide, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestGenerateFinalResult, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestFPU8Generator, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestFPU8Top, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestCompare, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
+[debug] Running TaskDef(fpu8.TestConvert, org.scalatest.tools.Framework$$anon$1@452ba735, false, [SuiteSelector])
 [info] TestCompare:
 [info] Compare
 [info] - should compare values a and b depending of a chosen mode
+[info] TestDivide:
+[info] Divide
+[info] - should calculate the value of expression a / b
+[info] TestMultiply:
+[info] Multiply
+[info] - should calculate the value of expression a * b
 [info] TestAdd:
 [info] Add
 [info] - should calculate the value of expression a + b
 [info] - should also calculate the value of expression a - b
-[info] TestDivide:
-[info] Divide
-[info] - should calculate the value of expression a / b
+[info] TestFPU8Generator:
+[info] FPU8Generator
+[info] - should calculate various expressions between numbers in a E4M3 fp8 representation.
+[info] - should also calculate various expressions between numbers in a E5M2 fp8 representation.
 [info] TestConvert:
 [info] Convert
 [info] - should convert fpu8 from E4M3 encoding to E5M2 encoding.
@@ -26,14 +30,10 @@
 [info] TestGenerateFinalResult:
 [info] GenerateFinalResult
 [info] - should give the 8-bit floating point representation of the result
-[info] TestFPU8Generator:
-[info] FPU8Generator
-[info] - should calculate various expressions between numbers in a E4M3 fp8 representation.
-[info] - should also calculate various expressions between numbers in a E5M2 fp8 representation.
 [info] TestFPU8Top:
 [info] FPU8Top
 [info] - should calculate various expressions between numbers in two different fp8 representations.
-[info] Run completed in 12 seconds, 255 milliseconds.
+[info] Run completed in 10 seconds, 736 milliseconds.
 [info] Total number of tests run: 11
 [info] Suites: completed 8, aborted 0
 [info] Tests: succeeded 11, failed 0, canceled 0, ignored 0, pending 0

@@ -1,0 +1,12 @@
+[debug] > Exec(compile, None, None)
+[debug] Evaluating tasks: Compile / compile
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 2 Scala sources to E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes ...
+[warn] 2 deprecations (since Chisel 3.6); re-run with -deprecation for details
+[warn] one warning found
+[info] done compiling
+[info] compiling 1 Scala source to E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes ...
+[info] done compiling
+[debug] Forcing garbage collection...
+[success] Total time: 11 s, completed Oct 16, 2024, 8:36:43 PM
+[debug] > Exec(idea-shell, None, None)

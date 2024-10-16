@@ -503,15 +503,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    val isResultNaN = this.isNaN || other.isNaN
-    val resultNaNFractionValue = getResultNaNFractionValue(other)
-
-    when(isResultNaN){
-      result := {
-        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
-        else Cat(0.U, maxExponent.U, maxMantissa.U)
-      }
-    }.elsewhen(this.sign > other.sign || (this.sign === 1.U && isAbsValGreater(other)) || (this.sign === 0.U && !isAbsValGreater(other))){
+    when(this.sign > other.sign || (this.sign === 1.U && isAbsValGreater(other)) || (this.sign === 0.U && !isAbsValGreater(other))){
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1)/2).U, 0.U(mantissaLength.W))
     }.otherwise{
@@ -524,15 +516,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    val isResultNaN = this.isNaN || other.isNaN
-    val resultNaNFractionValue = getResultNaNFractionValue(other)
-
-    when(isResultNaN){
-      result := {
-        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
-        else Cat(0.U, maxExponent.U, maxMantissa.U)
-      }
-    }.elsewhen(this.sign < other.sign || (this.sign === 1.U && !isAbsValGreater(other)) || (this.sign === 0.U && isAbsValGreater(other))) {
+    when(this.sign < other.sign || (this.sign === 1.U && !isAbsValGreater(other)) || (this.sign === 0.U && isAbsValGreater(other))) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
@@ -545,15 +529,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    val isResultNaN = this.isNaN || other.isNaN
-    val resultNaNFractionValue = getResultNaNFractionValue(other)
-
-    when(isResultNaN) {
-      result := {
-        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
-        else Cat(0.U, maxExponent.U, maxMantissa.U)
-      }
-    }.elsewhen(this.data === other.data) {
+    when(this.data === other.data) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
@@ -564,54 +540,21 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   def <=(other: FloatingPoint): UInt = {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
-    val result = Wire(UInt(8.W))
 
-    val isResultNaN = this.isNaN || other.isNaN
-    val resultNaNFractionValue = getResultNaNFractionValue(other)
-
-    when(isResultNaN) {
-      result := {
-        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
-        else Cat(0.U, maxExponent.U, maxMantissa.U)
-      }
-    }.otherwise{
-      result := (this < other) ^ (this == other)
-    }
-    result
+    (this < other) ^ (this == other)
   }
 
   def >=(other: FloatingPoint): UInt = {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
-    val result = Wire(UInt(8.W))
 
-    val isResultNaN = this.isNaN || other.isNaN
-    val resultNaNFractionValue = getResultNaNFractionValue(other)
-
-    when(isResultNaN) {
-      result := {
-        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
-        else Cat(0.U, maxExponent.U, maxMantissa.U)
-      }
-    }.otherwise {
-      result := (this > other) ^ (this == other)
-    }
-    result
+    (this > other) ^ (this == other)
   }
 
   def !=(other: FloatingPoint): UInt = {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    //val isResultNaN = this.isNaN || other.isNaN
-    val isResultNaN = this.isNaN && other.isNaN
-    val resultNaNFractionValue = getResultNaNFractionValue(other)
-
-    when(isResultNaN) {
-      result := {
-        if (e5m2) Cat(0.U, maxExponent.U, 1.U, resultNaNFractionValue)
-        else Cat(0.U, maxExponent.U, maxMantissa.U)
-      }
-    }.elsewhen(this.data =/= other.data) {
+    when((this.data =/= other.data) || (this.isNaN && other.isNaN)) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
