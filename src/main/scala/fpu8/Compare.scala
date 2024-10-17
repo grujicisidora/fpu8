@@ -12,6 +12,7 @@ class Compare(val e5m2: Boolean) extends Module {
 
   val result = Wire(UInt(8.W))
   val isNaN = Wire(Bool())
+  val is0 = Wire(Bool())
 
   when(enable === 1.U){
     when(compareMode === 0.U) {
@@ -31,10 +32,14 @@ class Compare(val e5m2: Boolean) extends Module {
     }
 
     isNaN := a.isNaN || b.isNaN
+    is0 := a.is0 && b.is0
 
     when(isNaN){
       status := 4.U
       z := Mux(compareMode === 5.U && a.isNaN && b.isNaN, result, 0.U(8.W))
+    }.elsewhen(is0) {
+      status := 1.U
+      z := result
     }.otherwise{
       status := 0.U
       z := result
@@ -43,6 +48,7 @@ class Compare(val e5m2: Boolean) extends Module {
     result := 0.U
     z := 0.U
     isNaN := 0.U
+    is0 := 0.U
     status := 0.U
   }
 

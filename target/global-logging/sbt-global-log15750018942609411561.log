@@ -1,30 +1,28 @@
 [debug] > Exec(test, None, None)
 [debug] Evaluating tasks: Test / test
 [debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
-[info] compiling 1 Scala source to E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\classes ...
-[warn] 2 deprecations (since Chisel 3.6); re-run with -deprecation for details
-[warn] one warning found
+[info] compiling 1 Scala source to E:\Faks\MAS\FIN\master_rad\fpu8\target\scala-2.13\test-classes ...
 [info] done compiling
-[info] TestMultiply:
-[info] Multiply
-[info] - should calculate the value of expression a * b
-[info] TestCompare:
-[info] Compare
-[info] - should compare values a and b depending of a chosen mode
 [info] TestGenerateFinalResult:
 [info] GenerateFinalResult
 [info] - should give the 8-bit floating point representation of the result
 [info] TestDivide:
 [info] Divide
 [info] - should calculate the value of expression a / b
-[info] TestAdd:
-[info] Add
-[info] - should calculate the value of expression a + b
-[info] - should also calculate the value of expression a - b
 [info] TestConvert:
 [info] Convert
 [info] - should convert fpu8 from E4M3 encoding to E5M2 encoding.
 [info] - should also convert fpu8 from E5M2 encoding to E4M3 encoding.
+[info] TestCompare:
+[info] Compare
+[info] - should compare values a and b depending of a chosen mode
+[info] TestAdd:
+[info] Add
+[info] - should calculate the value of expression a + b
+[info] - should also calculate the value of expression a - b
+[info] TestMultiply:
+[info] Multiply
+[info] - should calculate the value of expression a * b
 [info] TestFPU8Generator:
 [info] FPU8Generator
 [info] - should calculate various expressions between numbers in a E4M3 fp8 representation.
@@ -32,11 +30,10 @@
 [info] TestFPU8Top:
 [info] FPU8Top
 [info] - should calculate various expressions between numbers in two different fp8 representations.
-[info] Run completed in 10 seconds, 232 milliseconds.
+[info] Run completed in 10 seconds, 909 milliseconds.
 [info] Total number of tests run: 11
 [info] Suites: completed 8, aborted 0
 [info] Tests: succeeded 11, failed 0, canceled 0, ignored 0, pending 0
 [info] All tests passed.
-[debug] Forcing garbage collection...
-[success] Total time: 14 s, completed Oct 16, 2024, 10:30:39 PM
+[success] Total time: 12 s, completed Oct 17, 2024, 2:11:54 AM
 [debug] > Exec(idea-shell, None, None)

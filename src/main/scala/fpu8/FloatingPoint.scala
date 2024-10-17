@@ -28,6 +28,8 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
 
   private def isAbsValGreater(other: FloatingPoint): Bool = this.data(6, 0) > other.data(6, 0)
 
+  private def isAbsValLess(other: FloatingPoint): Bool = this.data(6, 0) < other.data(6, 0)
+
   private def isAbsValEqualTo(other: FloatingPoint): Bool = this.data(6, 0) === other.data(6, 0)
 
   private def isExp0: Bool = exponent === 0.U
@@ -503,7 +505,8 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    when(this.sign > other.sign || (this.sign === 1.U && isAbsValGreater(other)) || (this.sign === 0.U && !isAbsValGreater(other))){
+    when(((this.sign > other.sign) && !(this.is0 && other.is0)) ||
+      (this.sign === 1.U && isAbsValGreater(other)) || (this.sign === 0.U && isAbsValLess(other))){
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1)/2).U, 0.U(mantissaLength.W))
     }.otherwise{
@@ -516,7 +519,8 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    when(this.sign < other.sign || (this.sign === 1.U && !isAbsValGreater(other)) || (this.sign === 0.U && isAbsValGreater(other))) {
+    when(((this.sign < other.sign) && !(this.is0 && other.is0)) ||
+      (this.sign === 1.U && isAbsValLess(other)) || (this.sign === 0.U && isAbsValGreater(other))) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
@@ -529,7 +533,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    when(this.data === other.data) {
+    when((this.data === other.data) || (this.is0 && other.is0)) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
@@ -554,7 +558,7 @@ class FloatingPoint(e5m2: Boolean) extends Bundle {
     require(this.exponentLength == other.exponentLength, "Required same FP8 encoding.")
     val result = Wire(UInt(8.W))
 
-    when((this.data =/= other.data) || (this.isNaN && other.isNaN)) {
+    when(((this.data =/= other.data) && !(this.is0 && other.is0)) || (this.isNaN && other.isNaN)) {
       // true -> 1
       result := Cat(0.U, ((maxExponent - 1) / 2).U, 0.U(mantissaLength.W))
     }.otherwise {
